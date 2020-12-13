@@ -18,6 +18,6 @@ public class FunctView {
      * @return  Nova ImageIcon.
      */
     public ImageIcon createImage(String urlImage) {
-         return new ImageIcon(getClass().getResource(DIRETORIO + urlImage));
+         return new ImageIcon(getClass().getResource(DIRETORIO + urlImage + ".png"));
     }
 }
