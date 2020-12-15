@@ -1,5 +1,6 @@
 package visao;
 
+import visao.estilo.ViewStyle;
 import controlador.Controller;
 import funct.FunctView;
 import java.awt.Dimension;

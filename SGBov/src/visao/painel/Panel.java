@@ -32,7 +32,7 @@ import javax.swing.SwingConstants;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import visao.ViewStyle;
+import visao.estilo.ViewStyle;
 
 /**
  * <p>Classe de Visao <b>View</b>.</p> 
