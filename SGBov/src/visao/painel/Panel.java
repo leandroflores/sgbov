@@ -1,12 +1,15 @@
 package visao.painel;
 
 import controlador.Controller;
+import funct.FunctDate;
 import funct.FunctView;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
+import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.HashMap;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -18,12 +21,14 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -50,6 +55,7 @@ public abstract class Panel extends JPanel {
     private HashMap tables;
     private HashMap colums;
     private HashMap models;
+    private HashMap spinners;
     private HashMap textAreas;
     private HashMap textFields;
     
@@ -65,18 +71,19 @@ public abstract class Panel extends JPanel {
      * Metodo responsavel por iniciar as Listas de Componentes.
      */
     private void init() {
-        this.buttons    = new HashMap<>();
-        this.checks     = new HashMap<>();
-        this.combos     = new HashMap<>();
-        this.choosers   = new HashMap<>();
-        this.lists      = new HashMap<>();
-        this.panels     = new HashMap<>();
-        this.scrolls    = new HashMap<>();
-        this.tables     = new HashMap<>();
-        this.colums     = new HashMap<>();
-        this.models     = new HashMap<>();
-        this.textAreas  = new HashMap<>();
-        this.textFields = new HashMap<>();
+        buttons    = new HashMap<>();
+        checks     = new HashMap<>();
+        combos     = new HashMap<>();
+        choosers   = new HashMap<>();
+        lists      = new HashMap<>();
+        panels     = new HashMap<>();
+        scrolls    = new HashMap<>();
+        tables     = new HashMap<>();
+        colums     = new HashMap<>();
+        models     = new HashMap<>();
+        spinners   = new HashMap<>();
+        textAreas  = new HashMap<>();
+        textFields = new HashMap<>();
     }
     
     /**
@@ -167,7 +174,7 @@ public abstract class Panel extends JPanel {
                 button.setFont(new Font(ViewStyle.ESTILO, ViewStyle.PADRAO, ViewStyle.TAMANHO));
                 button.addActionListener(controller);
                 button.addKeyListener(controller);
-                this.buttons.put(id, button);
+                buttons.put(id, button);
         return  button;
     }
     
@@ -235,7 +242,7 @@ public abstract class Panel extends JPanel {
                   checkBox.setFont(new Font(ViewStyle.ESTILO, ViewStyle.PADRAO, ViewStyle.TAMANHO));
                   checkBox.addActionListener(controller);
                   checkBox.addKeyListener(controller);
-                  this.checks.put(id, checkBox);
+                  checks.put(id, checkBox);
         return    checkBox;
     }
     
@@ -263,7 +270,7 @@ public abstract class Panel extends JPanel {
                   comboBox.setPreferredSize(new Dimension(size, ViewStyle.ALTURA));
                   comboBox.addActionListener(controller);
                   comboBox.addKeyListener(controller);
-                  this.combos.put(id, comboBox);
+                  combos.put(id, comboBox);
         return    comboBox;
     }
     
@@ -291,181 +298,180 @@ public abstract class Panel extends JPanel {
     }
     
     /**
-     * Method responsible for returning a New File Chooser.
-     * @param  id File Chooser Id.
-     * @return New File Chooser.
+     * Metodo responsavel por retornar um Novo File Chooser.
+     * @param  id Identificador do File Chooser.
+     * @return Novo File Chooser.
      */
     protected JFileChooser createFileChooser(String id) {
         JFileChooser fileChooser = new JFileChooser();
                      fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                     fileChooser.setFileFilter(new FileNameExtensionFilter("SMARTY", "smty", "smty"));
-                     this.choosers.put(id, fileChooser);
+                     choosers.put(id, fileChooser);
         return       fileChooser;
     }
     
     /**
-     * Method responsible for returning a New Directory Chooser.
-     * @param  id Directory Chooser Id.
-     * @return New Directory Chooser.
+     * Metodo responsavel por retornar um Novo Directory Chooser.
+     * @param  id Identificador do Directory Chooser.
+     * @return Novo Directory Chooser.
      */
     protected JFileChooser createDirectoryChooser(String id) {
         JFileChooser fileChooser = new JFileChooser();
                      fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                     this.choosers.put(id, fileChooser);
+                     choosers.put(id, fileChooser);
         return       fileChooser;
     }
     
     /**
-     * Method responsible for returning the File Chooser by Id.
-     * @param  id File Chooser Id.
-     * @return File Chooser found.
+     * Metodo responsavel por retornar o File Chooser pelo Identificador.
+     * @param  id Identificador do File Chooser.
+     * @return File Chooser pelo Identificador.
      */
     protected JFileChooser getFileChooser(String id) {
-        return (JFileChooser) this.choosers.get(id);
+        return (JFileChooser) choosers.get(id);
     }
     
     /**
-     * Method responsible for returning a New List.
-     * @param  id List Id.
-     * @return New List.
+     * Metodo responsavel por retornar uma Nova List.
+     * @param  id Identificador da List.
+     * @return Nova List.
      */
     protected JList createList(String id) {
         JList  list = new JList();
                list.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                list.setFont(new Font(ViewStyle.ESTILO, ViewStyle.PADRAO, ViewStyle.TAMANHO));
-               list.addKeyListener(this.controller);
-               this.createScrollPane(id, list);
-               this.lists.put(id, list);
+               list.addKeyListener(controller);
+               createScrollPane(id, list);
+               lists.put(id, list);
         return list;
     }
     
     /**
-     * Method responsible for returning the List by Id.
-     * @param  id List Id.
-     * @return List found.
+     * Metodo responsavel por retornar a List pelo Identificador.
+     * @param  id Identificador da List.
+     * @return List pelo Identificador.
      */
     protected JList getList(String id) {
-        return (JList) this.lists.get(id);
+        return (JList) lists.get(id);
     }
     
     /**
-     * Method responsible for adding a Panel.
-     * @param id Panel Id.
+     * Metodo responsavel por adicionar um Panel.
+     * @param id Identificador do Panel.
      * @param panel Panel.
      */
     protected void addPanel(String id, Panel panel) {
-        this.panels.put(id, panel);
+        panels.put(id, panel);
     }
     
     /**
-     * Method responsible for returning a Panel by Id.
-     * @param  id Panel Id.
-     * @return Panel found.
+     * Metodo responsavel por retornar um Panel pelo Identificador.
+     * @param  id Identificador do Panel.
+     * @return Panel pelo Identificador.
      */
     protected Panel getPanel(String id) {
-        return (Panel) this.panels.get(id);
+        return (Panel) panels.get(id);
     }
     
     /**
-     * Method responsible for removing a Panel.
-     * @param id Panel Id.
+     * Metodo responsavel por remover um Panel.
+     * @param id Identificador do Panel.
      */
     protected void removePanel(String id) {
-        this.panels.remove(id);
+        panels.remove(id);
     }
     
     /**
-     * Method responsible for returning a New Scroll Pane.
-     * @param  id Scroll Pane Id.
-     * @return New Scroll Pane.
+     * Metodo responsavel por retornar um Novo Scroll Pane.
+     * @param  id Identificador do Scroll Pane.
+     * @return Novo Scroll Pane.
      */
     protected JScrollPane createScrollPane(String id) {
         JScrollPane scrollPane = new JScrollPane();
                     scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-                    this.scrolls.put(id, scrollPane);
+                    scrolls.put(id, scrollPane);
         return      scrollPane;
     }
     
     /**
-     * Method responsible for returning a New Scroll Pane of a Panel.
-     * @param  id Scroll Pane Id.
-     * @param  panel Panel.
-     * @return New Scroll Pane of a Panel.
+     * Metodo responsavel por retornar um Novo Scroll Pane de um Panel.
+     * @param  id Identificador do Scroll Pane.
+     * @param  panel Panel do Scroll Pane.
+     * @return Novo Scroll Pane de um Panel.
      */
     protected JScrollPane createScrollPane(String id, JPanel panel) {
-        JScrollPane scrollPane = this.createScrollPane(id);
+        JScrollPane scrollPane = createScrollPane(id);
                     scrollPane.setPreferredSize(new Dimension(390, 120));
                     scrollPane.setViewportView(panel);
         return      scrollPane;
     }
     
     /**
-     * Method responsible for returning a New Scroll Pane of a List.
-     * @param  id Scroll Pane Id.
-     * @param  list List.
-     * @return New Scroll Pane of a JList.
+     * Metodo responsavel por retornar um Novo Scroll Pane de uma List.
+     * @param  id Identificador do Scroll Pane.
+     * @param  list List do Scroll Pane.
+     * @return Novo Scroll Pane de uma List.
      */
     private JScrollPane createScrollPane(String id, JList list) {
-        JScrollPane scrollPane = this.createScrollPane(id);
+        JScrollPane scrollPane = createScrollPane(id);
                     scrollPane.setViewportView(list);
                     scrollPane.setPreferredSize(new Dimension(390, 120));
         return      scrollPane;
     }
     
     /**
-     * Method responsible for returning a New Scroll Pane of a Text Area.
-     * @param  id Scroll Pane Id.
-     * @param  textArea Text Area.
-     * @return New Scroll Pane of a Text Area.
+     * Metodo responsavel por retornar um Novo Scroll Pane de uma Text Area.
+     * @param  id Identificador do Scroll Pane.
+     * @param  textArea Text Area do Scroll Pane.
+     * @return Novo Scroll Pane de uma Text Area.
      */
     private JScrollPane createScrollPane(String id, JTextArea textArea) {
-        JScrollPane scrollPane = this.createScrollPane(id);
+        JScrollPane scrollPane = createScrollPane(id);
                     scrollPane.setViewportView(textArea);
                     scrollPane.setPreferredSize(new Dimension(200, 100));
         return      scrollPane;
     }
     
     /**
-     * Method responsible for returning a new Scroll Pane of a Table.
-     * @param  id Scroll Pane Id.
-     * @param  table Table.
-     * @return New Scroll Pane of a Table.
+     * Metodo responsavel por retornar um Novo Scroll Pane de uma Table.
+     * @param  id Identificador do Scroll Pane.
+     * @param  table Table do Scroll Pane.
+     * @return Novo Scroll Pane de uma Table.
      */
     private JScrollPane createScrollPane(String id, JTable table) {
-        JScrollPane scrollPane = this.createScrollPane(id);
+        JScrollPane scrollPane = createScrollPane(id);
                     scrollPane.setViewportView(table);
                     scrollPane.setPreferredSize(new Dimension(380, 150));
         return      scrollPane;
     }
     
     /**
-     * Method responsible for returning the Scroll Pane by Id.
-     * @param  id Scroll Pane Id.
-     * @return Scroll Pane found.
+     * Metodo responsavel por retornar o Scroll Pane pelo Identificador.
+     * @param  id Identificador do Scroll Pane.
+     * @return Scroll Pane pelo Identificador.
      */
     protected JScrollPane getScrollPane(String id) {
-        return (JScrollPane) this.scrolls.get(id);
+        return (JScrollPane) scrolls.get(id);
     }
     
     /**
-     * Method responsible for returning a New Table.
-     * @param  id Table Id.
-     * @return New Table.
+     * Metodo responsavel por retornar uma Nova Table.
+     * @param  id Identificador da Table.
+     * @return Nova Table.
      */
     protected JTable createTable(String id) {
-        JTable table = new JTable(this.createTableModel());
-               table.addKeyListener(this.controller);
-               this.createScrollPane(id, table);
-               this.models.put(id, table.getModel());
-               this.colums.put(id, table.getColumnModel());
-               this.tables.put(id, table);
+        JTable table = new JTable(createTableModel());
+               table.addKeyListener(controller);
+               createScrollPane(id, table);
+               models.put(id, table.getModel());
+               colums.put(id, table.getColumnModel());
+               tables.put(id, table);
         return table;
     }
     
     /**
-     * Method responsible for returning a New Table Model.
-     * @return New Table Model.
+     * Metodo responsavel por retornar uma Nova Table Model.
+     * @return Nova Table Model.
      */
     private DefaultTableModel createTableModel() {
         return 
@@ -477,158 +483,242 @@ public abstract class Panel extends JPanel {
     }
     
     /**
-     * Method responsible for adding the Columns on Table.
-     * @param id Table Id.
-     * @param values Column Values.
+     * Metodo responsavel por adicionar as Colunas da Table.
+     * @param id Identificador da Table.
+     * @param values Valores da Column.
      */
     protected void addColumns(String id, String[] values) {
         for (String value : values)
-            ((DefaultTableModel) this.models.get(id)).addColumn(value);
+            ((DefaultTableModel) models.get(id)).addColumn(value);
     }
     
     /**
-     * Method responsible for setting the Columns Size on Table.
-     * @param id Table Id. 
-     * @param size Size Array.
+     * Metodo responsavel por definir o Tamanho das Colunas da Table.
+     * @param id Identificador da Table. 
+     * @param size Array dos Tamanhos da Table.
      */
     protected void setColumnsSize(String id, int[] size) {
         for (int i = 0; i < size.length; i++)
-            this.getTable(id).getColumnModel().getColumn(i).setPreferredWidth(size[i]);
+            getTable(id).getColumnModel().getColumn(i).setPreferredWidth(size[i]);
     }
     
     /**
-     * Method responsible for cleaning the Table.
-     * @param id Table Id.
+     * Metodo responsavel por limpar a Table
+     * @param id Identificador da Table.
      */
     protected void clearTable(String id) {
-        while (this.getTableModel(id).getRowCount() > 0)
-            this.getTableModel(id).removeRow(0);
-        this.getTable(id).removeAll();
+        while (getTableModel(id).getRowCount() > 0)
+            getTableModel(id).removeRow(0);
+        getTable(id).removeAll();
     }
     
     /**
-     * Method responsible for adding the Line Values on Table.
-     * @param id Table Id. 
-     * @param values Line Values.
+     * Metodo responsavel por adicionar os Valores da Table.
+     * @param id Identificador da Table. 
+     * @param values Valores da Table.
      */
     protected void addRows(String id, Object[][] values) {
-        this.clearTable(id);
+        clearTable(id);
         for (Object[] value : values) {
-            this.getTableModel(id).addRow(value);
-            this.getTable(id).setEditingRow(JTable.AUTO_RESIZE_NEXT_COLUMN);
-            this.getTable(id).setEditingRow(0);
+            getTableModel(id).addRow(value);
+            getTable(id).setEditingRow(JTable.AUTO_RESIZE_NEXT_COLUMN);
+            getTable(id).setEditingRow(0);
         }
     }
     
     /**
-     * Method responsible for returning the Table by Id.
-     * @param  id Table Id.
-     * @return Table found.
+     * Metodo responsavel por retornar a Table pelo Identificador.
+     * @param  id Identificador da Table.
+     * @return Table pelo Identificador.
      */
     protected JTable getTable(String id) {
-        return (JTable) this.tables.get(id);
+        return (JTable) tables.get(id);
     }
     
     /**
-     * Method responsible for returning the Table Model by Id.
-     * @param  id Table Model Id.
-     * @return Table Model found.
+     * Metodo responsavel por retornar o Table Model pelo Identificador.
+     * @param  id Identificador do Table Model.
+     * @return Table Model pelo Identificador.
      */
     protected DefaultTableModel getTableModel(String id) {
-        return (DefaultTableModel) this.models.get(id);
+        return (DefaultTableModel) models.get(id);
     }
     
     /**
-     * Method responsible for returning the Table Column by Id.
-     * @param  id Table Column Id.
-     * @return Table Column found.
+     * Metodo responsavel por retornar o Table Column pelo Identificador.
+     * @param  id Identificador do Table Column.
+     * @return Table Column pelo Identificador.
      */
     protected TableColumnModel getTableColumn(String id) {
-        return (TableColumnModel) this.colums.get(id);
+        return (TableColumnModel) colums.get(id);
     }
     
     /**
-     * Method responsible for returning a New Text Area.
-     * @param  id Text Area Id.
-     * @return New Text Area.
+     * Metodo responsavel por retornar um Novo Spinner.
+     * @param  id Identificador do Spinner.
+     * @return Novo Spinner.
+     */
+    public JSpinner createSpinner(String id) {
+        JSpinner spinner = new JSpinner();
+                 spinner.setAlignmentY(SwingConstants.RIGHT);
+                 spinner.setFont(new Font(ViewStyle.ESTILO, ViewStyle.PADRAO, ViewStyle.TAMANHO));
+                 spinner.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 0));
+                 spinner.setPreferredSize(new Dimension(75, 30));
+                 spinner.addKeyListener(controller);
+                 ((DefaultEditor) spinner.getEditor()).getTextField().addKeyListener(controller);
+                 ((DefaultEditor) spinner.getEditor()).getTextField().setEditable(false);
+                 spinners.put(id, spinner);
+        return   spinner;
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Spinner Editavel.
+     * @param  id Identificador do Spinner.
+     * @return Novo Spinner Editavel.
+     */
+    public JSpinner createSpinnerEditable(String id) {
+        JSpinner spinner = createSpinner(id);
+                 spinner.setModel(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+                 ((DefaultEditor) spinner.getEditor()).getTextField().setEditable(true);
+        return   spinner;
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Spinner pelo Identificador.
+     * @param  id Identificador do Spinner.
+     * @return Spinner pelo Identificador.
+     */
+    protected JSpinner getSpinner(String id) {
+        return (JSpinner) spinners.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por retornar uma Nova Text Area.
+     * @param  id Identificador da Text Area.
+     * @return Nova Text Area.
      */
     protected JTextArea createTextArea(String id) {
         JTextArea textArea = new JTextArea(5, 10);
-                  textArea.addKeyListener(this.controller);
                   textArea.setFont(new Font(ViewStyle.ESTILO, ViewStyle.PADRAO, ViewStyle.TAMANHO));
-                  this.textAreas.put(id, textArea);
-                  this.createScrollPane(id, textArea);
+                  textArea.addKeyListener(controller);
+                  textAreas.put(id, textArea);
+                  createScrollPane(id, textArea);
         return    textArea;
     }
     
     /**
-     * Method responsible for returning a New Text Area.
-     * @param  id Text Area Id.
-     * @param  text Text Area Text.
-     * @return New Text Area.
+     * Metodo responsavel por retornar uma Nova Text Area.
+     * @param  id Identificador da Text Area.
+     * @param  text Texto da Text Area.
+     * @return Nova Text Area.
      */
     protected JTextArea createTextArea(String id, String text) {
-        JTextArea textArea = this.createTextArea(id);
+        JTextArea textArea = createTextArea(id);
                   textArea.setText(text);
         return    textArea;
     }
     
     /**
-     * Method responsible for returning the Text Area by Id.
-     * @param  id Text Area Id.
-     * @return Text Area found.
+     * Metodo responsavel por retornar a Text Area pelo Identificador.
+     * @param  id Identificador da Text Area.
+     * @return Text Area pelo Identificador.
      */
     protected JTextArea getTextArea(String id) {
-        return (JTextArea) this.textAreas.get(id);
+        return (JTextArea) textAreas.get(id);
     }
     
     /**
-     * Method responsible for returning a New Text Field.
-     * @param  id Text Field Id.
-     * @param  value Text Field Value.
-     * @param  size Text Field Size.
-     * @return New Text Field.
+     * Metodo responsavel por retornar um Novo Text Field.
+     * @param  id Identificador do Text Field.
+     * @param  value Valor do Text Field.
+     * @param  size Tamanho do Text Field.
+     * @return Novo Text Field.
      */
     protected JTextField createTextField(String id, String value, int size) {
         JTextField textField = new JTextField(size);
                    textField.setText(value);
-                   textField.addActionListener(this.controller);
-                   textField.addKeyListener(this.controller);
                    textField.setPreferredSize(new Dimension(ViewStyle.LARGURA, ViewStyle.ALTURA));
                    textField.setFont(new Font(ViewStyle.ESTILO, ViewStyle.PADRAO, ViewStyle.TAMANHO));
-                   this.textFields.put(id, textField);
+                   textField.addActionListener(controller);
+                   textField.addKeyListener(controller);
+                   textFields.put(id, textField);
         return     textField;
     }
     
     /**
-     * Method responsible for returning a New No Editable Text Field.
-     * @param  id Text Field Id.
-     * @param  value Text Field Value.
-     * @param  size Text Field Size.
-     * @return New No Editable JTextField.
+     * Metodo responsavel por retornar um Novo Text Field Nao Editavel.
+     * @param  id Identificador do Text Field.
+     * @param  value Valor do Text Field.
+     * @param  size Tamanho do Text Field.
+     * @return Novo Text Field Nao Editavel.
      */
     protected JTextField createTextFieldNoEditable(String id, String value, int size) {
-        JTextField textField = this.createTextField(id, value, size);
+        JTextField textField = createTextField(id, value, size);
                    textField.setEditable(false);
         return     textField;
     }
     
     /**
-     * Method responsible for returning the Text Field by Id.
-     * @param  id Text Field Id.
-     * @return Text Field found.
+     * Metodo responsavel por retornar um Novo Price Text Field.
+     * @param  id Identificador do Price Text Field.
+     * @param  value Valor do Price Text Field.
+     * @param  size Tamanho do Price Text Field.
+     * @return Novo Price Text Field.
      */
-    protected JTextField getTextField(String id) {
-        return (JTextField) this.textFields.get(id);
+    protected JTextField createPriceTextField(String id, Float value, int size) {
+        JTextField textField = createTextField(id, "", size);
+                   textField.setHorizontalAlignment(SwingConstants.RIGHT);
+                   textField.setText(new DecimalFormat("R$ #,##0.00").format(value));
+        return     textField;
     }
     
     /**
-     * Method responsible for returning the New Constraints.
-     * @param  width Width Constraints.
-     * @param  height Height Constraints.
-     * @param  x X Position Grid.
-     * @param  y Y Position Grid.
-     * @return New Constraints.
+     * Metodo responsavel por retornar um Novo Year Text Field.
+     * @param  id Identificador do Year Text Field.
+     * @return Novo Year Text Field.
+     */
+    protected JTextField createYearTextField(String id) {
+        return createTextField(id, new FunctDate().getYear(new Date()), 5);
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Year Text Field.
+     * @param  id Identificador do Year Text Field.
+     * @param  value Valor do Year Text Field.
+     * @return Novo Year Text Field.
+     */
+    protected JTextField createYearTextField(String id, Integer value) {
+        JTextField textField = createYearTextField(id);
+                   textField.setText(Integer.toString(value));
+        return     textField;
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Date Text Field.
+     * @param  id Identificador do Date Text Field.
+     * @param  value Valor do Date Text Field.
+     * @return Novo Date Text Field.
+     */
+    protected JTextField createDateTextField(String id, Date value) {
+        return createTextField(id, new FunctDate().getFormattedDate(value), 8);
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Text Field pelo Identificador.
+     * @param  id Identificador do Text Field.
+     * @return Text Field pelo Identificador.
+     */
+    protected JTextField getTextField(String id) {
+        return (JTextField) textFields.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Constraints.
+     * @param  width Largura do Constraints.
+     * @param  height Altura do Constraints.
+     * @param  x Posicao X do Grid.
+     * @param  y Posicao Y do Grid.
+     * @return Novo Constraints.
      */
     protected GridBagConstraints createConstraints(int width, int height, int x, int y) {
         GridBagConstraints constraints = new GridBagConstraints();
@@ -641,15 +731,15 @@ public abstract class Panel extends JPanel {
     }
     
     /**
-     * Method responsible for returning the New Start Constraint.
-     * @return New Start Constraint.
+     * Metodo responsavel por retornar o Novo Start Constraint.
+     * @return Novo Start Constraint.
      */
     protected GridBagConstraints createStartConstraint() {
-        return this.setStartConstraint(new GridBagConstraints());
+        return setStartConstraint(new GridBagConstraints());
     }
     
     /**
-     * Method responsible for setting the Start Constraint.
+     * Metodo responsavel por definir o Start Constraint.
      * @param  constraint Grid Bag Constraint.
      * @return Start Constraint.
      */
@@ -664,15 +754,15 @@ public abstract class Panel extends JPanel {
     }
     
     /**
-     * Method responsible for returning the New Body Constraint.
-     * @return New Body Constraint.
+     * Metodo responsavel por retornar um Novo Body Constraint.
+     * @return Novo Body Constraint.
      */
     protected GridBagConstraints createBodyConstraint() {
-        return this.setBodyConstraint(new GridBagConstraints());
+        return setBodyConstraint(new GridBagConstraints());
     }
     
     /**
-     * Method responsible for setting the Body Constraint.
+     * Metodo responsavel por definir o Body Constraint.
      * @param  constraint Grid Bag Constraint.
      * @return Body Constraint.
      */
