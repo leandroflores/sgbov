@@ -20,6 +20,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
@@ -55,6 +56,7 @@ public abstract class Panel extends JPanel {
     private HashMap tables;
     private HashMap colums;
     private HashMap models;
+    private HashMap passwords;
     private HashMap spinners;
     private HashMap textAreas;
     private HashMap textFields;
@@ -81,6 +83,7 @@ public abstract class Panel extends JPanel {
         tables     = new HashMap<>();
         colums     = new HashMap<>();
         models     = new HashMap<>();
+        passwords  = new HashMap<>();
         spinners   = new HashMap<>();
         textAreas  = new HashMap<>();
         textFields = new HashMap<>();
@@ -110,7 +113,7 @@ public abstract class Panel extends JPanel {
     /**
      * Metodo responsavel por definir as Propriedades Padroes.
      */
-    private void setDefaultSettings() {
+    protected void setDefaultSettings() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
     
@@ -551,6 +554,33 @@ public abstract class Panel extends JPanel {
      */
     protected TableColumnModel getTableColumn(String id) {
         return (TableColumnModel) colums.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Password Field.
+     * @param  id Identificador do Password Field.
+     * @param  value Valor do Password Field.
+     * @param  size Tamanho do Password Field.
+     * @return Novo Password Field.
+     */
+    protected JPasswordField createPasswordField(String id, String value, int size) {
+        JPasswordField passwordField = new JPasswordField(size);
+                       passwordField.setText(value);
+                       passwordField.setPreferredSize(new Dimension(ViewStyle.LARGURA, ViewStyle.ALTURA));
+                       passwordField.setFont(new Font(ViewStyle.ESTILO, ViewStyle.PADRAO, ViewStyle.TAMANHO));
+                       passwordField.addActionListener(controller);
+                       passwordField.addKeyListener(controller);
+                       passwords.put(id, passwordField);
+                return passwordField;
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Password Field pelo Identificador.
+     * @param  id Identificador do Password Field.
+     * @return Password Field pelo Identificador.
+     */
+    protected JPasswordField getPasswordField(String id) {
+        return (JPasswordField) passwords.get(id);
     }
     
     /**

@@ -49,12 +49,12 @@ public abstract class View extends JFrame {
     /**
      * Metodo responsavel por definir as Propriedades Padrao para a View.
      */
-    private void setDefaultProperties() {
+    protected void setDefaultProperties() {
         setSize(new Dimension(getEixoX(), getEixoY()));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocation(5, 5);
         setIconImage(new FunctView().createImage("icone").getImage());
-        setLayout(new FlowLayout(FlowLayout.CENTER));
+        //setLayout(new FlowLayout(FlowLayout.CENTER));
         setResizable(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
