@@ -13,13 +13,15 @@ import visao.painel.logo.PanelLogo;
  * @see    controlador
  * @see    visao.View
  */
-public class ViewLogin extends View {
+public final class ViewLogin extends View {
     
     /**
      * Metodo construtor padrao da Classe.
      */
     public ViewLogin() {
-        addComponents();
+        updateTitle("Login");
+        setDefaultProperties();
+        addPanels();
     }
     
     @Override
@@ -28,12 +30,12 @@ public class ViewLogin extends View {
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
-    protected void addComponents() {
-        getContentPane().add(createLabel("A"));
-        getContentPane().add(createLabel("B"));
+    @Override
+    protected void addPanels() {
+        addVerticalSpace(100);
         getContentPane().add(new PanelLogo());
+        addVerticalSpace(20);
         getContentPane().add(new PanelLogin());
-        getContentPane().add(createLabel("C"));
     }
     
     public static void main(String[] args) {

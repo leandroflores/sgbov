@@ -1,6 +1,5 @@
 package controlador;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -38,20 +37,6 @@ public abstract class Controller implements ActionListener, KeyListener, ChangeL
     protected static final int LEFT  = KeyEvent.VK_LEFT;
     protected static final int RIGHT = KeyEvent.VK_RIGHT;
     protected static final int UP    = KeyEvent.VK_UP;
-
-    /**
-     * Metodo abstrato responsavel pelas acoes.
-     * @param event Evento de Acao.
-     */
-    @Override
-    public abstract void actionPerformed(ActionEvent event);
-    
-    /**
-     * Metodo abstrato responsavel pelas acoes de Teclado.
-     * @param event Evento de Teclado.
-     */
-    @Override
-    public abstract void keyPressed(KeyEvent event);
 
     @Override
     public void keyTyped(KeyEvent event) {}

@@ -4,10 +4,10 @@ import visao.estilo.ViewStyle;
 import controlador.Controller;
 import funct.FunctView;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.HashMap;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,7 +34,6 @@ public abstract class View extends JFrame {
      */
     public View() {
         init();
-        setDefaultProperties();
     }
     
     /**
@@ -47,6 +46,14 @@ public abstract class View extends JFrame {
     }
     
     /**
+     * Metodo responsavel por atualizar o Titulo da View.
+     * @param title Titulo da View.
+     */
+    protected void updateTitle(String title) {
+        setTitle(ViewStyle.SISTEMA + title);
+    }
+    
+    /**
      * Metodo responsavel por definir as Propriedades Padrao para a View.
      */
     protected void setDefaultProperties() {
@@ -54,9 +61,29 @@ public abstract class View extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocation(5, 5);
         setIconImage(new FunctView().createImage("icone").getImage());
-        //setLayout(new FlowLayout(FlowLayout.CENTER));
         setResizable(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+    
+    /**
+     * Metodo responsavel por adicionar os Paineis da View.
+     */
+    protected abstract void addPanels();
+    
+    /**
+     * Metodo responsavel por adicionar um Espaco Vertical.
+     * @param space Valor de Espaco.
+     */
+    protected void addVerticalSpace(Integer space) {
+        getContentPane().add(Box.createRigidArea(new Dimension(0, space)));
+    }
+    
+    /**
+     * Metodo responsavel por adicionar um Espaco Horizontal.
+     * @param space Valor de Espaco.
+     */
+    protected void addHorizontalSpace(Integer space) {
+        getContentPane().add(Box.createRigidArea(new Dimension(space, 0)));
     }
     
     /**
