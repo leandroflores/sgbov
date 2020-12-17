@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -23,6 +25,7 @@ import javax.persistence.Temporal;
 @Inheritance (strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Entidade implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id")
     protected Long    id;
     @Column (name = "ativo")

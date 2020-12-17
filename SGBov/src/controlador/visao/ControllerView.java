@@ -7,14 +7,14 @@ import visao.View;
 
 /**
  * <p>Classe de Controle <b>ControllerView</b>.</p>
- * <p>Classe responsavel por controlar os <b>Eventos</b> das Views do SGBov.</p>
+ * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> das Views do SGBov.</p>
  * @author Leandro
  * @since  15/12/2020
  * @see    controlador.Controller
  * @see    visao.View
  */
 public abstract class ControllerView extends Controller {
-    private final View view;
+    protected final View view;
     
     /**
      * Metodo construtor padrao da Classe.

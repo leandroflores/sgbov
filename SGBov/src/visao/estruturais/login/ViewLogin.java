@@ -1,6 +1,5 @@
 package visao.estruturais.login;
 
-import java.awt.Component;
 import javax.swing.BoxLayout;
 import visao.View;
 import visao.painel.login.PanelLogin;
