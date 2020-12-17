@@ -6,6 +6,7 @@ import funct.FunctView;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.InputEvent;
 import java.util.HashMap;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -13,7 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
+import visao.painel.Panel;
 
 /**
  * <p>Classe de Visao <b>View</b>.</p> 
@@ -26,6 +29,7 @@ public abstract class View extends JFrame {
     protected Controller controller;
     
     protected HashMap buttons;
+    protected HashMap panels;
     protected HashMap menus;
     protected HashMap items;
     
@@ -165,6 +169,32 @@ public abstract class View extends JFrame {
     }
     
     /**
+     * Metodo responsavel por adicionar um Panel.
+     * @param id Identificador do Panel.
+     * @param panel Panel.
+     */
+    protected void addPanel(String id, Panel panel) {
+        panels.put(id, panel);
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Panel pelo Identificador.
+     * @param  id Identificador do Panel.
+     * @return Panel pelo Identificador.
+     */
+    protected Panel getPanel(String id) {
+        return (Panel) panels.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por remover um Panel.
+     * @param id Identificador do Panel.
+     */
+    protected void removePanel(String id) {
+        panels.remove(id);
+    }
+    
+    /**
      * Metodo responsavel por retornar um Novo Menu.
      * @param  id Identificador do Menu.
      * @param  title Titulo do Menu.
@@ -211,11 +241,26 @@ public abstract class View extends JFrame {
      * @return Novo Item.
      */
     protected JMenuItem createMenuItem(String id, String title, String urlImage) {
-        JMenuItem menuItem = new JMenuItem(title, new FunctView().createImage("icones/" + urlImage));
+        JMenuItem menuItem = new JMenuItem(title, new FunctView().createImage("menu/" + urlImage));
                   menuItem.setFont(new Font(ViewStyle.ESTILO, ViewStyle.NEGRITO, ViewStyle.TAMANHO));
                   menuItem.addActionListener(controller);
                   menuItem.addKeyListener(controller);
                   items.put(id, menuItem);
+        return    menuItem;
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Item.
+     * @param  id Identificador do Item.
+     * @param  title Titulo do Item.
+     * @param  path Caminho da Imagem do Item.
+     * @param  keychar Key Char do Item.
+     * @return Novo Item.
+     */
+    protected JMenuItem createMenuItem(String id, String title, String path, int keychar) {
+        JMenuItem menuItem = this.createMenuItem(id, title, path);
+                  menuItem.setAccelerator(KeyStroke.getKeyStroke(keychar, InputEvent.CTRL_MASK));
+                  menuItem.setMnemonic(keychar);
         return    menuItem;
     }
     

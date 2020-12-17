@@ -37,8 +37,8 @@ public final class ViewLogin extends View {
         addVerticalSpace(20);
         getContentPane().add(new PanelLogin());
     }
-    
+    /*
     public static void main(String[] args) {
         new ViewLogin().setVisible(true);
-    }
+    }*/
 }
