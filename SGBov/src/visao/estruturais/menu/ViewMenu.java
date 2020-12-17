@@ -4,6 +4,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JMenuBar;
 import visao.View;
 import visao.painel.logo.PanelLogo;
+import visao.painel.relogio.PanelRelogio;
 
 /**
  * <p>Classe de Visao <b>ViewMenu</b>.</p> 
@@ -84,6 +85,8 @@ public final class ViewMenu extends View {
     protected void addPanels() {
         addVerticalSpace(150);
         getContentPane().add(new PanelLogo());
+        addVerticalSpace(50);
+        getContentPane().add(new PanelRelogio());
     }
     
     

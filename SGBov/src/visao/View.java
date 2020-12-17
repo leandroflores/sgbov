@@ -66,7 +66,7 @@ public abstract class View extends JFrame {
         setLocation(5, 5);
         setIconImage(new FunctView().createImage("icone").getImage());
         setResizable(true);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     
     /**
