@@ -14,9 +14,12 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import visao.View;
 import visao.estilo.ViewStyle;
 import visao.interfaces.InterfaceView;
@@ -38,6 +41,8 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
     private HashMap panels;
     private HashMap scrolls;
     private HashMap tables;
+    private HashMap colums;
+    private HashMap models;
     private HashMap fields;
     
     /**
@@ -68,6 +73,8 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
         panels  = new HashMap<>();
         scrolls = new HashMap<>();
         tables  = new HashMap<>();
+        colums  = new HashMap<>();
+        models  = new HashMap<>();
         fields  = new HashMap<>();   
     }
     
@@ -183,12 +190,124 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
     }
     
     /**
+     * Metodo responsavel por retornar um Novo Scroll Pane de uma Table.
+     * @param  id Identificador do Scroll Pane.
+     * @param  table Table do Scroll Pane.
+     * @return Novo Scroll Pane de uma Table.
+     */
+    private JScrollPane createScrollPane(String id, JTable table) {
+        JScrollPane scrollPane = createScrollPane(id);
+                    scrollPane.setViewportView(table);
+                    scrollPane.setPreferredSize(new Dimension(380, 150));
+        return      scrollPane;
+    }
+    
+    /**
      * Metodo responsavel por retornar o Scroll Pane pelo Identificador.
      * @param  id Identificador do Scroll Pane.
      * @return Scroll Pane pelo Identificador.
      */
     public JScrollPane getScrollPane(String id) {
         return (JScrollPane) scrolls.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por retornar uma Nova Table.
+     * @param  id Identificador da Table.
+     * @return Nova Table.
+     */
+    protected JTable createTable(String id) {
+        JTable table = new JTable(createTableModel());
+               table.addKeyListener(controller);
+               createScrollPane(id, table);
+               models.put(id, table.getModel());
+               colums.put(id, table.getColumnModel());
+               tables.put(id, table);
+        return table;
+    }
+    
+    /**
+     * Metodo responsavel por retornar uma Nova Table Model.
+     * @return Nova Table Model.
+     */
+    private DefaultTableModel createTableModel() {
+        return 
+            new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int col) {   
+                    return true;
+                }};
+    }
+    
+    /**
+     * Metodo responsavel por adicionar as Colunas da Table.
+     * @param id Identificador da Table.
+     * @param values Valores da Column.
+     */
+    protected void addColumns(String id, String[] values) {
+        for (String value : values)
+            ((DefaultTableModel) models.get(id)).addColumn(value);
+    }
+    
+    /**
+     * Metodo responsavel por definir o Tamanho das Colunas da Table.
+     * @param id Identificador da Table. 
+     * @param size Array dos Tamanhos da Table.
+     */
+    protected void setColumnsSize(String id, int[] size) {
+        for (int i = 0; i < size.length; i++)
+            getTable(id).getColumnModel().getColumn(i).setPreferredWidth(size[i]);
+    }
+    
+    /**
+     * Metodo responsavel por limpar a Table
+     * @param id Identificador da Table.
+     */
+    protected void clearTable(String id) {
+        while (getTableModel(id).getRowCount() > 0)
+            getTableModel(id).removeRow(0);
+        getTable(id).removeAll();
+    }
+    
+    /**
+     * Metodo responsavel por adicionar os Valores da Table.
+     * @param id Identificador da Table. 
+     * @param values Valores da Table.
+     */
+    protected void addRows(String id, Object[][] values) {
+        clearTable(id);
+        for (Object[] value : values) {
+            getTableModel(id).addRow(value);
+            getTable(id).setEditingRow(JTable.AUTO_RESIZE_NEXT_COLUMN);
+            getTable(id).setEditingRow(0);
+        }
+    }
+    
+    /**
+     * Metodo responsavel por retornar a Table pelo Identificador.
+     * @param  id Identificador da Table.
+     * @return Table pelo Identificador.
+     */
+    protected JTable getTable(String id) {
+        return (JTable) tables.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Table Model pelo Identificador.
+     * @param  id Identificador do Table Model.
+     * @return Table Model pelo Identificador.
+     */
+    protected DefaultTableModel getTableModel(String id) {
+        return (DefaultTableModel) models.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Table Column pelo Identificador.
+     * @param  id Identificador do Table Column.
+     * @return Table Column pelo Identificador.
+     */
+    protected TableColumnModel getTableColumn(String id) {
+        return (TableColumnModel) colums.get(id);
     }
     
     /**
