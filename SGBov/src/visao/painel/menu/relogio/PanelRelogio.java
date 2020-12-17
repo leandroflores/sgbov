@@ -1,9 +1,9 @@
-package visao.painel.relogio;
+package visao.painel.menu.relogio;
 
 import java.awt.FlowLayout;
 import visao.painel.Panel;
-import visao.painel.relogio.label.TextDate;
-import visao.painel.relogio.label.TextTime;
+import visao.painel.menu.relogio.label.TextDate;
+import visao.painel.menu.relogio.label.TextTime;
 
 /**
  * <p>Classe de Visao <b>PanelRelogio</b>.</p>
@@ -11,8 +11,8 @@ import visao.painel.relogio.label.TextTime;
  * @author Leandro
  * @since  17/12/2020
  * @see    visao.painel.Panel
- * @see    visao.painel.relogio.label.TextDate
- * @see    visao.painel.relogio.label.TextTime
+ * @see    visao.painel.menu.relogio.label.TextDate
+ * @see    visao.painel.menu.relogio.label.TextTime
  */
 public final class PanelRelogio extends Panel {
     

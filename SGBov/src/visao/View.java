@@ -3,6 +3,7 @@ package visao;
 import visao.estilo.ViewStyle;
 import controlador.Controller;
 import funct.FunctView;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -75,19 +76,21 @@ public abstract class View extends JFrame {
     protected abstract void addPanels();
     
     /**
-     * Metodo responsavel por adicionar um Espaco Vertical.
-     * @param space Valor de Espaco.
+     * Metodo responsavel por retornar um Espaco Vertical.
+     * @param  space Valor de Espaco.
+     * @return Espaco Vertical.
      */
-    protected void addVerticalSpace(Integer space) {
-        getContentPane().add(Box.createRigidArea(new Dimension(0, space)));
+    protected Component getVerticalSpace(Integer space) {
+        return Box.createRigidArea(new Dimension(0, space));
     }
     
     /**
-     * Metodo responsavel por adicionar um Espaco Horizontal.
-     * @param space Valor de Espaco.
+     * Metodo responsavel por retornar um Espaco Horizontal.
+     * @param  space Valor de Espaco.
+     * @return Espaco Horizontal.
      */
-    protected void addHorizontalSpace(Integer space) {
-        getContentPane().add(Box.createRigidArea(new Dimension(space, 0)));
+    protected Component getHorizontalSpace(Integer space) {
+        return Box.createRigidArea(new Dimension(space, 0));
     }
     
     /**

@@ -1,5 +1,6 @@
 package visao.estruturais.login;
 
+import java.awt.Component;
 import javax.swing.BoxLayout;
 import visao.View;
 import visao.painel.login.PanelLogin;
@@ -32,9 +33,9 @@ public final class ViewLogin extends View {
     
     @Override
     protected void addPanels() {
-        addVerticalSpace(100);
+        getContentPane().add(getVerticalSpace(100));
         getContentPane().add(new PanelLogo());
-        addVerticalSpace(20);
+        getContentPane().add(getVerticalSpace(20));
         getContentPane().add(new PanelLogin());
     }
     /*

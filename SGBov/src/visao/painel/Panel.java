@@ -130,6 +130,17 @@ public abstract class Panel extends JPanel {
     }
     
     /**
+     * Metodo responsavel por retornar um Novo Title Label.
+     * @param  title Titulo do Label.
+     * @return Novo Title Label.
+     */
+    protected JLabel createTitleLabel(String title) {
+        JLabel label = createLabel(title);
+               label.setFont(new Font(ViewStyle.ESTILO, ViewStyle.NEGRITO, 20));
+        return label;
+    }
+    
+    /**
      * Metodo responsavel por retornar um Novo Label.
      * @param  title Titulo do Label.
      * @param  size Tamanho do Label.

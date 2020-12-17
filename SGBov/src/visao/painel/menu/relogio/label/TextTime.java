@@ -1,4 +1,4 @@
-package visao.painel.relogio.label;
+package visao.painel.menu.relogio.label;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
