@@ -3,6 +3,7 @@ package visao.modal;
 import controlador.Controller;
 import funct.FunctDate;
 import funct.FunctView;
+import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -10,13 +11,17 @@ import java.awt.GridBagConstraints;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -38,11 +43,14 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
     protected String title;
     protected Controller controller;
     private HashMap buttons;
+    private HashMap checks;
+    private HashMap combos;
     private HashMap panels;
     private HashMap scrolls;
     private HashMap tables;
     private HashMap colums;
     private HashMap models;
+    private HashMap spinners;
     private HashMap fields;
     
     /**
@@ -69,13 +77,16 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
      * Metodo responsavel por iniciar as Listas de Componentes.
      */
     private void init() {
-        buttons = new HashMap<>();
-        panels  = new HashMap<>();
-        scrolls = new HashMap<>();
-        tables  = new HashMap<>();
-        colums  = new HashMap<>();
-        models  = new HashMap<>();
-        fields  = new HashMap<>();   
+        buttons  = new HashMap<>();
+        checks   = new HashMap<>();
+        combos   = new HashMap<>();
+        panels   = new HashMap<>();
+        scrolls  = new HashMap<>();
+        tables   = new HashMap<>();
+        colums   = new HashMap<>();
+        models   = new HashMap<>();
+        spinners = new HashMap<>();
+        fields   = new HashMap<>();   
     }
     
     /**
@@ -161,6 +172,74 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
      */
     public JButton getButton(String id) {
         return (JButton) buttons.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Check Box.
+     * @param  id Identificador do Check Box.
+     * @param  title Titulo do Check Box.
+     * @param  selected Tag Selected do Check Box.
+     * @return Novo Check Box.
+     */
+    protected JCheckBox createCheckBox(String id, String title, boolean selected) {
+        JCheckBox checkBox = new JCheckBox(title);
+                  checkBox.setSelected(selected);
+                  checkBox.setFont(new Font(ViewStyle.ESTILO, ViewStyle.PADRAO, ViewStyle.TAMANHO));
+                  checkBox.addActionListener(controller);
+                  checkBox.addKeyListener(controller);
+                  checks.put(id, checkBox);
+        return    checkBox;
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Check Box pelo Identificador.
+     * @param  id Identificador do Check Box.
+     * @return Check Box pelo Identificador.
+     */
+    protected JCheckBox getCheckBox(String id) {
+        return (JCheckBox) checks.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Combo Box.
+     * @param  id Identificador do Combo Box.
+     * @param  values Valores do Combo Box.
+     * @param  size Tamanho do Combo Box.
+     * @return Novo Combo Box.
+     */
+    protected JComboBox createComboBox(String id, Object[] values, int size) {
+        JComboBox comboBox = new JComboBox(values);
+                  comboBox.setAlignmentX(CENTER_ALIGNMENT);
+                  comboBox.setAlignmentY(CENTER_ALIGNMENT);
+                  comboBox.setFont(new Font(ViewStyle.ESTILO, ViewStyle.NEGRITO, ViewStyle.TAMANHO));
+                  comboBox.setPreferredSize(new Dimension(size, ViewStyle.ALTURA));
+                  comboBox.addActionListener(controller);
+                  comboBox.addKeyListener(controller);
+                  combos.put(id, comboBox);
+        return    comboBox;
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Combo Box.
+     * @param  id Identificador do Combo Box.
+     * @param  values Valores do Combo Box.
+     * @param  size Tamanho do Combo Box.
+     * @param  object Objeto Selecionado do Combo Box.
+     * @return Novo Combo Box.
+     */
+    protected JComboBox createComboBox(String id, Object[] values, int size, Object object) {
+        JComboBox comboBox = createComboBox(id, values, size);
+                  comboBox.setSelectedItem(object);
+        return    comboBox;
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Combo Box pelo Identificador.
+     * @param  id Identificador do Combo Box.
+     * @return Combo Box pelo Identificador.
+     */
+    protected JComboBox getComboBox(String id) {
+        return (JComboBox) combos.get(id);
     }
     
     /**
@@ -254,7 +333,7 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
      * @param id Identificador da Table. 
      * @param size Array dos Tamanhos da Table.
      */
-    protected void setColumnsSize(String id, int[] size) {
+    protected void setColumnsSize(String id, Integer[] size) {
         for (int i = 0; i < size.length; i++)
             getTable(id).getColumnModel().getColumn(i).setPreferredWidth(size[i]);
     }
@@ -308,6 +387,45 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
      */
     protected TableColumnModel getTableColumn(String id) {
         return (TableColumnModel) colums.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Spinner.
+     * @param  id Identificador do Spinner.
+     * @return Novo Spinner.
+     */
+    public JSpinner createSpinner(String id) {
+        JSpinner spinner = new JSpinner();
+                 spinner.setAlignmentY(SwingConstants.RIGHT);
+                 spinner.setFont(new Font(ViewStyle.ESTILO, ViewStyle.PADRAO, ViewStyle.TAMANHO));
+                 spinner.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 0));
+                 spinner.setPreferredSize(new Dimension(75, 30));
+                 spinner.addKeyListener(controller);
+                 ((JSpinner.DefaultEditor) spinner.getEditor()).getTextField().addKeyListener(controller);
+                 ((JSpinner.DefaultEditor) spinner.getEditor()).getTextField().setEditable(false);
+                 spinners.put(id, spinner);
+        return   spinner;
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Spinner Editavel.
+     * @param  id Identificador do Spinner.
+     * @return Novo Spinner Editavel.
+     */
+    public JSpinner createSpinnerEditable(String id) {
+        JSpinner spinner = createSpinner(id);
+                 spinner.setModel(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+                 ((JSpinner.DefaultEditor) spinner.getEditor()).getTextField().setEditable(true);
+        return   spinner;
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Spinner pelo Identificador.
+     * @param  id Identificador do Spinner.
+     * @return Spinner pelo Identificador.
+     */
+    protected JSpinner getSpinner(String id) {
+        return (JSpinner) spinners.get(id);
     }
     
     /**

@@ -1,7 +1,9 @@
 package visao.estruturais.menu;
 
+import controlador.visao.estruturais.ControllerViewMenu;
 import javax.swing.BoxLayout;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import visao.View;
 import visao.painel.logo.PanelLogo;
 import visao.painel.menu.relogio.PanelRelogio;
@@ -12,7 +14,7 @@ import visao.painel.menu.titulo.PanelTitulo;
  * <p>Classe responsavel por definir a <b>View do Menu Principal</b> do SGBov.</p>
  * @author Leandro
  * @since  16/12/2020
- * @see    controlador
+ * @see    controlador.visao.estruturais.ControllerViewMenu
  * @see    visao.View
  */
 public final class ViewMenu extends View {
@@ -22,7 +24,7 @@ public final class ViewMenu extends View {
      * Metodo construtor padrao da Classe.
      */
     public ViewMenu() {
-        updateTitle("Menu Principal");
+        controller = new ControllerViewMenu(this);
         setDefaultProperties();
         addComponents();
     }
@@ -30,9 +32,13 @@ public final class ViewMenu extends View {
     @Override
     protected void setDefaultProperties() {
         super.setDefaultProperties();
+        updateTitle("Menu Principal");
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
+    /**
+     * Metodo responsavel por adicionar os Componentes da View Menu.
+     */
     protected void addComponents() {
         addMenu();
         addPanels();
@@ -90,6 +96,14 @@ public final class ViewMenu extends View {
         getContentPane().add(new PanelLogo());
         getContentPane().add(getVerticalSpace(75));
         getContentPane().add(new PanelRelogio());
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Menu Item Rebanho.
+     * @return Menu Item Rebanho.
+     */
+    public JMenuItem getMenuItemRebanho() {
+        return getMenuItem("rebanho_consulta");
     }
     
     public static void main(String[] args) {

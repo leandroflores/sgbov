@@ -1,5 +1,6 @@
 package visao.modal.consulta;
 
+import controlador.visao.modal.consulta.ControllerViewConsulta;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -37,6 +38,13 @@ public abstract class ViewConsulta extends ViewModal {
     }
     
     /**
+     * Metodo responsavel por atualizar a View Consulta.
+     */
+    public void update() {
+        getController().pesquisar();
+    }
+    
+    /**
      * Metodo responsavel por adicionar os Campos de Pesquisa das Views de Consulta.
      */
     protected void addSearch() {
@@ -51,6 +59,11 @@ public abstract class ViewConsulta extends ViewModal {
         createTable("consulta");
         getContentPane().add(getScrollPane("consulta"));
     }
+    
+    /**
+     * Metodo responsavel por definir o Cabecalho da Tabela na View de Consulta.
+     */
+    protected abstract void setTableHeader();
     
     /**
      * Metodo responsavel por adicionar o Rodape da Tabela na View de Consulta.
@@ -147,5 +160,13 @@ public abstract class ViewConsulta extends ViewModal {
      */
     public JButton getButtonVoltar() {
         return getButton("voltar");
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Controller da View Consulta.
+     * @return Controller da View Consulta.
+     */
+    public ControllerViewConsulta getController() {
+        return (ControllerViewConsulta) controller;
     }
 }

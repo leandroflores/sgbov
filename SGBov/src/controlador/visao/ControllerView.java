@@ -32,4 +32,12 @@ public abstract class ControllerView extends Controller {
         if (event.getKeyCode() == ESC)
             view.dispose();
     }
+    
+    /**
+     * Metodo responsavel por retornar a View.
+     * @return View.
+     */
+    public View getView() {
+        return view;
+    }
 }
