@@ -70,7 +70,7 @@ public final class ViewConsultaBovino extends ViewConsulta {
         getContentPane().add(createLabel("Ativo: ",  80));
         add(createCheckBox("ativo", "", true));
         getContentPane().add(createLabel("", 10));
-        getContentPane().add(createButton("pesqusia", "", "atualizar"));
+        getContentPane().add(createButton("pesquisa", "", "atualizar"));
         
         getContentPane().add(getSpace(10, 1000));
     }

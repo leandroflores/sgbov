@@ -10,7 +10,7 @@ import visao.modal.ViewModal;
  * <p>Classe responsavel por definir a <b>Interface de Novo</b> do SGBov.</p>
  * @author Leandro
  * @since  19/12/2020
- * @see    controlador.visao.modal.
+ * @see    controlador.visao.modal.novo.ControllerViewNovo
  * @see    visao.modal.ViewModal
  */
 public abstract class ViewNovo extends ViewModal {
@@ -40,9 +40,9 @@ public abstract class ViewNovo extends ViewModal {
     public void addFooter() {
         JPanel footer = new JPanel();
                footer.setLayout(new FlowLayout(FlowLayout.CENTER));
-               footer.add(createButton("novo",   " Inserir ", "sim"));
-               footer.add(createButton("limpar", " Limpar  ", "limpar"));
-               footer.add(createButton("voltar", " Voltar  ", "voltar"));
+               footer.add(createButton("inserir", " Inserir ", "sim"));
+               footer.add(createButton("limpar",  " Limpar  ", "limpar"));
+               footer.add(createButton("voltar",  " Voltar  ", "voltar"));
         getContentPane().add(footer);
     }
     

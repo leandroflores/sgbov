@@ -35,7 +35,6 @@ public class Bovino extends Entidade {
      * Metodo construtor padrao da Classe.
      */
     public Bovino() {
-        super();
         tipo       = "MATRIZ";
         numero     = 0;
         sexo       = 'F';

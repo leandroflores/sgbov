@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
@@ -36,8 +37,8 @@ import javax.swing.table.TableColumnModel;
 import visao.estilo.ViewStyle;
 
 /**
- * <p>Classe de Visao <b>View</b>.</p> 
- * <p>Classe responsavel por definir um Modelo Abstrato para os <b>Paineis Graficas</b> do SGBov.</p>
+ * <p>Classe de Visao <b>Panel</b>.</p> 
+ * <p>Classe responsavel por definir um Modelo Abstrato para os <b>Paineis Graficos</b> do SGBov.</p>
  * @author Leandro
  * @since  14/12/2020
  * @see    controlador.Controller
@@ -57,6 +58,7 @@ public abstract class Panel extends JPanel {
     private HashMap colums;
     private HashMap models;
     private HashMap passwords;
+    private HashMap radios;
     private HashMap spinners;
     private HashMap textAreas;
     private HashMap textFields;
@@ -84,6 +86,7 @@ public abstract class Panel extends JPanel {
         colums     = new HashMap<>();
         models     = new HashMap<>();
         passwords  = new HashMap<>();
+        radios     = new HashMap<>();
         spinners   = new HashMap<>();
         textAreas  = new HashMap<>();
         textFields = new HashMap<>();
@@ -126,6 +129,17 @@ public abstract class Panel extends JPanel {
         JLabel label = new JLabel(title);
                label.setFont(new Font(ViewStyle.ESTILO, ViewStyle.NEGRITO, ViewStyle.TAMANHO));
                label.addKeyListener(controller);
+        return label;
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Right Label.
+     * @param  title Titulo do Right Label.
+     * @return Novo Right Label.
+     */
+    protected JLabel createRightLabel(String title) {
+        JLabel label = createLabel(title);
+               label.setHorizontalAlignment(SwingConstants.RIGHT);
         return label;
     }
     
@@ -595,6 +609,30 @@ public abstract class Panel extends JPanel {
     }
     
     /**
+     * Metodo responsavel por retornar um Novo Radio Button.
+     * @param  id Identificador do Radio Button.
+     * @param  title Titulo do Radio Button.
+     * @return Novo Radio Button.
+     */
+    public JRadioButton createRadioButton(String id, String title) {
+        JRadioButton radio = new JRadioButton(title);
+                     radio.setFont(new Font(ViewStyle.ESTILO, ViewStyle.PADRAO, ViewStyle.TAMANHO));
+                     radio.addActionListener(controller);
+                     radio.addKeyListener(controller);
+                     radios.put(id, radio);
+        return       radio;
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Radio Button pelo Identificador.
+     * @param  id Identificador do Radio Button.
+     * @return Radio Button pelo Identificador.
+     */
+    protected JRadioButton getRadioButton(String id) {
+        return (JRadioButton) radios.get(id);
+    }
+    
+    /**
      * Metodo responsavel por retornar um Novo Spinner.
      * @param  id Identificador do Spinner.
      * @return Novo Spinner.
@@ -714,12 +752,28 @@ public abstract class Panel extends JPanel {
     }
     
     /**
+     * Metodo responsavel por retornar um Novo Decimal Text Field.
+     * @param  id Identificador do Decimal Text Field.
+     * @param  value Valor do Decimal Text Field.
+     * @param  size Tamanho do Decimal Text Field.
+     * @return Novo Decimal Text Field.
+     */
+    protected JTextField createDecimalTextField(String id, Float value, int size) {
+        JTextField textField = createTextField(id, "", size);
+                   textField.setHorizontalAlignment(SwingConstants.RIGHT);
+                   textField.setText(new DecimalFormat("#,##0.00").format(value));
+        return     textField;
+    }
+    
+    /**
      * Metodo responsavel por retornar um Novo Year Text Field.
      * @param  id Identificador do Year Text Field.
      * @return Novo Year Text Field.
      */
     protected JTextField createYearTextField(String id) {
-        return createTextField(id, new FunctDate().getYear(new Date()), 5);
+        JTextField textField = createTextField(id, new FunctDate().getYear(new Date()), 5);
+                   textField.setHorizontalAlignment(SwingConstants.RIGHT);
+        return     textField;
     }
     
     /**
@@ -731,6 +785,7 @@ public abstract class Panel extends JPanel {
     protected JTextField createYearTextField(String id, Integer value) {
         JTextField textField = createYearTextField(id);
                    textField.setText(Integer.toString(value));
+                   textField.setHorizontalAlignment(SwingConstants.RIGHT);
         return     textField;
     }
     
@@ -741,7 +796,9 @@ public abstract class Panel extends JPanel {
      * @return Novo Date Text Field.
      */
     protected JTextField createDateTextField(String id, Date value) {
-        return createTextField(id, new FunctDate().getFormattedDate(value), 8);
+        JTextField textField = createTextField(id, new FunctDate().getFormattedDate(value), 8);
+                   textField.setHorizontalAlignment(SwingConstants.RIGHT);
+        return     textField;
     }
     
     /**

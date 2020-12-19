@@ -10,6 +10,7 @@ import modelo.dao.estruturais.DaoBovino;
 import modelo.entidade.estruturais.Bovino;
 import visao.modal.consulta.estruturais.ViewConsultaBovino;
 import visao.modal.mensagem.ViewErro;
+import visao.modal.novo.estruturais.ViewNovoBovino;
 
 /**
  * <p>Classe de Controle <b>ControllerViewConsultaBovino</b>.</p>
@@ -73,7 +74,7 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
     
     @Override
     public void novo() {
-        //new ViewCadastroBovino(this.viewConsultaBovino).setVisible(true);
+        new ViewNovoBovino(getView()).setVisible(true);
     }
 
     @Override
