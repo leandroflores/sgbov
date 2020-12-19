@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import visao.estruturais.menu.ViewMenu;
 import visao.modal.consulta.estruturais.ViewConsultaBovino;
+import visao.modal.sistema.ViewSistemaSair;
+import visao.modal.sistema.ViewSistemaSobre;
 
 /**
  * <p>Classe de Controle <b>ControllerViewMenu</b>.</p>
@@ -28,12 +30,16 @@ public class ControllerViewMenu extends ControllerView {
     public void actionPerformed(ActionEvent event) {
         if (getView().getMenuItemRebanho().equals(event.getSource()))
             new ViewConsultaBovino(getView()).setVisible(true);
+        else if (getView().getMenuItemSobre().equals(event.getSource()))
+            new ViewSistemaSobre(getView()).setVisible(true);
+        else if (getView().getMenuItemSair().equals(event.getSource()))
+            new ViewSistemaSair(getView()).setVisible(true);
     }
     
     @Override
     public void keyPressed(KeyEvent event) {
-        //if (ESC == event.getKeyCode())
-        //    new ViewSistemaSair(this.viewMenu).setVisible(true);
+        if (ESC == event.getKeyCode())
+            new ViewSistemaSair(getView()).setVisible(true);
     }
     
     @Override

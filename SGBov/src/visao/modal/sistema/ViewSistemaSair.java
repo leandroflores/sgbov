@@ -1,8 +1,11 @@
 package visao.modal.sistema;
 
 import controlador.visao.modal.sistema.ControllerViewSistemaSair;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import visao.View;
 import visao.modal.ViewModal;
 
@@ -34,7 +37,7 @@ public final class ViewSistemaSair extends ViewModal {
      */
     protected void setProperties() {
         updateTitle();
-        setSize(650, 210);
+        setSize(new Dimension(650, 225));
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
@@ -47,19 +50,25 @@ public final class ViewSistemaSair extends ViewModal {
     
     @Override
     public void addHeader() {
+        getContentPane().add(getVerticalSpace(25));
         getContentPane().add(createLabelImage("sistema/sair"));
     }
     
     @Override
     public void addComponents() {
+        getContentPane().add(getVerticalSpace(25));
         getContentPane().add(createLabel("Deseja realmente Sair do Sistema?"));
+        getContentPane().add(getVerticalSpace(25));
     }
     
     @Override
     public void addFooter() {
-        getContentPane().add(createButton("sim", "  Sim  ", "sim"));
-        getContentPane().add(createLabel("  "));
-        getContentPane().add(createButton("nao", "  Não  ", "excluir"));
+        JPanel footer = new JPanel();
+               footer.setLayout(new FlowLayout(FlowLayout.CENTER));
+               footer.add(createButton("sim", "  Sim  ", "sim"));
+               footer.add(createLabel("  "));
+               footer.add(createButton("nao", "  Não  ", "excluir"));
+        getContentPane().add(footer);
     }
     
     /**

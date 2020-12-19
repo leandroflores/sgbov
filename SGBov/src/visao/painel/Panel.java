@@ -136,7 +136,7 @@ public abstract class Panel extends JPanel {
      */
     protected JLabel createTitleLabel(String title) {
         JLabel label = createLabel(title);
-               label.setFont(new Font(ViewStyle.ESTILO, ViewStyle.NEGRITO, 20));
+               label.setFont(new Font(ViewStyle.ESTILO, ViewStyle.NEGRITO, 30));
         return label;
     }
     

@@ -3,6 +3,7 @@ package visao.modal;
 import controlador.Controller;
 import funct.FunctDate;
 import funct.FunctView;
+import java.awt.Component;
 import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -10,6 +11,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.util.Date;
 import java.util.HashMap;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -114,6 +116,24 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
     }
     
     /**
+     * Metodo responsavel por retornar um Espaco Vertical.
+     * @param  space Valor de Espaco.
+     * @return Espaco Vertical.
+     */
+    protected Component getVerticalSpace(Integer space) {
+        return Box.createRigidArea(new Dimension(0, space));
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Espaco Horizontal.
+     * @param  space Valor de Espaco.
+     * @return Espaco Horizontal.
+     */
+    protected Component getHorizontalSpace(Integer space) {
+        return Box.createRigidArea(new Dimension(space, 0));
+    }
+    
+    /**
      * Metodo responsavel por retornar um Novo Label.
      * @param  title Titulo do Label.
      * @return Novo Label.
@@ -122,6 +142,7 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
         JLabel label = new JLabel(title);
                label.setFont(new Font(ViewStyle.ESTILO, ViewStyle.NEGRITO, ViewStyle.TAMANHO));
                label.addKeyListener(controller);
+               label.setAlignmentX(Component.CENTER_ALIGNMENT);
         return label;
     }
     
@@ -144,7 +165,21 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
      * @return Novo Image Label.
      */
     protected JLabel createLabelImage(String path) {
-        return new JLabel(new FunctView().createImage(path));
+        JLabel label = new JLabel(new FunctView().createImage(path));
+               label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        return label;
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Novo Title Label.
+     * @param  title Titulo do Label.
+     * @param  size Tamanho da Fonte do Label.
+     * @return Novo Title Label.
+     */
+    protected JLabel createLabelTitle(String title, Integer size) {
+        JLabel label = createLabel(title);
+               label.setFont(new Font(ViewStyle.ESTILO, ViewStyle.NEGRITO, size));
+        return label;
     }
     
     /**
@@ -161,6 +196,7 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
                 button.setFont(new Font(ViewStyle.ESTILO, ViewStyle.CENTRO, ViewStyle.TAMANHO));
                 button.addActionListener(controller);
                 button.addKeyListener(controller);
+                button.setAlignmentX(Component.CENTER_ALIGNMENT);
                 buttons.put(id, button);
         return  button;
     }

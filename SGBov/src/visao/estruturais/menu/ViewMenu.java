@@ -51,6 +51,7 @@ public final class ViewMenu extends View {
         menu = new JMenuBar();
             createMenuRebanho();
             createMenuFinanceiro();
+            createMenuSistema();
         setJMenuBar(menu);
     }
     
@@ -88,6 +89,21 @@ public final class ViewMenu extends View {
         menu.add(getMenu("financeiro"));
     }
     
+    /**
+     * Metodo responsavel por criar o Menu Sistema da View Menu.
+     */
+    private void createMenuSistema() {
+        createMenu("sistema", "Sistema");
+        
+        createMenuItem("sistema_sobre", "Sobre", "sistema/sobre");
+        createMenuItem("sistema_sair",  "Sair",  "sistema/sair");
+        
+        getMenu("sistema").add(getMenuItem("sistema_sobre"));
+        getMenu("sistema").addSeparator();
+        getMenu("sistema").add(getMenuItem("sistema_sair"));
+        menu.add(getMenu("sistema"));
+    }
+    
     @Override
     protected void addPanels() {
         getContentPane().add(getVerticalSpace(50));
@@ -104,6 +120,22 @@ public final class ViewMenu extends View {
      */
     public JMenuItem getMenuItemRebanho() {
         return getMenuItem("rebanho_consulta");
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Menu Item Sobre.
+     * @return Menu Item Sobre.
+     */
+    public JMenuItem getMenuItemSobre() {
+        return getMenuItem("sistema_sobre");
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Menu Item Sair.
+     * @return Menu Item Sair.
+     */
+    public JMenuItem getMenuItemSair() {
+        return getMenuItem("sistema_sair");
     }
     
     public static void main(String[] args) {

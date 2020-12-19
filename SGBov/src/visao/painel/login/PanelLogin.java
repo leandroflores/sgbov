@@ -32,7 +32,6 @@ public final class PanelLogin extends Panel {
     protected void setDefaultSettings() {
         setLayout(new GridBagLayout());
         setPreferredSize(new Dimension(600, 150));
-        
     }
     
     @Override

@@ -32,7 +32,7 @@ public final class ViewLogin extends View {
     
     @Override
     protected void addPanels() {
-        getContentPane().add(getVerticalSpace(100));
+        getContentPane().add(getVerticalSpace(75));
         getContentPane().add(new PanelLogo());
         getContentPane().add(getVerticalSpace(20));
         getContentPane().add(new PanelLogin());
