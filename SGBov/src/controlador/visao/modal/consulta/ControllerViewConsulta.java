@@ -3,6 +3,7 @@ package controlador.visao.modal.consulta;
 import controlador.visao.modal.ControllerViewModal;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import modelo.controlador.ControllerEntidade;
 import visao.modal.consulta.ViewConsulta;
 
 /**
@@ -81,6 +82,12 @@ public abstract class ControllerViewConsulta extends ControllerViewModal {
      * Metodo Abstrato responsavel por exibir a View para Remocao.
      */
     public abstract void excluir();
+    
+    /**
+     * Metodo abstract responsavel por retornar o Controller da Entidade.
+     * @return Controller da Entidade.
+     */
+    public abstract ControllerEntidade getController();
     
     @Override
     public ViewConsulta getView() {

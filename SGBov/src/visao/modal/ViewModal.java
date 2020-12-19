@@ -116,6 +116,16 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
     }
     
     /**
+     * Metodo responsavel por retornar um Componente de Espaco.
+     * @param  vertical Espaco Vertical.
+     * @param  horizontal Espaco Horizontal.
+     * @return Componente de Espaco.
+     */
+    protected Component getSpace(Integer vertical, Integer horizontal) {
+        return Box.createRigidArea(new Dimension(horizontal, vertical));
+    }
+    
+    /**
      * Metodo responsavel por retornar um Espaco Vertical.
      * @param  space Valor de Espaco.
      * @return Espaco Vertical.
@@ -389,7 +399,7 @@ public abstract class ViewModal extends JDialog implements InterfaceView {
      * @param id Identificador da Table. 
      * @param values Valores da Table.
      */
-    protected void addRows(String id, Object[][] values) {
+    public void addRows(String id, Object[][] values) {
         clearTable(id);
         for (Object[] value : values) {
             getTableModel(id).addRow(value);

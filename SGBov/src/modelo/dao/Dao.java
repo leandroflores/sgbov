@@ -23,7 +23,7 @@ public class Dao<Entity> {
      */
     public Dao(Class class_) {
         this.class_ = class_;
-        this.name   = this.class_.getSimpleName();
+        this.name   = class_.getSimpleName();
     }
     
     /**
@@ -78,7 +78,7 @@ public class Dao<Entity> {
      * @return Objeto Encontrado.
      */
     public Entity get(Object id) {
-        return (Entity) MANAGER.find(this.class_, id);
+        return (Entity) MANAGER.find(class_, id);
     }
     
     /**
@@ -86,7 +86,7 @@ public class Dao<Entity> {
      * @return Lista de Objetos encontrados.
      */
     public List<Entity> select() {
-        return (List<Entity>) MANAGER.createQuery("SELECT e FROM " + this.name + " e").setMaxResults(MAX).getResultList();
+        return (List<Entity>) MANAGER.createQuery("SELECT e FROM " + name + " e").setMaxResults(MAX).getResultList();
     }
     
     /**
@@ -95,7 +95,7 @@ public class Dao<Entity> {
      * @return Lista de Objetos encontrados.
      */
     public List<Entity> query(String query) {
-        String script = "SELECT e FROM " + this.name + " e WHERE " + query;
+        String script = "SELECT e FROM " + name + " e WHERE " + query;
         return (List) MANAGER.createQuery(script).setMaxResults(MAX).getResultList();
     }
 }

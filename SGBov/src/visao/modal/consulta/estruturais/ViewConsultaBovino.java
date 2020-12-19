@@ -1,5 +1,6 @@
 package visao.modal.consulta.estruturais;
 
+import controlador.visao.modal.consulta.estruturais.ControllerViewConsultaBovino;
 import java.awt.Dimension;
 import java.util.Date;
 import javax.swing.JCheckBox;
@@ -15,8 +16,8 @@ import visao.modal.consulta.ViewConsulta;
  * <p>Classe responsavel por definir a <b>Interface de Consulta de Bovino</b> do SGBov.</p>
  * @author Leandro
  * @since  17/12/2020
- * @see    controlador.visao.modal.consulta.
- * @see    visao.consulta.ViewConsulta
+ * @see    controlador.visao.modal.consulta.estruturais.ControllerViewConsultaBovino
+ * @see    visao.modal.consulta.ViewConsulta
  */
 public final class ViewConsultaBovino extends ViewConsulta {
 
@@ -26,7 +27,7 @@ public final class ViewConsultaBovino extends ViewConsulta {
      */
     public ViewConsultaBovino(ViewMenu view) {
         super(view);
-        //controller = new ControllerViewConsultaBovino(this);
+        controller = new ControllerViewConsultaBovino(this);
         title      = "Consulta de Bovinos";
         initComponents();
     }
@@ -40,13 +41,26 @@ public final class ViewConsultaBovino extends ViewConsulta {
     }
     
     @Override
+    public void addComponents() {
+        addSearch();
+        addTable();
+        setTableHeader();
+        addTableFooter();
+        addFooter();
+    }
+    
+    @Override
     public void addSearch() {
+        getContentPane().add(getSpace(20, 1000));
+        
         getContentPane().add(createLabel("Tipo: ", 100));
         getContentPane().add(createComboBox("tipo", ControllerBovino.TIPOS, 200));
         getComboBoxTipo().setPreferredSize(new Dimension(125, 30));
-        getContentPane().add(createLabel("Data Nasc.*: ", 100));
+        getContentPane().add(createLabel("Data Nasc.*: ", 140));
         getContentPane().add(createTextFieldDate("data_inicio", new Date()));
         getContentPane().add(createTextFieldDate("data_final",  new Date()));
+        
+        getContentPane().add(getSpace(10, 1000));
         
         getContentPane().add(createLabel("Sexo: ", 100));
         getContentPane().add(createComboBox("sexo", ControllerBovino.SEXOS, 200));
@@ -57,15 +71,8 @@ public final class ViewConsultaBovino extends ViewConsulta {
         add(createCheckBox("ativo", "", true));
         getContentPane().add(createLabel("", 10));
         getContentPane().add(createButton("pesqusia", "", "atualizar"));
-    }
-    
-    @Override
-    public void addComponents() {
-        addSearch();
-        addTable();
-        setTableHeader();
-        addTableFooter();
-        addFooter();
+        
+        getContentPane().add(getSpace(10, 1000));
     }
 
     @Override
@@ -75,6 +82,13 @@ public final class ViewConsultaBovino extends ViewConsulta {
         addColumns("consulta", columns);
         setColumnsSize("consulta", sizes);
         getScrollPane().setPreferredSize(new Dimension(900, 275));
+    }
+    
+    @Override
+    protected void addTableFooter() {
+        getContentPane().add(getSpace(10, 1000));
+        super.addTableFooter();
+        getContentPane().add(getSpace(10, 1000));
     }
     
     /**

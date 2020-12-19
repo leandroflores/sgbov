@@ -59,7 +59,7 @@ public class DaoBovino extends Dao<Bovino> {
      * @return Lista de Bovinos filtrados.
      */
     public List<Bovino> filter(String tipo, Date inicio, Date fim, char sexo, Integer numero, boolean ativo) {
-        String script = "SELECT e FROM " + name + " e WHERE e.tipo LIKE :tipo AND e.dataNascimento BETWEEN :inicio AND :fim AND e.sexo=:sexo AND e.numero=:numero AND e.ativo=:ativo ORDER BY e.id, e.numero";
+        String script = "SELECT e FROM " + name + " e WHERE e.tipo LIKE :tipo AND e.nascimento BETWEEN :inicio AND :fim AND e.sexo=:sexo AND e.numero=:numero AND e.ativo=:ativo ORDER BY e.id, e.numero";
         Query  query  = MANAGER.createQuery(script);
                query.setParameter("tipo",   "%" + tipo + "%");
                query.setParameter("inicio", inicio);
