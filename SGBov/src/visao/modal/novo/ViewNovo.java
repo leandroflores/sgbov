@@ -1,5 +1,6 @@
 package visao.modal.novo;
 
+import controlador.visao.modal.novo.ControllerViewNovo;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -68,6 +69,14 @@ public abstract class ViewNovo extends ViewModal {
      */
     public JButton getButtonVoltar() {
         return getButton("voltar");
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Controller da View Novo.
+     * @return Controller da View Novo.
+     */
+    public ControllerViewNovo getController() {
+        return (ControllerViewNovo) controller;
     }
     
     /**

@@ -8,6 +8,7 @@ import visao.painel.Panel;
  * <p>Classe responsavel por definir um Modelo Abstrato para o <b>Painel Novo</b> do SGBov.</p>
  * @author Leandro
  * @since  19/12/2020
+ * @see    controlador.visao.painel.novo.ControllerPanelNovo
  * @see    visao.painel.Panel
  */
 public abstract class PanelNovo extends Panel {

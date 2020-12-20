@@ -4,6 +4,7 @@ import controlador.visao.estruturais.ControllerViewMenu;
 import javax.swing.BoxLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import modelo.dao.estruturais.DaoBovino;
 import visao.View;
 import visao.painel.logo.PanelLogo;
 import visao.painel.menu.relogio.PanelRelogio;
@@ -138,7 +139,13 @@ public final class ViewMenu extends View {
         return getMenuItem("sistema_sair");
     }
     
+    /**
+     * Metodo principal da aplicacao.
+     * @param args 
+     */
     public static void main(String[] args) {
+        //System.out.println(new DaoBovino());
+        //System.out.println(new DaoBovino().select());
         new ViewMenu().setVisible(true);
     }
 }

@@ -48,7 +48,7 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
      * Metodo responsavel por atualizar a Lista de Bovinos.
      */
     private void atualizarLista() {
-        String  tipo   = getString(getView().getComboBoxTipo()).replaceAll("SELECIONE", "");
+        String  tipo   = getString(getView().getComboBoxTipo()).replaceAll("Selecione", "");
         Date    inicio = getData(getView().getTextFieldDataInicio());
         Date    fim    = getData(getView().getTextFieldDataFinal());
         char    sexo   = getSexo();

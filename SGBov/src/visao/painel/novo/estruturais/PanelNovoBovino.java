@@ -1,5 +1,6 @@
 package visao.painel.novo.estruturais;
 
+import controlador.visao.painel.novo.estruturais.ControllerPanelNovoBovino;
 import funct.FunctDate;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -17,6 +18,7 @@ import visao.painel.novo.PanelNovo;
  * <p>Classe responsavel por definir o Painel Grafico da <b>ViewNovoBovino</b> do SGBov.</p>
  * @author Leandro
  * @since  19/12/2020
+ * @see    controlador.visao.painel.novo.estruturais.ControllerPanelNovoBovino
  * @see    modelo.entidade.estruturais.Bovino
  * @see    visao.painel.novo.PanelNovo
  */
@@ -24,10 +26,11 @@ public final class PanelNovoBovino extends PanelNovo {
     
     /**
      * Default constructor method of Class.
-     * @param view View New Instance.
+     * @param view View Novo.
      */
     public PanelNovoBovino(ViewNovo view) {
         super(view);
+        controller = new ControllerPanelNovoBovino(this);
         setProperties();
         addComponents();
     }
@@ -67,6 +70,9 @@ public final class PanelNovoBovino extends PanelNovo {
         getRadioButtonFemea().setSelected(false);
         getTextFieldPeso().setText("0,00");
         getTextFieldDataNascimento().setText(new FunctDate().getFormattedDate(new Date()));
+        
+        getRadioButtonMacho().setEnabled(true);
+        getRadioButtonFemea().setEnabled(true);
         getComboBoxTipo().requestFocus();
     }
     

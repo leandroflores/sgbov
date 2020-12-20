@@ -4,7 +4,6 @@ import controlador.Controller;
 import funct.FunctDate;
 import funct.FunctString;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -30,9 +29,6 @@ public abstract class ControllerPanel extends Controller {
     public ControllerPanel(Panel panel) {
         this.panel = panel;
     }
-    
-    @Override
-    public abstract void actionPerformed(ActionEvent event);
     
     /**
      * Metodo responsavel por retornar a Cor Padrao.
