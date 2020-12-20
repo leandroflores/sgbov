@@ -12,21 +12,21 @@ import visao.modal.ViewModal;
  * <p>Classe responsavel por definir a <b>Interface de Erro</b> do Sistema.</p>
  * @author Leandro
  * @since  17/12/2020
- * @see    controlador.visao.mensagens.ControllerViewErro
+ * @see    controlador.visao.modal.mensagem.ControllerViewErro
  * @see    visao.View
  * @see    visao.modal.ViewModal
  */
 public final class ViewErro extends ViewModal {
-    private final String texto;
+    private final String mensagem;
     
     /**
      * Metodo construtor padrao da Classe.
      * @param view View do Sistema.
-     * @param mensagem Mensagem a ser exibida.
+     * @param message Mensagem a ser exibida.
      */
-    public ViewErro(View view, String mensagem) {
+    public ViewErro(View view, String message) {
         super(view);
-        texto      = mensagem;
+        mensagem   = message;
         controller = new ControllerViewErro(this);
         setDefaultProperties();
         initComponents();
@@ -35,11 +35,11 @@ public final class ViewErro extends ViewModal {
     /**
      * Metodo construtor alternativo da Classe.
      * @param view View Modal do Sistema.
-     * @param mensagem Mensagem a ser exibida.
+     * @param message Mensagem a ser exibida.
      */
-    public ViewErro(ViewModal view, String mensagem) {
+    public ViewErro(ViewModal view, String message) {
         super(view);
-        texto      = mensagem;
+        mensagem      = message;
         controller = new ControllerViewErro(this);
         setDefaultProperties();
         initComponents();
@@ -50,25 +50,28 @@ public final class ViewErro extends ViewModal {
      */
     protected void setDefaultProperties() {
         setTitle(ViewStyle.SISTEMA + "Erro");
-        setSize(texto.length() + 500, 150);
+        setSize(mensagem.length() + 500, 160);
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
     @Override
     public void initComponents() {
-        this.addHeader();
-        this.addComponents();
-        this.addFooter();
+        addHeader();
+        addComponents();
+        addFooter();
     }
     
     @Override
     public void addHeader() {
+        getContentPane().add(getVerticalSpace(20));
         getContentPane().add(createLabelImage("icones/erro"));
     }
     
     @Override
     public void addComponents() {
-        getContentPane().add(createLabel(texto));
+        getContentPane().add(getVerticalSpace(10));
+        getContentPane().add(createLabel(mensagem));
+        getContentPane().add(getVerticalSpace(10));
     }
     
     @Override

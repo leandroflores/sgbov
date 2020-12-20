@@ -9,6 +9,7 @@ import modelo.controlador.estruturais.ControllerBovino;
 import modelo.dao.estruturais.DaoBovino;
 import modelo.entidade.estruturais.Bovino;
 import visao.modal.consulta.estruturais.ViewConsultaBovino;
+import visao.modal.excluir.estruturais.ViewExcluirBovino;
 import visao.modal.mensagem.ViewErro;
 import visao.modal.novo.estruturais.ViewNovoBovino;
 
@@ -40,7 +41,7 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
     @Override
     public void pesquisar() {
         atualizarLista();
-        this.getView().addRows("consulta", getController().getMatriz(list));
+        getView().addRows("consulta", getController().getMatriz(list));
         getView().setTotal(this.list.size());
     }
     
@@ -54,7 +55,7 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
         char    sexo   = getSexo();
         Integer numero = getInteger(getView().getSpinnerNumero());
         boolean ativo  = getView().getCheckBoxAtivo().isSelected();
-                list   = dao.filter(tipo, inicio, fim, sexo, numero, ativo);
+                list   = dao.filter(tipo, sexo, ativo);
     }
     
     @Override
@@ -93,8 +94,7 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
         Integer indice  = getView().getTable().getSelectedRow();
         Integer tamanho = list.size();
         if (indice >= 0 && indice < tamanho)
-            System.out.println("Indice = " + indice + " - Tamanho = " + tamanho);
-            //new ViewRemoverBovino(this.viewConsultaBovino, this.list.get(indice)).setVisible(true);
+            new ViewExcluirBovino(getView(), list.get(indice)).setVisible(true);
         else
             new ViewErro(getView(), "Selecione um Bovino!").setVisible(true);
     }

@@ -17,16 +17,16 @@ import visao.modal.ViewModal;
  * @see    visao.modal.ViewModal
  */
 public final class ViewMensagem extends ViewModal {
-    private final String texto;
+    private final String mensagem;
     
     /**
      * Metodo construtor padrao da Classe.
      * @param view View do Sistema.
-     * @param mensagem Mensagem a ser exibida.
+     * @param message Mensagem a ser exibida.
      */
-    public ViewMensagem(View view, String mensagem) {
+    public ViewMensagem(View view, String message) {
         super(view);
-        texto      = mensagem;
+        mensagem   = message;
         controller = new ControllerViewMensagem(this);
         setDefaultProperties();
         initComponents();
@@ -35,11 +35,11 @@ public final class ViewMensagem extends ViewModal {
     /**
      * Metodo construtor alternativo da Classe.
      * @param view View Modal do Sistema.
-     * @param mensagem Mensagem a ser exibida.
+     * @param message Mensagem a ser exibida.
      */
-    public ViewMensagem(ViewModal view, String mensagem) {
+    public ViewMensagem(ViewModal view, String message) {
         super(view);
-        texto      = mensagem;
+        mensagem   = message;
         controller = new ControllerViewMensagem(this);
         setDefaultProperties();
         initComponents();
@@ -50,7 +50,7 @@ public final class ViewMensagem extends ViewModal {
      */
     protected void setDefaultProperties() {
         setTitle(ViewStyle.SISTEMA + "Mensagem");
-        setSize(texto.length() + 400, 150);
+        setSize(mensagem.length() + 500, 160);
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
@@ -63,12 +63,15 @@ public final class ViewMensagem extends ViewModal {
     
     @Override
     public void addHeader() {
+        getContentPane().add(getVerticalSpace(20));
         add(createLabelImage("icones/mensagem"));
     }
     
     @Override
     public void addComponents() {
-        add(createLabel(texto));
+        getContentPane().add(getVerticalSpace(10));
+        add(createLabel(mensagem));
+        getContentPane().add(getVerticalSpace(10));
     }
 
     @Override

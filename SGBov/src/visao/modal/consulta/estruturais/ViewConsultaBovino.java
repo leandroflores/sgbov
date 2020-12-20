@@ -63,7 +63,7 @@ public final class ViewConsultaBovino extends ViewConsulta {
         getContentPane().add(getSpace(10, 1000));
         
         getContentPane().add(createLabel("Sexo: ", 100));
-        getContentPane().add(createComboBox("sexo", ControllerBovino.SEXOS, 200));
+        getContentPane().add(createComboBox("sexo", new String[]{"MACHO", "FEMEA"}, 200));
         getComboBoxSexo().setPreferredSize(new Dimension(125, 30));
         getContentPane().add(createLabel("Número: ", 100));
         getContentPane().add(createSpinnerEditable("numero"));

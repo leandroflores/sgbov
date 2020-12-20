@@ -1,5 +1,6 @@
 package visao.modal.excluir;
 
+import controlador.visao.interfaces.Updatable;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -31,7 +32,7 @@ public abstract class ViewExcluir extends ViewModal {
      * Metodo responsavel por definir as Propriedades Padroes das Views de Consulta.
      */
     private void setDefaultProperties() {
-        setSize(650, 150);
+        setSize(650, 170);
     }
     
     /**
@@ -47,8 +48,8 @@ public abstract class ViewExcluir extends ViewModal {
     @Override
     public void addHeader() {
         getContentPane().add(getVerticalSpace(25));
-        getContentPane().add(createLabelImage("icones/exluir"));
-        getContentPane().add(getVerticalSpace(25));
+        getContentPane().add(createLabelImage("icones/excluir"));
+        getContentPane().add(getVerticalSpace(15));
     }
     
     @Override
@@ -58,6 +59,7 @@ public abstract class ViewExcluir extends ViewModal {
                footer.add(createButton("sim", "  Sim  ", "sim"));
                footer.add(createLabel("  "));
                footer.add(createButton("nao", "  Não  ", "excluir"));
+        getContentPane().add(getVerticalSpace(10));
         getContentPane().add(footer);
     }
     
@@ -81,7 +83,7 @@ public abstract class ViewExcluir extends ViewModal {
      * Metodo responsavel por retornar a View.
      * @return View.
      */
-    public ViewModal getView() {
-        return view;
+    public Updatable getView() {
+        return (Updatable) view;
     }
 }

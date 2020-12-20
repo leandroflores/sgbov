@@ -1,5 +1,6 @@
 package visao.modal.consulta;
 
+import controlador.visao.interfaces.Updatable;
 import controlador.visao.modal.consulta.ControllerViewConsulta;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
@@ -15,10 +16,11 @@ import visao.modal.ViewModal;
  * <p>Classe responsavel por definir a <b>Interface de Consulta</b> do SGBov.</p>
  * @author Leandro
  * @since  17/12/2020
- * @see    controlador.visao.consulta.
+ * @see    controlador.visao.modal.consulta.ControllerViewConsulta
+ * @see    visao.interfaces.InterfaceView
  * @see    visao.modal.ViewModal
  */
-public abstract class ViewConsulta extends ViewModal {
+public abstract class ViewConsulta extends ViewModal implements Updatable {
 
     /**
      * Metodo construtor padrao da Classe.
@@ -37,9 +39,7 @@ public abstract class ViewConsulta extends ViewModal {
         setLayout(new FlowLayout(FlowLayout.CENTER));
     }
     
-    /**
-     * Metodo responsavel por atualizar a View Consulta.
-     */
+    @Override
     public void update() {
         getController().pesquisar();
     }
