@@ -37,6 +37,17 @@ public class DaoPesagem extends Dao<Pesagem> {
     }
     
     /**
+     * Metodo responsavel por remover as Pesagens de um Bovino.
+     * @param bovino Bovino.
+     */
+    public void delete(Bovino bovino) {
+        MANAGER.getTransaction().begin();
+        for (Pesagem pesagem : filter(bovino))
+            delete(pesagem.getId());
+        MANAGER.getTransaction().commit();
+    }
+    
+    /**
      * Metodo responsavel por retornar a Lista de Pesagens pelo Periodo.
      * @param  inicio Data Inicio.
      * @param  fim Data Fim.
