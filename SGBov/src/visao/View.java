@@ -17,6 +17,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
+import visao.interfaces.Viewable;
 import visao.painel.Panel;
 
 /**
@@ -25,8 +26,9 @@ import visao.painel.Panel;
  * @author Leandro
  * @since  12/12/2018
  * @see    javax.swing.JFrame
+ * @see    visao.interfaces.Viewable
  */
-public abstract class View extends JFrame {
+public abstract class View extends JFrame implements Viewable {
     protected Controller controller;
     
     protected HashMap buttons;
@@ -69,11 +71,6 @@ public abstract class View extends JFrame {
         setResizable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-    
-    /**
-     * Metodo responsavel por adicionar os Paineis da View.
-     */
-    protected abstract void addPanels();
     
     /**
      * Metodo responsavel por retornar um Espaco Vertical.

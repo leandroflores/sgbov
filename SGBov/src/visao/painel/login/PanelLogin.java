@@ -25,11 +25,14 @@ public final class PanelLogin extends Panel {
      */
     public PanelLogin() {
         controller = new ControllerPanelLogin(this);
+        setProperties();
         addComponents();
     }
     
-    @Override
-    protected void setDefaultSettings() {
+    /**
+     * Metodo responsavel por definir as Propriedades do Panel Login.
+     */
+    protected void setProperties() {
         setLayout(new GridBagLayout());
         setPreferredSize(new Dimension(600, 150));
     }

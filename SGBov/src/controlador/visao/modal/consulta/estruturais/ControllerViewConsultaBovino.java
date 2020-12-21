@@ -9,6 +9,7 @@ import modelo.controlador.estruturais.ControllerBovino;
 import modelo.dao.estruturais.DaoBovino;
 import modelo.entidade.estruturais.Bovino;
 import visao.modal.consulta.estruturais.ViewConsultaBovino;
+import visao.modal.editar.estruturais.ViewEditarBovino;
 import visao.modal.excluir.estruturais.ViewExcluirBovino;
 import visao.modal.mensagem.ViewErro;
 import visao.modal.novo.estruturais.ViewNovoBovino;
@@ -83,8 +84,7 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
         Integer indice  = getView().getTable().getSelectedRow();
         Integer tamanho = list.size();
         if (indice >= 0 && indice < tamanho)
-            System.out.println("Indice = " + indice + " - Tamanho = " + tamanho);
-            //new ViewEditarBovino(getView(), this.list.get(indice)).setVisible(true);
+            new ViewEditarBovino(getView(), list.get(indice)).setVisible(true);
         else
             new ViewErro(getView(), "Selecione um Bovino!").setVisible(true);
     }

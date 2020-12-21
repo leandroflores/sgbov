@@ -24,25 +24,23 @@ public final class ViewSistemaSobre extends ViewModal {
      */
     public ViewSistemaSobre(ViewMenu view) {
         super(view);
-        controller = new ControllerViewSistemaSobre(this);
         title      = "Sobre";
+        controller = new ControllerViewSistemaSobre(this);
         setProperties();
-        initComponents();
+        addComponents();
     }
     
-    /**
-     * Metodo responsavel por definir as Propriedados da View.
-     */
-    protected void setProperties() {
+    @Override
+    public void setProperties() {
         updateTitle();
         setSize(new Dimension(550, 300));
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
     @Override
-    public void initComponents() {
+    public void addComponents() {
         addHeader();
-        addComponents();
+        addBody();
         addFooter();
     }
     
@@ -54,7 +52,7 @@ public final class ViewSistemaSobre extends ViewModal {
     }
     
     @Override
-    public void addComponents() {
+    public void addBody() {
         getContentPane().add(createLabelTitle("SGBov - Sistema de Gerenciamento de Bovinos", 20));
         getContentPane().add(getVerticalSpace(10));
         getContentPane().add(createLabel("D-Work Sistemas Inteligentes", 15));

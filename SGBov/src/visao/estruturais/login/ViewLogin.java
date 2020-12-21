@@ -20,23 +20,38 @@ public final class ViewLogin extends View {
      */
     public ViewLogin() {
         updateTitle("Login");
-        setDefaultProperties();
-        addPanels();
+        setProperties();
+        addComponents();
     }
     
     @Override
-    protected void setDefaultProperties() {
+    public void setProperties() {
         super.setDefaultProperties();
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
     @Override
-    protected void addPanels() {
-        getContentPane().add(getVerticalSpace(75));
+    public void addComponents() {
+        
+    }
+    
+    @Override
+    public void addHeader() {
+        getContentPane().add(getVerticalSpace(50));
+    }
+    
+    @Override
+    public void addBody() {
+        getContentPane().add(getVerticalSpace(20));
         getContentPane().add(new PanelLogo());
         getContentPane().add(getVerticalSpace(20));
-        getContentPane().add(new PanelLogin());
     }
+    
+    @Override
+    public void addFooter() {
+         getContentPane().add(new PanelLogin());
+    }
+    
     /*
     public static void main(String[] args) {
         new ViewLogin().setVisible(true);

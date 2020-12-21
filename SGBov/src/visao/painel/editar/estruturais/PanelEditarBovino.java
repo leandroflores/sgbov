@@ -1,5 +1,6 @@
 package visao.painel.editar.estruturais;
 
+import controlador.visao.painel.editar.estruturais.ControllerPanelEditarBovino;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Date;
@@ -7,7 +8,6 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import modelo.controlador.estruturais.ControllerBovino;
 import modelo.entidade.estruturais.Bovino;
 import visao.modal.editar.ViewEditar;
 import visao.painel.editar.PanelEditar;
@@ -17,7 +17,7 @@ import visao.painel.editar.PanelEditar;
  * <p>Classe responsavel por definir o Painel Grafico da <b>ViewEditarBovino</b> do SGBov.</p>
  * @author Leandro
  * @since  21/12/2020
- * @see    controlador.visao.painel.editar.
+ * @see    controlador.visao.painel.editar.estruturais.ControllerPanelEditarBovino
  * @see    modelo.entidade.estruturais.Bovino
  * @see    visao.painel.editar.PanelEditar
  */
@@ -31,10 +31,12 @@ public final class PanelEditarBovino extends PanelEditar {
      */
     public PanelEditarBovino(ViewEditar view, Bovino bovino_) {
         super(view);
-        //controller = new ControllerPanelNovoBovino(this);
+        controller = new ControllerPanelEditarBovino(this);
         bovino     = bovino_;
         setProperties();
         addComponents();
+        setValues();
+        getController().setReady();
     }
 
     @Override
@@ -50,7 +52,7 @@ public final class PanelEditarBovino extends PanelEditar {
         add(this.createTextFieldNoEditable("identificador", "", 5));
         
         add(createRightLabel("Tipo*: "));
-        add(createComboBox("tipo", ControllerBovino.TIPOS, 30));
+        add(createComboBox("tipo", getTipos(), 30));
         
         add(createRightLabel("Número*: "));
         add(createSpinnerEditable("numero"));
@@ -74,7 +76,7 @@ public final class PanelEditarBovino extends PanelEditar {
         getSpinnerNumero().setValue(bovino.getNumero());
         getRadioButtonMacho().setSelected(bovino.isMacho());
         getRadioButtonFemea().setSelected(bovino.isFemea());
-        getTextFieldPeso().setText(Float.toString(bovino.getPeso()));
+        getTextFieldPeso().setText(bovino.getPesoFormatado());
         getTextFieldDataNascimento().setText(bovino.getDataNascimentoFormatada());
         
         getComboBoxTipo().requestFocus();
@@ -86,6 +88,14 @@ public final class PanelEditarBovino extends PanelEditar {
      */
     public JTextField getTextFieldIdentificador() {
         return getTextField("identificador");
+    }
+    
+    /**
+     * Metodo responsavel por retornar os Tipos de Bovino.
+     * @return Tipos de Bovino.
+     */
+    public String[] getTipos() {
+        return new String[]{"BEZERRO", "NOVILHA", "MATRIZ", "TOURO"};
     }
     
     /**

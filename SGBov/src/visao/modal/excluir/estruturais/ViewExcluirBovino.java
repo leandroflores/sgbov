@@ -1,9 +1,7 @@
 package visao.modal.excluir.estruturais;
 
 import controlador.visao.modal.excluir.estruturais.ControllerViewExcluirBovino;
-import javax.swing.BoxLayout;
 import modelo.entidade.estruturais.Bovino;
-import visao.estilo.ViewStyle;
 import visao.modal.consulta.estruturais.ViewConsultaBovino;
 import visao.modal.excluir.ViewExcluir;
 
@@ -22,25 +20,20 @@ public final class ViewExcluirBovino extends ViewExcluir {
     /**
      * Metodo construtor padrao da Classe.
      * @param view View Consulta Bovino.
-     * @param bovino Bovino.
+     * @param bovino_ Bovino.
      */
-    public ViewExcluirBovino(ViewConsultaBovino view, Bovino bovino) {
+    public ViewExcluirBovino(ViewConsultaBovino view, Bovino bovino_) {
         super(view);
-        this.controller = new ControllerViewExcluirBovino(this);
-        this.bovino     = bovino;
-        initComponents();
+        bovino     = bovino_;
+        title      = "Exluir Bovino";
+        controller = new ControllerViewExcluirBovino(this);
+        setProperties();
         addComponents();
     }
-
+    
     @Override
-    public void initComponents() {
-        setTitle(ViewStyle.SISTEMA + "Excluir Bovino");
-        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-    }
-
-    @Override
-    public void addComponents() {
-        super.addComponents(bovino.toString());
+    public void addBody() {
+        super.addMessage(bovino.toString());
     }
     
     /**

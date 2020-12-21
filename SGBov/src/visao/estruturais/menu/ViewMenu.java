@@ -4,7 +4,6 @@ import controlador.visao.estruturais.ControllerViewMenu;
 import javax.swing.BoxLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import modelo.dao.estruturais.DaoBovino;
 import visao.View;
 import visao.painel.logo.PanelLogo;
 import visao.painel.menu.relogio.PanelRelogio;
@@ -26,23 +25,27 @@ public final class ViewMenu extends View {
      */
     public ViewMenu() {
         controller = new ControllerViewMenu(this);
-        setDefaultProperties();
+        setProperties();
         addComponents();
     }
     
     @Override
-    protected void setDefaultProperties() {
+    public void setProperties() {
         super.setDefaultProperties();
         updateTitle("Menu Principal");
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
-    /**
-     * Metodo responsavel por adicionar os Componentes da View Menu.
-     */
-    protected void addComponents() {
+    @Override
+    public void addComponents() {
+        addHeader();
+        addBody();
+        addFooter();
+    }
+    
+    @Override
+    public void addHeader() {
         addMenu();
-        addPanels();
     }
     
     /**
@@ -106,12 +109,16 @@ public final class ViewMenu extends View {
     }
     
     @Override
-    protected void addPanels() {
+    public void addBody() {
         getContentPane().add(getVerticalSpace(50));
         getContentPane().add(new PanelTitulo());
         getContentPane().add(getVerticalSpace(75));
         getContentPane().add(new PanelLogo());
         getContentPane().add(getVerticalSpace(75));
+    }
+    
+    @Override
+    public void addFooter() {
         getContentPane().add(new PanelRelogio());
     }
     

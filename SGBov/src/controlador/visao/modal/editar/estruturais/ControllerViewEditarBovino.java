@@ -1,29 +1,29 @@
-package controlador.visao.modal.novo.estruturais;
+package controlador.visao.modal.editar.estruturais;
 
-import controlador.visao.modal.novo.ControllerViewNovo;
+import controlador.visao.modal.editar.ControllerViewEditar;
 import java.awt.event.ActionEvent;
 import modelo.dao.estruturais.DaoBovino;
 import modelo.entidade.estruturais.Bovino;
+import visao.modal.editar.estruturais.ViewEditarBovino;
 import visao.modal.mensagem.ViewMensagem;
-import visao.modal.novo.estruturais.ViewNovoBovino;
-import visao.painel.novo.estruturais.PanelNovoBovino;
+import visao.painel.editar.estruturais.PanelEditarBovino;
 
 /**
- * <p>Classe de Controle <b>ControllerViewNovoBovino</b>.</p>
- * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> da ViewNovoBovino.</p>
+ * <p>Classe de Controle <b>ControllerViewEditarBovino</b>.</p>
+ * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> da ViewEditarBovino.</p>
  * @author Leandro
- * @since  19/12/2020
- * @see    controlador.visao.modal.novo.ControllerViewNovo
+ * @since  21/12/2020
+ * @see    controlador.visao.modal.editar.ControllerViewEditar
  * @see    modelo.entidade.estruturais.Bovino
- * @see    visao.modal.novo.estruturais.ViewNovoBovino
+ * @see    visao.modal.editar.estruturais.ViewEditarBovino
  */
-public class ControllerViewNovoBovino extends ControllerViewNovo {
+public class ControllerViewEditarBovino extends ControllerViewEditar {
     
     /**
      * Metodo construtor padrao da Classe.
-     * @param view View Novo Bovino.
+     * @param view View Editar Bovino.
      */
-    public ControllerViewNovoBovino(ViewNovoBovino view) {
+    public ControllerViewEditarBovino(ViewEditarBovino view) {
         super(view);
     }
     
@@ -37,14 +37,6 @@ public class ControllerViewNovoBovino extends ControllerViewNovo {
             getPanel().getRadioButtonMacho().setSelected(false);
             getPanel().getRadioButtonFemea().setSelected(true);
         }
-    }
-    
-    /**
-     * Metodo responsavel por validar o Tipo do Bovino.
-     * @return Tipo do Bovino e valido.
-     */
-    public boolean checkTipo() {
-        return check(getPanel().getComboBoxTipo(), "Selecione um Tipo!");
     }
     
     /**
@@ -65,8 +57,7 @@ public class ControllerViewNovoBovino extends ControllerViewNovo {
     
     @Override
     public boolean check() {
-        return checkTipo()
-            && checkPeso()
+        return checkPeso()
             && checkDataNascimento();
     }
     
@@ -79,25 +70,25 @@ public class ControllerViewNovoBovino extends ControllerViewNovo {
     }
     
     @Override
-    public void inserir() {
-        Bovino bovino = new Bovino();
+    public void salvar() {
+        Bovino bovino = getView().getBovino();
                bovino.setTipo(getValor(getPanel().getComboBoxTipo()));
                bovino.setNumero(getInteger(getPanel().getSpinnerNumero()));
                bovino.setSexo(getSexo());
                bovino.setPeso(getFloat(getPanel().getTextFieldPeso()));
                bovino.setNascimento(getData(getPanel().getTextFieldDataNascimento()));
-        new DaoBovino().insert(bovino);
-        new ViewMensagem(getView(), "Bovino cadastrado com Sucesso!").setVisible(true);
+        new DaoBovino().update(bovino);
+        new ViewMensagem(getView(), "Bovino atualizado com Sucesso!").setVisible(true);
         getView().getView().update();
         getView().dispose();
     }
     
-    public PanelNovoBovino getPanel() {
-        return getView().getPanelNovo();
+    public PanelEditarBovino getPanel() {
+        return getView().getPanelEditar();
     }
     
     @Override
-    public ViewNovoBovino getView() {
-        return (ViewNovoBovino) view;
+    public ViewEditarBovino getView() {
+        return (ViewEditarBovino) view;
     }
 }

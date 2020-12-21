@@ -12,7 +12,6 @@ import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -68,7 +67,6 @@ public abstract class Panel extends JPanel {
      */
     public Panel() {
         init();
-        setDefaultSettings();
     }
     
     /**
@@ -111,13 +109,6 @@ public abstract class Panel extends JPanel {
      */
     protected Color getFocusColor() {
         return ColorUIResource.LIGHT_GRAY;
-    }
-    
-    /**
-     * Metodo responsavel por definir as Propriedades Padroes.
-     */
-    protected void setDefaultSettings() {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
     
     /**

@@ -4,7 +4,6 @@ import controlador.visao.modal.mensagem.ControllerViewMensagem;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import visao.View;
-import visao.estilo.ViewStyle;
 import visao.modal.ViewModal;
 
 /**
@@ -27,9 +26,10 @@ public final class ViewMensagem extends ViewModal {
     public ViewMensagem(View view, String message) {
         super(view);
         mensagem   = message;
+        title      = "Mensagem";
         controller = new ControllerViewMensagem(this);
-        setDefaultProperties();
-        initComponents();
+        setProperties();
+        addComponents();
     }
     
     /**
@@ -40,24 +40,23 @@ public final class ViewMensagem extends ViewModal {
     public ViewMensagem(ViewModal view, String message) {
         super(view);
         mensagem   = message;
+        title      = "Mensagem";
         controller = new ControllerViewMensagem(this);
-        setDefaultProperties();
-        initComponents();
+        setProperties();
+        addComponents();
     }
 
-    /**
-     * Metodo responsavel por definir as Propriedades Padroes da View Mensagem.
-     */
-    protected void setDefaultProperties() {
-        setTitle(ViewStyle.SISTEMA + "Mensagem");
+    @Override
+    public void setProperties() {
+        updateTitle();
         setSize(mensagem.length() + 500, 160);
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
     @Override
-    public void initComponents() {
+    public void addComponents() {
         addHeader();
-        addComponents();
+        addBody();
         addFooter();
     }
     
@@ -68,7 +67,7 @@ public final class ViewMensagem extends ViewModal {
     }
     
     @Override
-    public void addComponents() {
+    public void addBody() {
         getContentPane().add(getVerticalSpace(10));
         add(createLabel(mensagem));
         getContentPane().add(getVerticalSpace(10));

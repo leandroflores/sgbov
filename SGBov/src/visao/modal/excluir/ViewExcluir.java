@@ -2,6 +2,7 @@ package visao.modal.excluir;
 
 import controlador.visao.interfaces.Updatable;
 import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import visao.modal.ViewModal;
@@ -20,28 +21,23 @@ public abstract class ViewExcluir extends ViewModal {
     
     /**
      * Metodo construtor padrao da Classe.
-     * @param view View Modal.
+     * @param view_ View Modal.
      */
-    public ViewExcluir(ViewModal view) {
-        super(view);
-        this.view = view;
-        setDefaultProperties();
+    public ViewExcluir(ViewModal view_) {
+        super(view_);
+        view = view_;
     }
     
-    /**
-     * Metodo responsavel por definir as Propriedades Padroes das Views de Consulta.
-     */
-    private void setDefaultProperties() {
-        setSize(650, 170);
+    @Override
+    public void setProperties() {
+        updateTitle();
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
-    /**
-     * Metodo responsavel por adicionar os Componentes da View Excluir.
-     * @param message Mensagem a ser exibida.
-     */
-    protected void addComponents(String message) {
+    @Override
+    public void addComponents() {
         addHeader();
-        getContentPane().add(createLabel("Confirma exclusão: " +  message + "?"));
+        addBody();
         addFooter();
     }
     
@@ -50,6 +46,14 @@ public abstract class ViewExcluir extends ViewModal {
         getContentPane().add(getVerticalSpace(25));
         getContentPane().add(createLabelImage("icones/excluir"));
         getContentPane().add(getVerticalSpace(15));
+    }
+    
+    /**
+     * Metodo responsavel por adicionar a Mensagem da View Excluir.
+     * @param message Mensagem a ser exibida.
+     */
+    protected void addMessage(String message) {
+        getContentPane().add(createLabel("Confirma exclusão: " +  message + "?"));
     }
     
     @Override

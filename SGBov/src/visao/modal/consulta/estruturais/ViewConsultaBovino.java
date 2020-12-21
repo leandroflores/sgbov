@@ -27,30 +27,28 @@ public final class ViewConsultaBovino extends ViewConsulta {
      */
     public ViewConsultaBovino(ViewMenu view) {
         super(view);
-        controller = new ControllerViewConsultaBovino(this);
         title      = "Consulta de Bovinos";
-        initComponents();
+        controller = new ControllerViewConsultaBovino(this);
+        setProperties();
+        addComponents();
+        update();
     }
 
     @Override
-    public void initComponents() {
-        setSize(1000, 560);
-        addHeader();
-        addComponents();
-        update();
+    public void setProperties() {
+        super.setProperties();
+        setSize(new Dimension(1000, 560));
     }
     
     @Override
     public void addComponents() {
-        addSearch();
-        addTable();
-        setTableHeader();
-        addTableFooter();
+        addHeader();
+        addBody();
         addFooter();
     }
     
     @Override
-    public void addSearch() {
+    public void addHeader() {
         getContentPane().add(getSpace(20, 1000));
         
         getContentPane().add(createLabel("Tipo: ", 100));
@@ -75,6 +73,13 @@ public final class ViewConsultaBovino extends ViewConsulta {
         getContentPane().add(getSpace(10, 1000));
     }
 
+    @Override
+    public void addBody() {
+        addTable();
+        setTableHeader();
+        addTableFooter();
+    } 
+    
     @Override
     protected void setTableHeader() {
         String[]  columns = {"Id", "Tipo", "Número", "Sexo", "Data Nascimento", "Peso"};

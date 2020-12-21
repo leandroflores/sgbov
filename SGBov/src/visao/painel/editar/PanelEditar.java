@@ -1,5 +1,6 @@
 package visao.painel.editar;
 
+import controlador.visao.painel.editar.ControllerPanelEditar;
 import visao.modal.editar.ViewEditar;
 import visao.painel.Panel;
 
@@ -32,6 +33,14 @@ public abstract class PanelEditar extends Panel {
      * Metodo abstrato responsavel por apresentar os Valores do Panel Editar.
      */
     public abstract void setValues();
+    
+    /**
+     * Metodo responsavel por retornar o Controlador do Panel Editar.
+     * @return Controlador do Panel Editar.
+     */
+    public ControllerPanelEditar getController() {
+        return (ControllerPanelEditar) controller;
+    }
     
     /**
      * Metodo responsavel por retornar a View Editar.

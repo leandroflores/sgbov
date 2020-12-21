@@ -2,7 +2,6 @@ package visao.modal.novo.estruturais;
 
 import controlador.visao.modal.novo.estruturais.ControllerViewNovoBovino;
 import java.awt.Dimension;
-import javax.swing.BoxLayout;
 import visao.modal.ViewModal;
 import visao.modal.novo.ViewNovo;
 import visao.painel.novo.estruturais.PanelNovoBovino;
@@ -24,28 +23,27 @@ public final class ViewNovoBovino extends ViewNovo {
      */
     public ViewNovoBovino(ViewModal view) {
         super(view);
-        controller = new ControllerViewNovoBovino(this);
         title      = "Cadastro de Bovino";
+        controller = new ControllerViewNovoBovino(this);
         setProperties();
-        initComponents();
+        addComponents();
         clear();
     }
     
-    protected void setProperties() {
+    @Override
+    public void setProperties() {
+        super.setProperties();
         setSize(new Dimension(550, 350));
-        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
     @Override
-    public void initComponents() {
+    public void addHeader() {
         getContentPane().add(getVerticalSpace(20));
-        addHeader();
-        addComponents();
-        addFooter();
+        super.addHeader();
     }
 
     @Override
-    public void addComponents() {
+    public void addBody() {
         getContentPane().add(getVerticalSpace(20));
         addPanel("panel_bovino", new PanelNovoBovino(this));
         getContentPane().add(getPanelNovo());

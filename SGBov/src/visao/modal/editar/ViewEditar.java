@@ -1,7 +1,9 @@
 package visao.modal.editar;
 
+import controlador.visao.interfaces.Updatable;
 import controlador.visao.modal.editar.ControllerViewEditar;
 import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import visao.modal.ViewModal;
@@ -19,11 +21,24 @@ public abstract class ViewEditar extends ViewModal {
     
     /**
      * Metodo construtor padrao da Classe.
-     * @param view View Consulta.
+     * @param view_ View Consulta.
      */
-    public ViewEditar(ViewModal view) {
-        super(view);
-        this.view = view;
+    public ViewEditar(ViewModal view_) {
+        super(view_);
+        view = view_;
+    }
+    
+    @Override
+    public void addComponents() {
+        addHeader();
+        addBody();
+        addFooter();
+    }
+    
+    @Override
+    public void setProperties() {
+        updateTitle();
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
     /**
@@ -68,7 +83,7 @@ public abstract class ViewEditar extends ViewModal {
      * Metodo responsavel por retornar a View.
      * @return View.
      */
-    public ViewModal getView() {
-        return view;
+    public Updatable getView() {
+        return (Updatable) view;
     }
 }

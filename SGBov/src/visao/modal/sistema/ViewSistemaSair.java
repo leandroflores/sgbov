@@ -26,25 +26,23 @@ public final class ViewSistemaSair extends ViewModal {
      */
     public ViewSistemaSair(View view) {
         super(view);
-        controller = new ControllerViewSistemaSair(this);
         title      = "Sair";
+        controller = new ControllerViewSistemaSair(this);
         setProperties();
-        initComponents();
+        addComponents();
     }
     
-    /**
-     * Metodo responsavel por definir as Propriedados da View.
-     */
-    protected void setProperties() {
+    @Override
+    public void setProperties() {
         updateTitle();
         setSize(new Dimension(650, 225));
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
     @Override
-    public void initComponents() {
+    public void addComponents() {
         addHeader();
-        addComponents();
+        addBody();
         addFooter();
     }
     
@@ -55,7 +53,7 @@ public final class ViewSistemaSair extends ViewModal {
     }
     
     @Override
-    public void addComponents() {
+    public void addBody() {
         getContentPane().add(getVerticalSpace(25));
         getContentPane().add(createLabel("Deseja realmente Sair do Sistema?"));
         getContentPane().add(getVerticalSpace(25));

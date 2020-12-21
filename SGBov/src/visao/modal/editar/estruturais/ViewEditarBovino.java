@@ -1,5 +1,7 @@
 package visao.modal.editar.estruturais;
 
+import controlador.visao.modal.editar.estruturais.ControllerViewEditarBovino;
+import java.awt.Dimension;
 import modelo.entidade.estruturais.Bovino;
 import visao.modal.consulta.estruturais.ViewConsultaBovino;
 import visao.modal.editar.ViewEditar;
@@ -10,8 +12,7 @@ import visao.painel.editar.estruturais.PanelEditarBovino;
  * <p>Classe responsavel por definir a <b>Interface de Edicao do Bovino</b> do SGBov.</p>
  * @author Leandro
  * @since  21/12/2020
- * @see    controlador.visao.editar.ControllerViewEditarBovino
- * @see    modelo.controlador.estruturais.ControllerBovino
+ * @see    controlador.visao.modal.editar.estruturais.ControllerViewEditarBovino
  * @see    modelo.entidades.estruturais.Bovino
  * @see    visao.editar.ViewEditar
  */
@@ -25,24 +26,26 @@ public final class ViewEditarBovino extends ViewEditar {
      */
     public ViewEditarBovino(ViewConsultaBovino view, Bovino bovino_) {
         super(view);
-        //controller = new ControllerViewEditarBovino(this);
         bovino     = bovino_;
         title      = "Editar Bovino";
-        initComponents();
-    }
-    
-    @Override
-    public void initComponents() {
-        setSize(550, 370);
-        addHeader();
+        controller = new ControllerViewEditarBovino(this);
+        setProperties();
         addComponents();
-        addFooter();
-        setValues();
     }
     
     @Override
-    public void addComponents() {
+    public void setProperties() {
+        super.setProperties();
+        setSize(new Dimension(550, 340));
+    }
+    
+    @Override
+    public void addHeader() {
         getContentPane().add(getVerticalSpace(20));
+    }
+    
+    @Override
+    public void addBody() {
         addPanel("panel_bovino", new PanelEditarBovino(this, bovino));
         getContentPane().add(getPanelEditar());
         getContentPane().add(getVerticalSpace(20));

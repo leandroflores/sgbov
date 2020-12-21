@@ -4,7 +4,6 @@ import controlador.visao.modal.mensagem.ControllerViewErro;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import visao.View;
-import visao.estilo.ViewStyle;
 import visao.modal.ViewModal;
 
 /**
@@ -27,9 +26,10 @@ public final class ViewErro extends ViewModal {
     public ViewErro(View view, String message) {
         super(view);
         mensagem   = message;
+        title      = "Erro";
         controller = new ControllerViewErro(this);
-        setDefaultProperties();
-        initComponents();
+        setProperties();
+        addComponents();
     }
     
     /**
@@ -39,25 +39,24 @@ public final class ViewErro extends ViewModal {
      */
     public ViewErro(ViewModal view, String message) {
         super(view);
-        mensagem      = message;
+        mensagem   = message;
+        title      = "Erro";
         controller = new ControllerViewErro(this);
-        setDefaultProperties();
-        initComponents();
+        setProperties();
+        addComponents();
     }
 
-    /**
-     * Metodo responsavel por definir as Propriedades Padroes da View Erro.
-     */
-    protected void setDefaultProperties() {
-        setTitle(ViewStyle.SISTEMA + "Erro");
+    @Override
+    public void setProperties() {
+        updateTitle();
         setSize(mensagem.length() + 500, 160);
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
     @Override
-    public void initComponents() {
+    public void addComponents() {
         addHeader();
-        addComponents();
+        addBody();
         addFooter();
     }
     
@@ -68,7 +67,7 @@ public final class ViewErro extends ViewModal {
     }
     
     @Override
-    public void addComponents() {
+    public void addBody() {
         getContentPane().add(getVerticalSpace(10));
         getContentPane().add(createLabel(mensagem));
         getContentPane().add(getVerticalSpace(10));

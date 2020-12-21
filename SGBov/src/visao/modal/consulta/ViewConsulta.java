@@ -4,6 +4,7 @@ import controlador.visao.interfaces.Updatable;
 import controlador.visao.modal.consulta.ControllerViewConsulta;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -28,28 +29,17 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
      */
     public ViewConsulta(View view) {
         super(view);
-        setDefaultProperties();
     }
     
-    /**
-     * Metodo responsavel por definir as Propriedades Padroes das Views de Consulta.
-     */
-    private void setDefaultProperties() {
-        setSize(470, 455);
+    @Override
+    public void setProperties() {
+        updateTitle();
         setLayout(new FlowLayout(FlowLayout.CENTER));
     }
     
     @Override
     public void update() {
         getController().pesquisar();
-    }
-    
-    /**
-     * Metodo responsavel por adicionar os Campos de Pesquisa das Views de Consulta.
-     */
-    protected void addSearch() {
-        getContentPane().add(createTextField("pesquisa", "", 18));
-        getContentPane().add(createButton("pesquisa", "", "atualizar"));
     }
     
     /**
@@ -84,10 +74,13 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
     
     @Override
     public void addFooter() {
-        getContentPane().add(createButton("novo",    "  Novo   ", "inserir"));
-        getContentPane().add(createButton("editar",  " Editar  ", "editar"));
-        getContentPane().add(createButton("excluir", " Excluir ", "excluir"));
-        getContentPane().add(createButton("voltar",  " Voltar  ", "voltar"));
+        JPanel footer = new JPanel();
+               footer.setLayout(new FlowLayout(FlowLayout.CENTER));
+               footer.add(createButton("novo",    "  Novo   ", "inserir"));
+               footer.add(createButton("editar",  " Editar  ", "editar"));
+               footer.add(createButton("excluir", " Excluir ", "excluir"));
+               footer.add(createButton("voltar",  " Voltar  ", "voltar"));
+        getContentPane().add(footer);
     }
 
     /**

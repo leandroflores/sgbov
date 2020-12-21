@@ -115,6 +115,14 @@ public class Bovino extends Entidade {
     }
 
     /**
+     * Metodo responsavel por retornar o Peso Formatado do Bovino.
+     * @return Peso Formatado do Bovino.
+     */
+    public String getPesoFormatado() {
+        return new DecimalFormat("R$ #,##0.00").format(peso);
+    } 
+    
+    /**
      * Metodo responsavel por definir o Peso do Bovino.
      * @param peso Peso do Bovino.
      */

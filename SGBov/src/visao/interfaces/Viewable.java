@@ -9,19 +9,24 @@ package visao.interfaces;
 public interface Viewable {
     
     /**
-     * Metodo responsavel por inicializar os Componentes da View.
+     * Metodo responsavel por definir as Propriedades da View.
      */
-    public void initComponents();
+    public void setProperties();
      
+    /**
+     * Metodo responsavel por adicionar os Componentes da View.
+     */
+    public void addComponents();
+    
     /**
      * Metodo responsavel por adicionar o Cabecalho da View.
      */
     public void addHeader();
     
     /**
-     * Metodo responsavel por adicionar os Componentes da View.
+     * Metodo responsavel por adicionar o Corpo Principal da View.
      */
-    public void addComponents();
+    public void addBody();
     
     /**
      * Metodo responsavel por adicionar o Rodape da View.

@@ -1,7 +1,9 @@
 package visao.modal.novo;
 
+import controlador.visao.interfaces.Updatable;
 import controlador.visao.modal.novo.ControllerViewNovo;
 import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import visao.modal.ViewModal;
@@ -19,16 +21,28 @@ public abstract class ViewNovo extends ViewModal {
     
     /**
      * Metodo construtor padrao da Classe.
-     * @param view View Consulta.
+     * @param view_ View Consulta.
      */
-    public ViewNovo(ViewModal view) {
-        super(view);
-        this.view = view;
+    public ViewNovo(ViewModal view_) {
+        super(view_);
+        view = view_;
+    }
+    
+    @Override
+    public void setProperties() {
+        updateTitle();
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+    }
+    
+    @Override
+    public void addComponents() {
+        addHeader();
+        addBody();
+        addFooter();
     }
     
     @Override
     public void addHeader() {
-        super.addHeader();
         getContentPane().add(createLabel("Os campos com (*) sao obrigatorios!"));
     }
     
@@ -83,7 +97,7 @@ public abstract class ViewNovo extends ViewModal {
      * Metodo responsavel por retornar a View.
      * @return View.
      */
-    public ViewModal getView() {
-        return view;
+    public Updatable getView() {
+        return (Updatable) view;
     }
 }

@@ -4,7 +4,6 @@ import controlador.Controller;
 import funct.FunctDate;
 import funct.FunctView;
 import java.awt.Component;
-import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -44,6 +43,7 @@ import visao.interfaces.Viewable;
 public abstract class ViewModal extends JDialog implements Viewable {
     protected String title;
     protected Controller controller;
+    
     private HashMap buttons;
     private HashMap checks;
     private HashMap combos;
@@ -101,11 +101,6 @@ public abstract class ViewModal extends JDialog implements Viewable {
         setResizable(false);
         setLayout(new FlowLayout(FlowLayout.CENTER));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }
-    
-    @Override
-    public void addHeader() {
-        updateTitle();
     }
     
     /**

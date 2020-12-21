@@ -14,6 +14,7 @@ import visao.painel.editar.PanelEditar;
  * @see    visao.painel.editar.PanelEditar
  */
 public abstract class ControllerPanelEditar extends ControllerPanel {
+    protected boolean ready;
     
     /**
      * Metodo construtor padrao da Classe.
@@ -21,16 +22,26 @@ public abstract class ControllerPanelEditar extends ControllerPanel {
      */
     public ControllerPanelEditar(PanelEditar panel) {
         super(panel);
+        ready = false;
+    }
+    
+    /**
+     * Metodo responsavel por definir o Controlador Ativo.
+     */
+    public void setReady() {
+        ready = true;
     }
     
     @Override
     public void actionPerformed(ActionEvent event) {
-        getPanel().getView().getController().actionPerformed(event);
+        if (ready)
+            getPanel().getView().getController().actionPerformed(event);
     }
     
     @Override
     public void keyPressed(KeyEvent event) {
-        getPanel().getView().getController().keyPressed(event);
+        if (ready)
+            getPanel().getView().getController().keyPressed(event);
     }
     
     @Override
