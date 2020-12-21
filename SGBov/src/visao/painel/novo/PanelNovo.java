@@ -13,14 +13,14 @@ import visao.painel.Panel;
  * @see    visao.painel.Panel
  */
 public abstract class PanelNovo extends Panel {
-    protected ViewNovo view;
+    protected ViewNovo owner;
     
     /**
      * Metodo construtor padrao da Classe.
      * @param view View Novo.
      */
     public PanelNovo(ViewNovo view) {
-        this.view = view;
+        owner = view;
     }
     
     /**
@@ -34,10 +34,10 @@ public abstract class PanelNovo extends Panel {
     public abstract void clear();
     
     /**
-     * Metodo responsavel por retornar a View Novo.
-     * @return View Novo.
+     * Metodo responsavel por retornar o Owner da View Novo.
+     * @return Owner da View Novo.
      */
-    public ViewNovo getView() {
-        return (ViewNovo) view;
+    public ViewNovo getOwner() {
+        return (ViewNovo) owner;
     }
 }

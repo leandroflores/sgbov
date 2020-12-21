@@ -25,12 +25,12 @@ public abstract class ControllerPanelNovo extends ControllerPanel {
     
     @Override
     public void actionPerformed(ActionEvent event) {
-        getPanel().getView().getController().actionPerformed(event);
+        getPanel().getOwner().getController().actionPerformed(event);
     }
     
     @Override
     public void keyPressed(KeyEvent event) {
-        getPanel().getView().getController().keyPressed(event);
+        getPanel().getOwner().getController().keyPressed(event);
     }
     
     @Override

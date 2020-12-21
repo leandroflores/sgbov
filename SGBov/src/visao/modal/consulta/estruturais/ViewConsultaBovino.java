@@ -37,7 +37,7 @@ public final class ViewConsultaBovino extends ViewConsulta {
     @Override
     public void setProperties() {
         super.setProperties();
-        setSize(new Dimension(1000, 560));
+        setSize(new Dimension(1000, 550));
     }
     
     @Override

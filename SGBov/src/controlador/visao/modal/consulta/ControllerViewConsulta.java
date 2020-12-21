@@ -8,7 +8,7 @@ import visao.modal.consulta.ViewConsulta;
 
 /**
  * <p>Classe de Controle <b>ControllerViewConsulta</b>.</p>
- * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> da ViewConsulta.</p>
+ * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> da ViewConsulta do SGBov.</p>
  * @author Leandro
  * @since  17/12/2020
  * @see    controlador.visao.modal.ControllerViewModal

@@ -7,7 +7,7 @@ import visao.modal.editar.ViewEditar;
 
 /**
  * <p>Classe de Controle <b>ControllerViewEditar</b>.</p>
- * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> da ViewEditar.</p>
+ * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> da ViewEditar do SGBov.</p>
  * @author Leandro
  * @since  21/12/2020
  * @see    controlador.visao.modal.ControllerViewModal

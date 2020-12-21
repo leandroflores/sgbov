@@ -7,7 +7,7 @@ import visao.modal.novo.ViewNovo;
 
 /**
  * <p>Classe de Controle <b>ControllerViewNovo</b>.</p>
- * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> da ViewNovo.</p>
+ * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> da ViewNovo do SGBov.</p>
  * @author Leandro
  * @since  19/12/2020
  * @see    controlador.visao.modal.ControllerViewModal

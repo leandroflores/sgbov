@@ -36,7 +36,7 @@ public final class ViewEditarBovino extends ViewEditar {
     @Override
     public void setProperties() {
         super.setProperties();
-        setSize(new Dimension(550, 340));
+        setSize(new Dimension(550, 330));
     }
     
     @Override

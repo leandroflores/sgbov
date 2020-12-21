@@ -119,7 +119,7 @@ public class Bovino extends Entidade {
      * @return Peso Formatado do Bovino.
      */
     public String getPesoFormatado() {
-        return new DecimalFormat("R$ #,##0.00").format(peso);
+        return new DecimalFormat("#,##0.00").format(peso);
     } 
     
     /**
@@ -152,6 +152,13 @@ public class Bovino extends Entidade {
      */
     public void setNascimento(Date nascimento) {
         this.nascimento = nascimento;
+    }
+    /**
+     * Metodo responsavel por retornar o Rotulo do Bovino.
+     * @return Rotulo do Bovino.
+     */
+    public String getRotulo() {
+        return tipo + " - N: " + numero + " (" + id + ")";
     }
     
     @Override

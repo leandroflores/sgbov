@@ -35,13 +35,13 @@ public abstract class ControllerPanelEditar extends ControllerPanel {
     @Override
     public void actionPerformed(ActionEvent event) {
         if (ready)
-            getPanel().getView().getController().actionPerformed(event);
+            getPanel().getOwner().getController().actionPerformed(event);
     }
     
     @Override
     public void keyPressed(KeyEvent event) {
         if (ready)
-            getPanel().getView().getController().keyPressed(event);
+            getPanel().getOwner().getController().keyPressed(event);
     }
     
     @Override

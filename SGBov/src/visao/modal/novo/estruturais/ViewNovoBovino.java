@@ -33,7 +33,7 @@ public final class ViewNovoBovino extends ViewNovo {
     @Override
     public void setProperties() {
         super.setProperties();
-        setSize(new Dimension(550, 350));
+        setSize(new Dimension(550, 340));
     }
     
     @Override

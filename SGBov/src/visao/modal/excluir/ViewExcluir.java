@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import visao.modal.ViewModal;
 
 /**
- * <p>Classe de Visao <b>ViewExcluir</b>.</p>'
+ * <p>Classe de Visao <b>ViewExcluir</b>.</p>
  * <p>Classe responsavel por definir a <b>Interface de Exclusao</b> do SGBov.</p>
  * @author Leandro
  * @since  19/12/2020
@@ -17,15 +17,15 @@ import visao.modal.ViewModal;
  * @see    visao.modal.consulta.ViewConsulta
  */
 public abstract class ViewExcluir extends ViewModal {
-    private final ViewModal view;
+    private final ViewModal owner;
     
     /**
      * Metodo construtor padrao da Classe.
-     * @param view_ View Modal.
+     * @param view View Modal.
      */
-    public ViewExcluir(ViewModal view_) {
-        super(view_);
-        view = view_;
+    public ViewExcluir(ViewModal view) {
+        super(view);
+        owner = view;
     }
     
     @Override
@@ -84,10 +84,10 @@ public abstract class ViewExcluir extends ViewModal {
     }
     
     /**
-     * Metodo responsavel por retornar a View.
+     * Metodo responsavel por retornar o View.
      * @return View.
      */
     public Updatable getView() {
-        return (Updatable) view;
+        return (Updatable) owner;
     }
 }

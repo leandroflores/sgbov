@@ -7,7 +7,7 @@ import visao.modal.excluir.ViewExcluir;
 
 /**
  * <p>Classe de Controle <b>ControllerViewExcluir</b>.</p>
- * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> da ViewExcluir.</p>
+ * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> da ViewExcluir do SGBov.</p>
  * @author Leandro
  * @since  19/12/2020
  * @see    controlador.visao.modal.ControllerViewModal

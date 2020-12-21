@@ -1,6 +1,7 @@
 package visao.modal.excluir.estruturais;
 
 import controlador.visao.modal.excluir.estruturais.ControllerViewExcluirBovino;
+import java.awt.Dimension;
 import modelo.entidade.estruturais.Bovino;
 import visao.modal.consulta.estruturais.ViewConsultaBovino;
 import visao.modal.excluir.ViewExcluir;
@@ -25,15 +26,21 @@ public final class ViewExcluirBovino extends ViewExcluir {
     public ViewExcluirBovino(ViewConsultaBovino view, Bovino bovino_) {
         super(view);
         bovino     = bovino_;
-        title      = "Exluir Bovino";
+        title      = "Excluir Bovino";
         controller = new ControllerViewExcluirBovino(this);
         setProperties();
         addComponents();
     }
     
     @Override
+    public void setProperties() {
+        super.setProperties();
+        setSize(new Dimension(650, 165));
+    }
+    
+    @Override
     public void addBody() {
-        super.addMessage(bovino.toString());
+        super.addMessage(bovino.getRotulo());
     }
     
     /**

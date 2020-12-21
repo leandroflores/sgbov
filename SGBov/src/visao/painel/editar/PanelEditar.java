@@ -14,14 +14,14 @@ import visao.painel.Panel;
  * @see    visao.painel.Panel
  */
 public abstract class PanelEditar extends Panel {
-    protected ViewEditar view;
+    protected ViewEditar owner;
     
     /**
      * Metodo construtor padrao da Classe.
      * @param view View Editar.
      */
     public PanelEditar(ViewEditar view) {
-        this.view = view;
+        owner = view;
     }
     
     /**
@@ -43,10 +43,10 @@ public abstract class PanelEditar extends Panel {
     }
     
     /**
-     * Metodo responsavel por retornar a View Editar.
-     * @return View Editar.
+     * Metodo responsavel por retornar o Owner da View Editar.
+     * @return Owner da View Editar.
      */
-    public ViewEditar getView() {
-        return (ViewEditar) view;
+    public ViewEditar getOwner() {
+        return (ViewEditar) owner;
     }
 }
