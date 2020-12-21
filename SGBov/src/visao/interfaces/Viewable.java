@@ -1,12 +1,12 @@
 package visao.interfaces;
 
 /**
- * <p>Interface <b>View</b>.</p>
+ * <p>Interface <b>Viewable</b>.</p>
  * <p>Interface responsavel por descrever as <b>Operacoes Padroes</b> para as Views do SGBov.</p>
  * @author Leandro
  * @since  15/12/2020
  */
-public interface InterfaceView {
+public interface Viewable {
     
     /**
      * Metodo responsavel por inicializar os Componentes da View.

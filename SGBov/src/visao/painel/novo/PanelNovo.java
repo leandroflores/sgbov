@@ -9,6 +9,7 @@ import visao.painel.Panel;
  * @author Leandro
  * @since  19/12/2020
  * @see    controlador.visao.painel.novo.ControllerPanelNovo
+ * @see    visao.modal.novo.ViewNovo
  * @see    visao.painel.Panel
  */
 public abstract class PanelNovo extends Panel {

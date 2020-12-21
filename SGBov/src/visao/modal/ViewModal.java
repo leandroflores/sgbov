@@ -29,8 +29,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import visao.View;
 import visao.estilo.ViewStyle;
-import visao.interfaces.InterfaceView;
 import visao.painel.Panel;
+import visao.interfaces.Viewable;
 
 /**
  * <p>Classe de Visao <b>ViewModal</b>.</p>
@@ -39,9 +39,9 @@ import visao.painel.Panel;
  * @since  15/12/2020
  * @see    controlador.Controller
  * @see    javax.swing.JDialog
- * @see    visao.interfaces.InterfaceView
+ * @see    visao.interfaces.Viewable
  */
-public abstract class ViewModal extends JDialog implements InterfaceView {
+public abstract class ViewModal extends JDialog implements Viewable {
     protected String title;
     protected Controller controller;
     private HashMap buttons;
