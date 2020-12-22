@@ -3,6 +3,7 @@ package visao.painel.consulta.filtro.estruturais;
 import controlador.visao.painel.consulta.filtro.ControllerPanelFiltro;
 import java.awt.FlowLayout;
 import java.util.Date;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -77,5 +78,13 @@ public final class PanelFiltroPesagem extends PanelFiltro {
      */
     public JSpinner getSpinnerNumero() {
         return getSpinner("numero");
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Button Pesquisar.
+     * @return Button Pesquisar.
+     */
+    public JButton getButtonPesquisar() {
+        return getButton("atualizar");
     }
 }

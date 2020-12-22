@@ -1,36 +1,35 @@
 package visao.painel.novo.estruturais;
 
-import controlador.visao.painel.novo.estruturais.ControllerPanelNovoBovino;
 import funct.FunctDate;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import modelo.controlador.estruturais.ControllerBovino;
+import modelo.entidade.estruturais.Bovino;
 import visao.modal.novo.ViewNovo;
 import visao.painel.novo.PanelNovo;
 
 /**
- * <p>Classe de Visao <b>PanelNovoBovino</b>.</p> 
- * <p>Classe responsavel por definir o Painel Grafico da <b>ViewNovoBovino</b> do SGBov.</p>
+ * <p>Classe de Visao <b>PanelNovoPesagem</b>.</p> 
+ * <p>Classe responsavel por definir o Painel Grafico da <b>ViewNovoPesagem</b> do SGBov.</p>
  * @author Leandro
- * @since  19/12/2020
- * @see    controlador.visao.painel.novo.estruturais.ControllerPanelNovoBovino
- * @see    modelo.entidade.estruturais.Bovino
+ * @since  22/12/2020
+ * @see    controlador.visao.painel.novo.estruturais.
+ * @see    modelo.entidade.estruturais.Pesagem
  * @see    visao.painel.novo.PanelNovo
  */
-public final class PanelNovoBovino extends PanelNovo {
+public final class PanelNovoPesagem extends PanelNovo {
+    private Bovino bovino;
     
     /**
      * Metodo construtor padrao da Classe.
      * @param view View Novo.
      */
-    public PanelNovoBovino(ViewNovo view) {
+    public PanelNovoPesagem(ViewNovo view) {
         super(view);
-        controller = new ControllerPanelNovoBovino(this);
+        //controller = new ControllerPanelNovoBovino(this);
         setProperties();
         addComponents();
     }
@@ -39,27 +38,22 @@ public final class PanelNovoBovino extends PanelNovo {
     protected void setProperties() {
         setMinimumSize(new Dimension(350, 300));
         setMaximumSize(new Dimension(350, 300));
-        setLayout(new GridLayout(6, 2, 1, 1));
+        //setLayout(new GridLayout(6, 2, 1, 1));
     }
     
     @Override
     protected void addComponents() {
-        add(createRightLabel("Tipo*: "));
-        add(createComboBox("tipo", ControllerBovino.TIPOS, 30));
-        
-        add(createRightLabel("Número*: "));
+        add(createLabel("Número*: ", 120));
         add(createSpinnerEditable("numero"));
+        getSpinnerNumero().addChangeListener(controller);
+        add(createTextFieldNoEditable("bovino", "", 20));
+        add(createButton("pesquisa", "", "pesquisa"));
         
-        add(createRightLabel("Sexo*: "));
-        add(createRadioButton("macho", "Macho"));
-        add(createRightLabel(""));
-        add(createRadioButton("femea", "Fêmea"));
+        add(createLabel("Data Pesagem*: ", 120));
+        add(createDateTextField("data_pesagem", new Date()));
         
-        add(createRightLabel("Peso (kg)*: "));
-        add(createDecimalTextField("peso", 0.0f, 10));
-        
-        add(createRightLabel("Data Nascimento*: "));
-        add(createDateTextField("data_nascimento", new Date()));
+        add(createLabel("Valor Pesagem*: ", 120));
+        add(this.createDecimalTextField("valor", 0.0f, 7));
     }
     
     @Override

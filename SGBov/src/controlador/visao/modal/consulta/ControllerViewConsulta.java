@@ -26,9 +26,7 @@ public abstract class ControllerViewConsulta extends ControllerViewModal {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        if (getView().getButtonPesquisa().equals(event.getSource()))
-            update();
-        else if (getView().getButtonNovo().equals(event.getSource()))
+        if (getView().getButtonNovo().equals(event.getSource()))
             novo();
         else if (getView().getButtonEditar().equals(event.getSource()))
             editar();

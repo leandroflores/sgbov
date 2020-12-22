@@ -1,6 +1,7 @@
 package controlador.visao.modal.consulta.estruturais;
 
 import controlador.visao.modal.consulta.ControllerViewConsulta;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,13 @@ public class ControllerViewConsultaPesagem extends ControllerViewConsulta {
         super(view);
         dao  = new DaoPesagem();
         list = new ArrayList<>();
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        super.actionPerformed(event);
+        if (getView().getPanelFiltro().getButtonPesquisar().equals(event.getSource()))
+            update();
     }
     
     @Override
