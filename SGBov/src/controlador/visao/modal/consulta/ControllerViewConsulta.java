@@ -27,7 +27,7 @@ public abstract class ControllerViewConsulta extends ControllerViewModal {
     @Override
     public void actionPerformed(ActionEvent event) {
         if (getView().getButtonPesquisa().equals(event.getSource()))
-            pesquisar();
+            update();
         else if (getView().getButtonNovo().equals(event.getSource()))
             novo();
         else if (getView().getButtonEditar().equals(event.getSource()))
@@ -44,7 +44,7 @@ public abstract class ControllerViewConsulta extends ControllerViewModal {
         switch (event.getKeyCode()) {
             case F5:
             case ENTER:
-                pesquisar();
+                update();
                 break;
             case F1:
                 novo();
@@ -64,12 +64,17 @@ public abstract class ControllerViewConsulta extends ControllerViewModal {
     }
     
     /**
-     * Metodo abstrato responsavel por realizar a pesquisa.
+     * Metodo responsavel por atualizar a View Consulta.
+     */
+    public abstract void update();
+    
+    /**
+     * Metodo abstrato responsavel por realizar a Pesquisa.
      */
     public abstract void pesquisar();
     
     /**
-     * Metodo abstrato responsavel por exibir a View para Cadastro.
+     * Metodo abstrato responsavel por exibir a View para Novo.
      */
     public abstract void novo();
     
@@ -79,7 +84,7 @@ public abstract class ControllerViewConsulta extends ControllerViewModal {
     public abstract void editar();
     
     /**
-     * Metodo Abstrato responsavel por exibir a View para Remocao.
+     * Metodo Abstrato responsavel por exibir a View para Excluir.
      */
     public abstract void excluir();
     

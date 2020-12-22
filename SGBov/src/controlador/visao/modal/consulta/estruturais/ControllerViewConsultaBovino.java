@@ -40,16 +40,14 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
     }
 
     @Override
-    public void pesquisar() {
-        atualizarLista();
+    public void update() {
+        pesquisar();
         getView().addRows("consulta", getController().getMatriz(list));
         getView().setCount(this.list.size());
     }
     
-    /**
-     * Metodo responsavel por atualizar a Lista de Bovinos.
-     */
-    private void atualizarLista() {
+    @Override
+    public void pesquisar() {
         String  tipo   = getString(getView().getComboBoxTipo()).replaceAll("Selecione", "");
         Date    inicio = getData(getView().getTextFieldDataInicio());
         Date    fim    = getData(getView().getTextFieldDataFinal());

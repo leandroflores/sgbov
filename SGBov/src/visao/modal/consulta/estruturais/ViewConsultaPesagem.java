@@ -1,5 +1,6 @@
 package visao.modal.consulta.estruturais;
 
+import controlador.visao.modal.consulta.estruturais.ControllerViewConsultaPesagem;
 import java.awt.Dimension;
 import visao.estruturais.menu.ViewMenu;
 import visao.modal.consulta.ViewConsulta;
@@ -10,7 +11,8 @@ import visao.painel.consulta.filtro.estruturais.PanelFiltroPesagem;
  * <p>Classe responsavel por definir a <b>Interface de Consulta de Pesagem</b> do SGBov.</p>
  * @author Leandro
  * @since  21/12/2020
- * @see    controlador.visao.
+ * @see    controlador.visao.modal.consulta.estruturais.ControllerViewConsultaPesagem
+ * @see    modelo.entidade.estruturais.Pesagem
  * @see    visao.modal.consulta.ViewConsulta
  */
 public final class ViewConsultaPesagem extends ViewConsulta {
@@ -22,7 +24,7 @@ public final class ViewConsultaPesagem extends ViewConsulta {
     public ViewConsultaPesagem(ViewMenu view) {
         super(view);
         title      = "Consulta de Pesagens";
-        //controller = new ControllerViewConsultaPesagem(this);
+        controller = new ControllerViewConsultaPesagem(this);
         setProperties();
         addComponents();
         update();
@@ -38,7 +40,7 @@ public final class ViewConsultaPesagem extends ViewConsulta {
     public void addHeader() {
         getContentPane().add(getSpace(20, 1000));
         addPanel("panel_filtro", new PanelFiltroPesagem(this));
-        getContentPane().add(getPanelFiltroPesagem());
+        getContentPane().add(getPanelFiltro());
         getContentPane().add(getSpace(20, 1000));
     }
     
@@ -70,7 +72,7 @@ public final class ViewConsultaPesagem extends ViewConsulta {
      * Metodo responsavel por retornar o Panel Filtro Pesagem.
      * @return Panel Filtro Pesagem.
      */
-    public PanelFiltroPesagem getPanelFiltroPesagem() {
+    public PanelFiltroPesagem getPanelFiltro() {
         return (PanelFiltroPesagem) getPanel("panel_filtro");
     }
 }
