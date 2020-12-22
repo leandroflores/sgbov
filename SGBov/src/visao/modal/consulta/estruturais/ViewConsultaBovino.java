@@ -37,14 +37,7 @@ public final class ViewConsultaBovino extends ViewConsulta {
     @Override
     public void setProperties() {
         super.setProperties();
-        setSize(new Dimension(1000, 550));
-    }
-    
-    @Override
-    public void addComponents() {
-        addHeader();
-        addBody();
-        addFooter();
+        setSize(new Dimension(1000, 560));
     }
     
     @Override
@@ -72,27 +65,27 @@ public final class ViewConsultaBovino extends ViewConsulta {
         
         getContentPane().add(getSpace(10, 1000));
     }
-
-    @Override
-    public void addBody() {
-        addTable();
-        setTableHeader();
-        addTableFooter();
-    } 
     
     @Override
     protected void setTableHeader() {
-        String[]  columns = {"Id", "Tipo", "Número", "Sexo", "Data Nascimento", "Peso"};
-        Integer[] sizes   = {50, 100, 150, 100, 100, 125};
-        addColumns("consulta", columns);
-        setColumnsSize("consulta", sizes);
+        super.setTableHeader();
         getScrollPane().setPreferredSize(new Dimension(900, 275));
+    }
+    
+    @Override
+    protected String[] getColumns() {
+        return new String[] {"Id", "Tipo", "Número", "Sexo", "Data Nascimento", "Peso"};
+    }
+    
+    @Override
+    protected Integer[] getSizes() {
+        return new Integer[] {50, 100, 150, 100, 100, 125};
     }
     
     @Override
     protected void addTableFooter() {
         getContentPane().add(getSpace(10, 1000));
-        super.addTableFooter();
+        getContentPane().add(super.getTableCount());
         getContentPane().add(getSpace(10, 1000));
     }
     

@@ -2,6 +2,7 @@ package controlador.visao.modal.excluir.estruturais;
 
 import controlador.visao.modal.excluir.ControllerViewExcluir;
 import modelo.dao.estruturais.DaoBovino;
+import modelo.dao.estruturais.DaoPesagem;
 import visao.modal.excluir.estruturais.ViewExcluirBovino;
 import visao.modal.mensagem.ViewMensagem;
 
@@ -12,6 +13,7 @@ import visao.modal.mensagem.ViewMensagem;
  * @since  20/12/2020
  * @see    controlador.visao.modal.excluir.ControllerViewExcluir
  * @see    modelo.dao.estruturais.DaoBovino
+ * @see    modelo.dao.estruturais.DaoPesagem
  * @see    visao.modal.excluir.estruturais.ViewExcluirBovino
  */
 public class ControllerViewExcluirBovino extends ControllerViewExcluir {
@@ -26,6 +28,7 @@ public class ControllerViewExcluirBovino extends ControllerViewExcluir {
     
     @Override
     public void excluir() {
+        new DaoPesagem().delete(getView().getBovino());
         new DaoBovino().delete(getView().getBovino().getId());
         new ViewMensagem(getView(), "Bovino removido com Sucesso!").setVisible(true);
         getView().getView().update();

@@ -3,6 +3,7 @@ package visao.modal.consulta;
 import controlador.visao.interfaces.Updatable;
 import controlador.visao.modal.consulta.ControllerViewConsulta;
 import java.awt.FlowLayout;
+import java.text.DecimalFormat;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -38,12 +39,26 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
     }
     
     @Override
+    public void addComponents() {
+        addHeader();
+        addBody();
+        addFooter();
+    }
+    
+    @Override
     public void update() {
-        getController().pesquisar();
+        //getController().pesquisar();
+    }
+    
+    @Override
+    public void addBody() {
+        addTable();
+        setTableHeader();
+        addTableFooter();
     }
     
     /**
-     * Metodo responsavel por adicionar a Tabela na View de Consulta.
+     * Metodo responsavel por adicionar a Tabela da View Consulta.
      */
     protected void addTable() {
         createTable("consulta");
@@ -51,24 +66,69 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
     }
     
     /**
-     * Metodo responsavel por definir o Cabecalho da Tabela na View de Consulta.
+     * Metodo responsavel por definir o Cabecalho da Tabela da View Consulta.
      */
-    protected abstract void setTableHeader();
+    protected void setTableHeader() {
+        addColumns("consulta", getColumns());
+        setColumnsSize("consulta", getSizes());
+    }
     
     /**
-     * Metodo responsavel por adicionar o Rodape da Tabela na View de Consulta.
+     * Metodo responsavel por retornar as Colunas da Tabela da View Consulta.
+     * @return Colunas da Tabela da View Consulta.
      */
-    protected void addTableFooter() {
-        getContentPane().add(createLabel("Total: "));
-        getContentPane().add(createTextFieldNoEditable("total", "0", 5));
+    protected abstract String[] getColumns();
+    
+    /**
+     * Metodo responsavel por retornar o Tamanho das Colunas da Tabela da View Consulta.
+     * @return Tamanho das Colunas da Tabela da View Consulta.
+     */
+    protected abstract Integer[] getSizes();
+    
+    /**
+     * Metodo responsavel por adicionar o Rodape da Tabela na View Consulta.
+     */
+    protected abstract void addTableFooter();
+    
+    /**
+     * Metodo responsavel por retornar o Contador da Tabela.
+     * @return Contador da Tabela.
+     */
+    protected JPanel getTableCount() {
+        JPanel count = new JPanel();
+               count.setLayout(new FlowLayout(FlowLayout.CENTER));
+               count.add(createLabel("Qtde.: "));
+               count.add(createRightTextFieldNoEditable("count", "0", 5));
+        return count;
+    }
+    
+    /**
+     * Metodo responsavel por atualizar a Quantidade de Registros encontrados.
+     * @param count Quantidade de Registros.
+     */     
+    public void setCount(int count) {
+        String text = count > 0 ? Integer.toString(count) : "0";
+        getTextField("count").setText(text);
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Total da Tabela.
+     * @return Total da Tabela.
+     */
+    protected JPanel getTableTotal() {
+        JPanel total = new JPanel();
+               total.setLayout(new FlowLayout(FlowLayout.CENTER));
+               total.add(createLabel("Total: "));
+               total.add(createRightTextFieldNoEditable("total", "0", 5));
+        return total;
     }
     
     /**
      * Metodo responsavel por atualizar o Total de Registros encontrados.
      * @param total Total de Registros.
      */     
-    public void setTotal(int total) {
-        String text = total > 0 ? Integer.toString(total) : "0";
+    public void setTotal(Float total) {
+        String text = total > 0 ? new DecimalFormat("#,##0.00").format(total) : "0.00";
         getTextField("total").setText(text);
     }
     

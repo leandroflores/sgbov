@@ -1,0 +1,76 @@
+package visao.modal.consulta.estruturais;
+
+import java.awt.Dimension;
+import visao.estruturais.menu.ViewMenu;
+import visao.modal.consulta.ViewConsulta;
+import visao.painel.consulta.filtro.estruturais.PanelFiltroPesagem;
+
+/**
+ * <p>Classe de Visao <b>ViewConsultaPesagem</b>.</p>
+ * <p>Classe responsavel por definir a <b>Interface de Consulta de Pesagem</b> do SGBov.</p>
+ * @author Leandro
+ * @since  21/12/2020
+ * @see    controlador.visao.
+ * @see    visao.modal.consulta.ViewConsulta
+ */
+public final class ViewConsultaPesagem extends ViewConsulta {
+
+    /**
+     * Metodo construtor padrao da Classe.
+     * @param view View Menu.
+     */
+    public ViewConsultaPesagem(ViewMenu view) {
+        super(view);
+        title      = "Consulta de Pesagens";
+        //controller = new ControllerViewConsultaPesagem(this);
+        setProperties();
+        addComponents();
+        update();
+    }
+
+    @Override
+    public void setProperties() {
+        super.setProperties();
+        setSize(new Dimension(1000, 525));
+    }
+    
+    @Override
+    public void addHeader() {
+        getContentPane().add(getSpace(20, 1000));
+        addPanel("panel_filtro", new PanelFiltroPesagem(this));
+        getContentPane().add(getPanelFiltroPesagem());
+        getContentPane().add(getSpace(20, 1000));
+    }
+    
+    @Override
+    protected void setTableHeader() {
+        super.setTableHeader();
+        getScrollPane().setPreferredSize(new Dimension(900, 275));
+    }
+    
+    @Override
+    protected String[] getColumns() {
+        return new String[] {"Id", "Bovino", "Sexo", "Data Pesagem", "Valor"};
+    }
+    
+    @Override
+    protected Integer[] getSizes() {
+        return new Integer[] {50, 250, 100, 100, 125};
+    }
+    
+    @Override
+    protected void addTableFooter() {
+        getContentPane().add(getSpace(10, 1000));
+        getContentPane().add(super.getTableCount());
+        getContentPane().add(super.getTableTotal());
+        getContentPane().add(getSpace(10, 1000));
+    }
+
+    /**
+     * Metodo responsavel por retornar o Panel Filtro Pesagem.
+     * @return Panel Filtro Pesagem.
+     */
+    public PanelFiltroPesagem getPanelFiltroPesagem() {
+        return (PanelFiltroPesagem) getPanel("panel_filtro");
+    }
+}

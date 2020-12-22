@@ -501,6 +501,19 @@ public abstract class ViewModal extends JDialog implements Viewable {
     }
     
     /**
+     * Metodo responsavel por retornar um Novo Right Text Field Nao Editavel.
+     * @param  id Identificador do Right Text Field.
+     * @param  title Titulo do Right Text Field.
+     * @param  size Tamanho do Right Text Field.
+     * @return Novo Right Text Field Nao Editavel.
+     */
+    protected JTextField createRightTextFieldNoEditable(String id, String title, int size) {
+        JTextField textField = createTextFieldNoEditable(id, title, size);
+                   textField.setHorizontalAlignment(SwingConstants.RIGHT);
+        return     textField;
+    }
+    
+    /**
      * Metodo responsavel por retornar um Novo Date Text Field.
      * @param  id Identificador do Date Text Field.
      * @param  value Valor do Date Text Field.

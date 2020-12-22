@@ -131,6 +131,14 @@ public final class ViewMenu extends View {
     }
     
     /**
+     * Metodo responsavel por retornar o Menu Item Pesagem.
+     * @return Menu Item Pesagem.
+     */
+    public JMenuItem getMenuItemPesagem() {
+        return getMenuItem("rebanho_pesagem");
+    }
+    
+    /**
      * Metodo responsavel por retornar o Menu Item Sobre.
      * @return Menu Item Sobre.
      */

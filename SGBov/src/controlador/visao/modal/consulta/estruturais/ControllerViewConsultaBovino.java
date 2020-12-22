@@ -43,7 +43,7 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
     public void pesquisar() {
         atualizarLista();
         getView().addRows("consulta", getController().getMatriz(list));
-        getView().setTotal(this.list.size());
+        getView().setCount(this.list.size());
     }
     
     /**
