@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import visao.interfaces.Searchable;
 import visao.modal.ViewModal;
+import visao.painel.pesquisa.PanelPesquisa;
 
 /**
  * <p>Classe de Visao <b>ViewPesquisa</b>.</p>
@@ -20,13 +22,15 @@ import visao.modal.ViewModal;
  * @see    visao.modal.ViewModal
  */
 public abstract class ViewPesquisa extends ViewModal implements Updatable {
+    private final ViewModal view;
 
     /**
      * Metodo construtor padrao da Classe.
-     * @param view View Modal.
+     * @param view_ View Modal.
      */
-    public ViewPesquisa(ViewModal view) {
-        super(view);
+    public ViewPesquisa(ViewModal view_) {
+        super(view_);
+        view = view_;
     }
     
     @Override
@@ -91,6 +95,12 @@ public abstract class ViewPesquisa extends ViewModal implements Updatable {
     }
 
     /**
+     * Metodo responsavel por retornar o Panel Pesquisa.
+     * @return Panel Pesquisa.
+     */
+    public abstract PanelPesquisa getPanelPesquisa();
+    
+    /**
      * Metodo responsavel por retornar a Tabela de Pesquisa.
      * @return Tabela de Pesquisa.
      */
@@ -136,5 +146,13 @@ public abstract class ViewPesquisa extends ViewModal implements Updatable {
      */
     public ControllerViewPesquisa getController() {
         return (ControllerViewPesquisa) controller;
+    }
+    
+    /**
+     * Metodo responsavel por retornar a View Parent.
+     * @return View Parent.
+     */
+    public Searchable getView() {
+        return (Searchable) view;
     }
 }

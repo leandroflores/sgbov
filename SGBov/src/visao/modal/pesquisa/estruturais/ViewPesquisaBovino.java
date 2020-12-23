@@ -3,6 +3,7 @@ package visao.modal.pesquisa.estruturais;
 import java.awt.Dimension;
 import visao.modal.ViewModal;
 import visao.modal.pesquisa.ViewPesquisa;
+import visao.painel.pesquisa.estruturais.PanelPesquisaBovino;
 
 /**
  * <p>Classe de Visao <b>ViewPesquisaBovino</b>.</p>
@@ -37,7 +38,8 @@ public final class ViewPesquisaBovino extends ViewPesquisa {
     @Override
     public void addHeader() {
         getContentPane().add(getSpace(20, 1000));
-        
+        addPanel("panel_pesquisa", new PanelPesquisaBovino(this));
+        getContentPane().add(getPanelPesquisa());
         getContentPane().add(getSpace(10, 1000));
     }
     
@@ -55,5 +57,10 @@ public final class ViewPesquisaBovino extends ViewPesquisa {
     @Override
     protected Integer[] getSizes() {
         return new Integer[] {50, 100, 150, 100};
+    }
+    
+    @Override
+    public PanelPesquisaBovino getPanelPesquisa() {
+        return (PanelPesquisaBovino) getPanel("panel_pesquisa");
     }
 }

@@ -1,13 +1,15 @@
 package visao.painel.novo.estruturais;
 
 import funct.FunctDate;
-import java.awt.GridLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.text.DecimalFormat;
 import java.util.Date;
 import javax.swing.JButton;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import modelo.entidade.estruturais.Bovino;
+import visao.interfaces.Searchable;
 import visao.modal.novo.ViewNovo;
 import visao.painel.novo.PanelNovo;
 
@@ -18,9 +20,10 @@ import visao.painel.novo.PanelNovo;
  * @since  22/12/2020
  * @see    controlador.visao.painel.novo.estruturais.
  * @see    modelo.entidade.estruturais.Pesagem
+ * @see    visao.interfaces.Searchable
  * @see    visao.painel.novo.PanelNovo
  */
-public final class PanelNovoPesagem extends PanelNovo {
+public final class PanelNovoPesagem extends PanelNovo implements Searchable {
     private Bovino bovino;
     
     /**
@@ -36,34 +39,51 @@ public final class PanelNovoPesagem extends PanelNovo {
 
     @Override
     protected void setProperties() {
-        //setMinimumSize(new Dimension(350, 300));
-        //setMaximumSize(new Dimension(350, 300));
-        setLayout(new GridLayout(3, 3, 1, 1));
+        setBackground(Color.red);
+        setMinimumSize(new Dimension(400, 525));
+        setMaximumSize(new Dimension(400, 525));
+        setLayout(new GridBagLayout());
     }
     
     @Override
     protected void addComponents() {
-        add(createLabel("Número*: ", 120));
-        add(createSpinnerEditable("numero"));
-        getSpinnerNumero().addChangeListener(controller);
-        add(createTextFieldNoEditable("bovino", "", 20));
-        add(createButton("pesquisa", "", "pesquisa"));
+        add(createLabel("Bovino*: ", 120), createConstraints(1, 1, 0, 0));
+        add(createTextFieldNoEditable("bovino", "", 20), createConstraints(3, 1, 1, 0));
+        getTextField("bovino").setMinimumSize(new Dimension(150, 30));
+        add(createButton("pesquisa", "", "pesquisa"), createConstraints(1, 1, 4, 0));
         
-        add(createLabel("Data Pesagem*: ", 120));
-        add(createDateTextField("data_pesagem", new Date()));
+        add(createRightLabel("Id: "), createConstraints(1, 1, 0, 1));
+        add(createTextFieldNoEditable("id", "", 5), createConstraints(1, 1, 1, 1));
+        getTextField("id").setMinimumSize(new Dimension(90, 30));
+        add(createRightLabel("Tipo: "), createConstraints(1, 1, 2, 1));
+        add(createTextFieldNoEditable("tipo", "", 5), createConstraints(1, 1, 3, 1));
+        getTextField("tipo").setMinimumSize(new Dimension(100, 30));
+        add(createLabel(""), createConstraints(1, 1, 4, 1));
         
-        add(createLabel("Valor Pesagem*: ", 120));
-        add(this.createDecimalTextField("valor", 0.0f, 7));
+        add(createRightLabel("N.: "), createConstraints(1, 1, 0, 2));
+        add(createTextFieldNoEditable("numero", "", 5), createConstraints(1, 1, 1, 2));
+        getTextField("numero").setMinimumSize(new Dimension(90, 30));
+        add(createRightLabel("Sexo: "), createConstraints(1, 1, 2, 2));
+        add(createTextFieldNoEditable("sexo", "", 5), createConstraints(1, 1, 3, 2));
+        getTextField("sexo").setMinimumSize(new Dimension(100, 30));
+        add(createLabel(""), createConstraints(1, 1, 4, 2));
+        
+        
+        add(createLabel("Data*: ", 120), createConstraints(1, 1, 0, 3));
+        add(createDateTextField("data", new Date()), createConstraints(1, 1, 1, 3));
+        getTextFieldData().setMinimumSize(new Dimension(90, 30));
+        add(createLabel("Peso*: ", 120), createConstraints(1, 1, 2, 3));
+        add(createDecimalTextField("peso", 0.0f, 7), createConstraints(1, 1, 3, 3));
+        getTextFieldPeso().setMinimumSize(new Dimension(100, 30));
+        add(createLabel(""), createConstraints(1, 1, 4, 3));
+        
     }
     
     @Override
     public void clear() {
-        getSpinnerNumero().setValue(0);
-        
-        getTextFieldDataPesagem().setText(new FunctDate().getFormattedDate(new Date()));
-        getTextFieldValor().setText(new DecimalFormat("#,##0.00").format(0.00f));
-        
-        getSpinnerNumero().requestFocus();
+        update();
+        getTextFieldData().setText(new FunctDate().getFormattedDate(new Date()));
+        getTextFieldPeso().setText(new DecimalFormat("#,##0.00").format(0.00f));
     }
     
     /**
@@ -75,35 +95,43 @@ public final class PanelNovoPesagem extends PanelNovo {
     }
     
     /**
+     * Metodo responsavel por atualizar os Dados.
+     */
+    public void update() {
+        if (bovino == null)
+            clearBovino();
+        else
+            setDadosBovino();
+    }
+    
+    /**
      * Metodo responsavel por preencher os campos do Bovino.
      */
-    public void setDadosBovino() {
-        getTextFieldBovino().setText(bovino == null ? "" : bovino.toString());
+    private void setDadosBovino() {
+        getTextField("bovino").setText(bovino.toString());
+        getTextField("id").setText(Long.toString(bovino.getId()));
+        getTextField("tipo").setText(bovino.getTipo());
+        getTextField("numero").setText(Integer.toString(bovino.getNumero()));
+        getTextField("sexo").setText("" + bovino.getSexo());
     }
     
     /**
-     * Metodo responsavel por definir o Bovino.
-     * @param bovino_ Bovino.
+     * Metodo responsavel por Limpar os Dados de Bovino.
      */
-    public void setBovino(Bovino bovino_) {
-        bovino = bovino_;
-        setDadosBovino();
+    private void clearBovino() {
+        getTextField("bovino").setText("");
+        getTextField("id").setText("");
+        getTextField("tipo").setText("");
+        getTextField("numero").setText("");
+        getTextField("sexo").setText("");
     }
     
-    /**
-     * Metodo responsavel por retornar o Spinner Numero.
-     * @return Spinner Numero.
-     */
-    public JSpinner getSpinnerNumero() {
-        return getSpinner("numero");
-    }
-    
-    /**
-     * Metodo responsavel por retornar o Text Field Bovino.
-     * @return Text Field Bovino.
-     */
-    public JTextField getTextFieldBovino() {
-        return getTextField("bovino");
+    @Override
+    public void setValue(Object bovino_) {
+        if (bovino_ instanceof Bovino) {
+            bovino = (Bovino) bovino_;
+            setDadosBovino();
+        }
     }
     
     /**
@@ -115,18 +143,18 @@ public final class PanelNovoPesagem extends PanelNovo {
     }
     
     /**
-     * Metodo responsavel por retornar o Text Field Data Pesagem.
-     * @return Text Field Data Pesagem.
+     * Metodo responsavel por retornar o Text Field Data.
+     * @return Text Field Data.
      */
-    public JTextField getTextFieldDataPesagem() {
-        return getTextField("data_pesagem");
+    public JTextField getTextFieldData() {
+        return getTextField("data");
     }
     
     /**
-     * Metodo responsavel por retornar o Text Field Valor Pesagem.
-     * @return Text Field Valor Pesagem.
+     * Metodo responsavel por retornar o Text Field Peso.
+     * @return Text Field Peso.
      */
-    public JTextField getTextFieldValor() {
-        return getTextField("valor");
+    public JTextField getTextFieldPeso() {
+        return getTextField("peso");
     }
 }
