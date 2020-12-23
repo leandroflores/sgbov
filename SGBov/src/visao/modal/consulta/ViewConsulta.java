@@ -18,8 +18,8 @@ import visao.modal.ViewModal;
  * <p>Classe responsavel por definir a <b>Interface de Consulta</b> do SGBov.</p>
  * @author Leandro
  * @since  17/12/2020
+ * @see    controlador.visao.interfaces.Updatable
  * @see    controlador.visao.modal.consulta.ControllerViewConsulta
- * @see    visao.interfaces.InterfaceView
  * @see    visao.modal.ViewModal
  */
 public abstract class ViewConsulta extends ViewModal implements Updatable {
@@ -47,7 +47,7 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
     
     @Override
     public void update() {
-        //getController().pesquisar();
+        getController().pesquisar();
     }
     
     @Override

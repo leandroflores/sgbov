@@ -11,6 +11,7 @@ import modelo.dao.estruturais.DaoPesagem;
 import modelo.entidade.estruturais.Pesagem;
 import visao.modal.consulta.estruturais.ViewConsultaPesagem;
 import visao.modal.mensagem.ViewErro;
+import visao.modal.novo.estruturais.ViewNovoPesagem;
 
 /**
  * <p>Classe de Controle <b>ControllerViewConsultaPesagem</b>.</p>
@@ -68,7 +69,7 @@ public class ControllerViewConsultaPesagem extends ControllerViewConsulta {
     
     @Override
     public void novo() {
-        System.out.println("Nova Pesagem");
+        new ViewNovoPesagem(getView()).setVisible(true);
     }
 
     @Override

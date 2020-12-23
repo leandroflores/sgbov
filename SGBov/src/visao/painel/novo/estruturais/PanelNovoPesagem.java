@@ -1,10 +1,10 @@
 package visao.painel.novo.estruturais;
 
 import funct.FunctDate;
-import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.text.DecimalFormat;
 import java.util.Date;
-import javax.swing.JComboBox;
-import javax.swing.JRadioButton;
+import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import modelo.entidade.estruturais.Bovino;
@@ -36,9 +36,9 @@ public final class PanelNovoPesagem extends PanelNovo {
 
     @Override
     protected void setProperties() {
-        setMinimumSize(new Dimension(350, 300));
-        setMaximumSize(new Dimension(350, 300));
-        //setLayout(new GridLayout(6, 2, 1, 1));
+        //setMinimumSize(new Dimension(350, 300));
+        //setMaximumSize(new Dimension(350, 300));
+        setLayout(new GridLayout(3, 3, 1, 1));
     }
     
     @Override
@@ -58,24 +58,36 @@ public final class PanelNovoPesagem extends PanelNovo {
     
     @Override
     public void clear() {
-        getComboBoxTipo().setSelectedIndex(0);
-        getSpinnerNumero().setValue(1);
-        getRadioButtonMacho().setSelected(true);
-        getRadioButtonFemea().setSelected(false);
-        getTextFieldPeso().setText("0,00");
-        getTextFieldDataNascimento().setText(new FunctDate().getFormattedDate(new Date()));
+        getSpinnerNumero().setValue(0);
         
-        getRadioButtonMacho().setEnabled(true);
-        getRadioButtonFemea().setEnabled(true);
-        getComboBoxTipo().requestFocus();
+        getTextFieldDataPesagem().setText(new FunctDate().getFormattedDate(new Date()));
+        getTextFieldValor().setText(new DecimalFormat("#,##0.00").format(0.00f));
+        
+        getSpinnerNumero().requestFocus();
     }
     
     /**
-     * Metodo responsavel por retornar o Combo Box Tipo.
-     * @return Combo Box Tipo.
+     * Metodo responsavel por retornar o Bovino.
+     * @return Bovino.
      */
-    public JComboBox getComboBoxTipo() {
-        return getComboBox("tipo");
+    public Bovino getBovino() {
+        return bovino;
+    }
+    
+    /**
+     * Metodo responsavel por preencher os campos do Bovino.
+     */
+    public void setDadosBovino() {
+        getTextFieldBovino().setText(bovino == null ? "" : bovino.toString());
+    }
+    
+    /**
+     * Metodo responsavel por definir o Bovino.
+     * @param bovino_ Bovino.
+     */
+    public void setBovino(Bovino bovino_) {
+        bovino = bovino_;
+        setDadosBovino();
     }
     
     /**
@@ -87,34 +99,34 @@ public final class PanelNovoPesagem extends PanelNovo {
     }
     
     /**
-     * Metodo responsavel por retornar o Radio Button Macho.
-     * @return Radio Button Macho.
+     * Metodo responsavel por retornar o Text Field Bovino.
+     * @return Text Field Bovino.
      */
-    public JRadioButton getRadioButtonMacho() {
-        return getRadioButton("macho");
+    public JTextField getTextFieldBovino() {
+        return getTextField("bovino");
     }
     
     /**
-     * Metodo responsavel por retornar o Radio Button Femea.
-     * @return Radio Button Femea.
+     * Metodo responsavel por retornar o Button Pesquisa.
+     * @return Button Pesquisa.
      */
-    public JRadioButton getRadioButtonFemea() {
-        return getRadioButton("femea");
+    public JButton getButtonPesquisa() {
+        return getButton("pesquisa");
     }
     
     /**
-     * Metodo responsavel por retornar o Text Field Peso.
-     * @return Text Field Peso.
+     * Metodo responsavel por retornar o Text Field Data Pesagem.
+     * @return Text Field Data Pesagem.
      */
-    public JTextField getTextFieldPeso() {
-        return getTextField("peso");
+    public JTextField getTextFieldDataPesagem() {
+        return getTextField("data_pesagem");
     }
     
     /**
-     * Metodo responsavel por retornar o Text Field Data Nascimento.
-     * @return Text Field Data Nascimento.
+     * Metodo responsavel por retornar o Text Field Valor Pesagem.
+     * @return Text Field Valor Pesagem.
      */
-    public JTextField getTextFieldDataNascimento() {
-        return getTextField("data_nascimento");
+    public JTextField getTextFieldValor() {
+        return getTextField("valor");
     }
 }
