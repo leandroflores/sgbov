@@ -104,6 +104,14 @@ public class Pesagem extends Entidade {
         this.valor = valor;
     }
     
+    /**
+     * Metodo responsavel por retornar o Resumo da Pesagem.
+     * @return Resumo da Pesagem.
+     */
+    public String getResumo() {
+        return id + " - " + bovino.getNumero() + " = " + getValorFormatado();
+    }
+    
     @Override
     public String[] getDadosPesquisa() {
         return new String[0];

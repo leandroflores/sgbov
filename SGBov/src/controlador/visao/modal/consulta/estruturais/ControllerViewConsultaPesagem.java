@@ -11,6 +11,7 @@ import modelo.dao.estruturais.DaoPesagem;
 import modelo.entidade.estruturais.Pesagem;
 import visao.modal.consulta.estruturais.ViewConsultaPesagem;
 import visao.modal.editar.estruturais.ViewEditarPesagem;
+import visao.modal.excluir.estruturais.ViewExcluirPesagem;
 import visao.modal.mensagem.ViewErro;
 import visao.modal.novo.estruturais.ViewNovoPesagem;
 
@@ -88,7 +89,7 @@ public class ControllerViewConsultaPesagem extends ControllerViewConsulta {
         int indice  = getView().getTable().getSelectedRow();
         int tamanho = list.size();
         if (indice >= 0 && indice < tamanho)
-            System.out.println("Remover Pesagem");
+            new ViewExcluirPesagem(getView(), list.get(indice)).setVisible(true);
         else
             new ViewErro(getView(), "Selecione um Bovino!").setVisible(true);
     }
