@@ -162,6 +162,16 @@ public class Bovino extends Entidade {
     }
     
     @Override
+    public String[] getDadosPesquisa() {
+        String[] dados    = new String[4];
+                 dados[0] = Long.toString(id);
+                 dados[1] = tipo;
+                 dados[2] = Integer.toString(numero);
+                 dados[3] = Character.toString(sexo);
+        return   dados;
+    }
+    
+    @Override
     public String[] getDados() {
         String[] dados    = new String[6];
                  dados[0] = Long.toString(id);

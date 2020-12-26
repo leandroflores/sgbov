@@ -127,6 +127,12 @@ public abstract class Entidade implements Serializable {
     }
     
     /**
+     * Metodo responsavel por retornar a Lista de Dados de Pesquisa da Entidade.
+     * @return Lista de Dados de Pesquisa da Entidade.
+     */
+    public abstract String[] getDadosPesquisa();
+    
+    /**
      * Metodo responsavel por retornar a Lista de Dados da Entidade.
      * @return Lista de Dados da Entidade.
      */

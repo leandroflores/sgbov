@@ -105,6 +105,11 @@ public class Pesagem extends Entidade {
     }
     
     @Override
+    public String[] getDadosPesquisa() {
+        return new String[0];
+    }
+    
+    @Override
     public String[] getDados() {
         String[] dados    = new String[5];
                  dados[0] = Long.toString(id);

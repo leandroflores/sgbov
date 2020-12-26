@@ -26,7 +26,7 @@ public class ControllerPanelPesquisaBovino extends ControllerPanelPesquisa {
     public void actionPerformed(ActionEvent event) {
         super.actionPerformed(event);
         if (getPanel().getButtonAtualizar().equals(event.getSource()))
-            System.out.println("Atualizar");
+            getPanel().getOwner().update();
     }
     
     @Override

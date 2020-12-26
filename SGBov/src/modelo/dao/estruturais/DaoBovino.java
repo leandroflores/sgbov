@@ -66,6 +66,25 @@ public class DaoBovino extends Dao<Bovino> {
     }
     
     /**
+     * Metodo responsavel por retornar a Lista de Bovinos por Parametros.
+     * @param  tipo Tipo do Bovino.
+     * @param  sexo Sexo do Bovino.
+     * @param  numero Numero do Bovino.
+     * @param  ativo Flag Ativo do Bovino.
+     * @return Lista de Bovinos filtrados.
+     */
+    public List<Bovino> filter(String tipo, char sexo, Integer numero, boolean ativo) {
+        String script = "SELECT e FROM " + name + " e WHERE e.tipo LIKE :tipo AND e.sexo=:sexo AND e.numero=:numero AND e.ativo=:ativo ORDER BY e.id, e.numero";
+        Query  query  = MANAGER.createQuery(script);
+               query.setParameter("tipo",  "%" + tipo + "%");
+               query.setParameter("sexo",   sexo);
+               query.setParameter("numero", numero);
+               query.setParameter("ativo",  ativo);
+               query.setMaxResults(MAX);
+        return query.getResultList();
+    }
+    
+    /**
      * Metodo responsavel por retornar a Lista de Bovinos pelos Parametros.
      * @param  tipo Tipo do Bovino.
      * @param  inicio Inicio do Bovino.

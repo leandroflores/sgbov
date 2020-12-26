@@ -14,13 +14,25 @@ public abstract class ControllerEntidade {
  
     /**
      * Metodo responsavel por retornar uma Matriz com os Dados das Entidades.
-     * @param  lista Lista de Entidades.
+     * @param  list Lista de Entidades.
      * @return Matriz com os Dados das Entidades.
      */
-    public String[][] getMatriz(List<? extends Entidade> lista) {
-        String dados[][] = new String[lista.size()][];
-        for (int i = 0; i < lista.size(); i++)
-               dados[i]  = lista.get(i).getDados();
+    public String[][] getMatriz(List<? extends Entidade> list) {
+        String dados[][] = new String[list.size()][];
+        for (int i = 0; i < list.size(); i++)
+               dados[i]  = list.get(i).getDados();
+        return dados;
+    }
+    
+    /**
+     * Metodo responsavel por retornar uma Matriz com os Dados de Pesquisa das Entidades.
+     * @param  list Lista de Entidades.
+     * @return Matriz com os Dados de Pesquisa das Entidades.
+     */
+    public String[][] getDadosPesquisa(List<? extends Entidade> list) {
+        String dados[][] = new String[list.size()][];
+        for (int i = 0; i < list.size(); i++)
+               dados[i]  = list.get(i).getDadosPesquisa();
         return dados;
     }
 }

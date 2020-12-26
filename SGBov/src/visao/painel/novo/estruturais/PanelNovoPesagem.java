@@ -1,7 +1,7 @@
 package visao.painel.novo.estruturais;
 
+import controlador.visao.painel.novo.estruturais.ControllerPanelNovoPesagem;
 import funct.FunctDate;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.text.DecimalFormat;
@@ -18,7 +18,7 @@ import visao.painel.novo.PanelNovo;
  * <p>Classe responsavel por definir o Painel Grafico da <b>ViewNovoPesagem</b> do SGBov.</p>
  * @author Leandro
  * @since  22/12/2020
- * @see    controlador.visao.painel.novo.estruturais.
+ * @see    controlador.visao.painel.novo.estruturais.ControllerPanelNovoPesagem
  * @see    modelo.entidade.estruturais.Pesagem
  * @see    visao.interfaces.Searchable
  * @see    visao.painel.novo.PanelNovo
@@ -32,14 +32,13 @@ public final class PanelNovoPesagem extends PanelNovo implements Searchable {
      */
     public PanelNovoPesagem(ViewNovo view) {
         super(view);
-        //controller = new ControllerPanelNovoBovino(this);
+        controller = new ControllerPanelNovoPesagem(this);
         setProperties();
         addComponents();
     }
 
     @Override
     protected void setProperties() {
-        setBackground(Color.red);
         setMinimumSize(new Dimension(400, 525));
         setMaximumSize(new Dimension(400, 525));
         setLayout(new GridBagLayout());
@@ -69,19 +68,20 @@ public final class PanelNovoPesagem extends PanelNovo implements Searchable {
         add(createLabel(""), createConstraints(1, 1, 4, 2));
         
         
-        add(createLabel("Data*: ", 120), createConstraints(1, 1, 0, 3));
+        add(createLabel("Data*: ", 150), createConstraints(1, 1, 0, 3));
         add(createDateTextField("data", new Date()), createConstraints(1, 1, 1, 3));
         getTextFieldData().setMinimumSize(new Dimension(90, 30));
-        add(createLabel("Peso*: ", 120), createConstraints(1, 1, 2, 3));
+        add(createLabel("Peso*: ", 150), createConstraints(1, 1, 2, 3));
         add(createDecimalTextField("peso", 0.0f, 7), createConstraints(1, 1, 3, 3));
         getTextFieldPeso().setMinimumSize(new Dimension(100, 30));
         add(createLabel(""), createConstraints(1, 1, 4, 3));
-        
     }
     
     @Override
     public void clear() {
+        bovino = null;
         update();
+        
         getTextFieldData().setText(new FunctDate().getFormattedDate(new Date()));
         getTextFieldPeso().setText(new DecimalFormat("#,##0.00").format(0.00f));
     }
@@ -128,10 +128,8 @@ public final class PanelNovoPesagem extends PanelNovo implements Searchable {
     
     @Override
     public void setValue(Object bovino_) {
-        if (bovino_ instanceof Bovino) {
-            bovino = (Bovino) bovino_;
-            setDadosBovino();
-        }
+        bovino = (Bovino) bovino_;
+        setDadosBovino();
     }
     
     /**

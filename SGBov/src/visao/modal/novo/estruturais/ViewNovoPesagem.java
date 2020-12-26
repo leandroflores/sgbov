@@ -1,6 +1,9 @@
 package visao.modal.novo.estruturais;
 
+import controlador.visao.modal.novo.estruturais.ControllerViewNovoPesagem;
 import java.awt.Dimension;
+import modelo.entidade.estruturais.Bovino;
+import visao.interfaces.Searchable;
 import visao.modal.ViewModal;
 import visao.modal.novo.ViewNovo;
 import visao.painel.novo.estruturais.PanelNovoPesagem;
@@ -10,11 +13,13 @@ import visao.painel.novo.estruturais.PanelNovoPesagem;
  * <p>Classe responsavel por definir a <b>Interface de Nova Pesagem</b> do SGBov.</p>
  * @author Leandro
  * @since  23/12/2020
- * @see    controlador.visao.modal.novo.estruturais.
+ * @see    controlador.visao.modal.novo.estruturais.ControllerViewNovoPesagem
  * @see    modelo.entidade.estruturais.Pesagem
+ * @see    visao.interfaces.Searchable
  * @see    visao.modal.novo.ViewNovo
  */
-public final class ViewNovoPesagem extends ViewNovo {
+public final class ViewNovoPesagem extends ViewNovo implements Searchable {
+    private Bovino bovino;
     
     /**
      * Metodo construtor padrao da Classe.
@@ -23,7 +28,7 @@ public final class ViewNovoPesagem extends ViewNovo {
     public ViewNovoPesagem(ViewModal view) {
         super(view);
         title      = "Cadastro de Pesagem";
-        //controller = new ControllerViewNovoBovino(this);
+        controller = new ControllerViewNovoPesagem(this);
         setProperties();
         addComponents();
         clear();
@@ -32,7 +37,7 @@ public final class ViewNovoPesagem extends ViewNovo {
     @Override
     public void setProperties() {
         super.setProperties();
-        setSize(new Dimension(550, 340));
+        setSize(new Dimension(550, 280));
     }
     
     @Override
@@ -51,7 +56,14 @@ public final class ViewNovoPesagem extends ViewNovo {
 
     @Override
     public void clear() {
+        bovino = null;
         getPanelNovo().clear();
+    }
+    
+    @Override
+    public void setValue(Object value) {
+        bovino = (Bovino) value;
+        getPanelNovo().setValue(value);
     }
     
     /**
@@ -60,5 +72,13 @@ public final class ViewNovoPesagem extends ViewNovo {
      */
     public PanelNovoPesagem getPanelNovo() {
         return (PanelNovoPesagem) getPanel("panel_pesagem");
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Bovino.
+     * @return Bovino.
+     */
+    public Bovino getBovino() {
+        return bovino;
     }
 }

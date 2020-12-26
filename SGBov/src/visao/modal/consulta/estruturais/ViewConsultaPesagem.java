@@ -33,7 +33,7 @@ public final class ViewConsultaPesagem extends ViewConsulta {
     @Override
     public void setProperties() {
         super.setProperties();
-        setSize(new Dimension(1000, 525));
+        setSize(new Dimension(1000, 530));
     }
     
     @Override

@@ -3,6 +3,7 @@ package visao.modal.pesquisa;
 import controlador.visao.interfaces.Updatable;
 import controlador.visao.modal.pesquisa.ControllerViewPesquisa;
 import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -36,7 +37,7 @@ public abstract class ViewPesquisa extends ViewModal implements Updatable {
     @Override
     public void setProperties() {
         updateTitle();
-        setLayout(new FlowLayout(FlowLayout.CENTER));
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
     }
     
     @Override
@@ -48,7 +49,7 @@ public abstract class ViewPesquisa extends ViewModal implements Updatable {
     
     @Override
     public void update() {
-        //getController().pesquisar();
+        getController().update();
     }
     
     @Override

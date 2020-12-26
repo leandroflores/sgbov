@@ -38,7 +38,7 @@ public abstract class ControllerViewPesquisa extends ControllerViewModal {
         switch (event.getKeyCode()) {
             case F5:
             case ENTER:
-                atualizar();
+                update();
                 break;
             case F1:
                 selecionar();
@@ -54,7 +54,12 @@ public abstract class ControllerViewPesquisa extends ControllerViewModal {
     /**
      * Metodo abstrato responsavel por atualizar a View Pesquisa.
      */
-    public abstract void atualizar();
+    public abstract void update();
+    
+    /**
+     * Metodo abstrato responsavel por pesquisar os Objetos da View Pesquisa.
+     */
+    public abstract void pesquisar();
     
     /**
      * Metodo abstrato responsavel por Selecionar o Objeto da View Pesquisa.

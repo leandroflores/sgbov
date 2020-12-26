@@ -1,6 +1,7 @@
 package visao.painel.pesquisa.estruturais;
 
 import controlador.visao.painel.pesquisa.estruturais.ControllerPanelPesquisaBovino;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -40,10 +41,13 @@ public final class PanelPesquisaBovino extends PanelPesquisa {
     protected void addComponents() {
         add(createLabel("Tipo: ", 70));
         add(createComboBox("tipo", getTipos(), 30));
+        getComboBoxTipo().setPreferredSize(new Dimension(150, 30));
         add(createLabel("Sexo: ", 70));
         add(createComboBox("sexo", getSexos(), 20));
+        getComboBoxSexo().setPreferredSize(new Dimension(50, 30));
         add(createLabel("Número: ", 70));
         add(createSpinnerEditable("numero"));
+        getSpinnerNumero().setValue(0);
         add(createLabel("Ativo: ", 70));
         add(createCheckBox("ativo", "", true));
         add(createButton("atualizar", "", "atualizar"));
