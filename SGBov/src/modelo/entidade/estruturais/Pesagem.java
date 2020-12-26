@@ -109,7 +109,7 @@ public class Pesagem extends Entidade {
      * @return Resumo da Pesagem.
      */
     public String getResumo() {
-        return id + " - " + bovino.getNumero() + " = " + getValorFormatado();
+        return id + " - N: " + bovino.getNumero() + " = " + getValorFormatado();
     }
     
     @Override

@@ -10,6 +10,4 @@ import modelo.controlador.ControllerEntidade;
  * @see    modelo.controlador.ControllerEntidade
  * @see    modelo.entidade.estruturais.Pesagem
  */
-public class ControllerPesagem extends ControllerEntidade {
-    
-}
+public class ControllerPesagem extends ControllerEntidade {}
