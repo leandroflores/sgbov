@@ -83,6 +83,7 @@ public class ControllerViewEditarBovino extends ControllerViewEditar {
         getView().dispose();
     }
     
+    @Override
     public PanelEditarBovino getPanel() {
         return getView().getPanelEditar();
     }

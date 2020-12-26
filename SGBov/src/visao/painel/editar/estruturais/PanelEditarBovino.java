@@ -31,8 +31,8 @@ public final class PanelEditarBovino extends PanelEditar {
      */
     public PanelEditarBovino(ViewEditar view, Bovino bovino_) {
         super(view);
-        controller = new ControllerPanelEditarBovino(this);
         bovino     = bovino_;
+        controller = new ControllerPanelEditarBovino(this);
         setProperties();
         addComponents();
         setValues();
@@ -83,19 +83,19 @@ public final class PanelEditarBovino extends PanelEditar {
     }
     
     /**
-     * Metodo responsavel por retornar o Text Field Identificador.
-     * @return Text Field Identificador.
-     */
-    public JTextField getTextFieldIdentificador() {
-        return getTextField("identificador");
-    }
-    
-    /**
      * Metodo responsavel por retornar os Tipos de Bovino.
      * @return Tipos de Bovino.
      */
     public String[] getTipos() {
         return new String[]{"BEZERRO", "NOVILHA", "MATRIZ", "TOURO"};
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Text Field Identificador.
+     * @return Text Field Identificador.
+     */
+    public JTextField getTextFieldIdentificador() {
+        return getTextField("identificador");
     }
     
     /**

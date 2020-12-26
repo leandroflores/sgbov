@@ -46,7 +46,7 @@ public final class ViewEditarBovino extends ViewEditar {
     
     @Override
     public void addBody() {
-        addPanel("panel_bovino", new PanelEditarBovino(this, bovino));
+        addPanel("panel_editar", new PanelEditarBovino(this, bovino));
         getContentPane().add(getPanelEditar());
         getContentPane().add(getVerticalSpace(20));
     }
@@ -64,11 +64,8 @@ public final class ViewEditarBovino extends ViewEditar {
         return bovino;
     }
     
-    /**
-     * Metodo responsavel por retornar o Panel Editar Bovino.
-     * @return Panel Editar Bovino.
-     */
+    @Override
     public PanelEditarBovino getPanelEditar() {
-        return (PanelEditarBovino) getPanel("panel_bovino");
+        return (PanelEditarBovino) super.getPanelEditar();
     }
 }

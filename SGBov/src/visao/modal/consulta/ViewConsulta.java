@@ -47,7 +47,7 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
     
     @Override
     public void update() {
-        getController().pesquisar();
+        getController().update();
     }
     
     @Override

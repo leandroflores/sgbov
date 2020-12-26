@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import visao.modal.ViewModal;
+import visao.painel.editar.PanelEditar;
 
 /**
  * <p>Classe de Visao <b>ViewEditar</b>.</p>
@@ -77,6 +78,14 @@ public abstract class ViewEditar extends ViewModal {
      */
     public ControllerViewEditar getController() {
         return (ControllerViewEditar) controller;
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Panel Editar.
+     * @return Panel Editar.
+     */
+    public PanelEditar getPanelEditar() {
+        return (PanelEditar) getPanel("panel_editar");
     }
     
     /**
