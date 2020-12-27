@@ -1,33 +1,35 @@
-package visao.painel.consulta.filtro.financeiro;
+package visao.painel.consulta.filtro.estruturais;
 
 import controlador.visao.painel.consulta.filtro.ControllerPanelFiltro;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.Date;
 import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import modelo.controlador.financeiro.ControllerMovimentacao;
-import visao.modal.consulta.financeiro.ViewConsultaMovimentacao;
+import modelo.controlador.estruturais.ControllerBovino;
+import visao.modal.consulta.estruturais.ViewConsultaBovino;
 import visao.painel.consulta.filtro.PanelFiltro;
 
 /**
- * <p>Classe de Visao <b>PanelFiltroMovimentacao</b>.</p> 
- * <p>Classe responsavel por definir o <b>Painel de Filtro da Movimentacao</b> do SGBov.</p>
+ * <p>Classe de Visao <b>PanelFiltroBovino</b>.</p> 
+ * <p>Classe responsavel por definir o <b>Painel de Filtro do Bovino</b> do SGBov.</p>
  * @author Leandro
  * @since  27/12/2020
  * @see    controlador.visao.painel.consulta.filtro.ControllerPanelFiltro
- * @see    modelo.entidade.financeiro.Movimentacao
+ * @see    modelo.entidade.estruturais.Bovino
  * @see    visao.painel.consulta.filtro.PanelFiltro
  */
-public final class PanelFiltroMovimentacao extends PanelFiltro {
+public final class PanelFiltroBovino extends PanelFiltro {
     
     /**
      * Metodo construtor padrao da Classe.
-     * @param view View Consulta Movimentacao.
+     * @param view View Consulta Bovino.
      */
-    public PanelFiltroMovimentacao(ViewConsultaMovimentacao view) {
+    public PanelFiltroBovino(ViewConsultaBovino view) {
         super(view);
         controller = new ControllerPanelFiltro(this);
         setProperties();
@@ -36,7 +38,7 @@ public final class PanelFiltroMovimentacao extends PanelFiltro {
     
     @Override
     public void setProperties() {
-        setMaximumSize(new Dimension(900, 200));
+        setMaximumSize(new Dimension(1000, 200));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
@@ -52,12 +54,11 @@ public final class PanelFiltroMovimentacao extends PanelFiltro {
      */
     private JPanel getFirstFilter() {
         JPanel panel = new JPanel();
-               panel.setPreferredSize(new Dimension(900, 40));
+               panel.setPreferredSize(new Dimension(1000, 40));
                panel.setLayout(new FlowLayout(FlowLayout.CENTER));
                panel.add(createLabel("Tipo: ", 100));
-               panel.add(createComboBox("tipo", ControllerMovimentacao.TIPOS, 30));
-               getComboBoxTipo().setPreferredSize(new Dimension(125, 30));
-               panel.add(createLabel("Data Pagamento*: ", 140));
+               panel.add(createComboBox("tipo", ControllerBovino.TIPOS, 150));
+               panel.add(createLabel("Data Nasc.*: ", 100));
                panel.add(createDateTextField("inicio", new Date()));
                panel.add(createDateTextField("final",  new Date()));
         return panel;
@@ -69,11 +70,15 @@ public final class PanelFiltroMovimentacao extends PanelFiltro {
      */
     private JPanel getSecondFilter() {
         JPanel panel = new JPanel();
-               panel.setPreferredSize(new Dimension(900, 40));
+               panel.setPreferredSize(new Dimension(1000, 40));
                panel.setLayout(new FlowLayout(FlowLayout.CENTER));
-               panel.add(createLabel("Descrição: ", 100));
-               panel.add(createTextField("descricao", "", 30));
-               panel.add(createLabel("", 15));
+               panel.add(createLabel("Sexo: ", 100));
+               panel.add(createComboBox("sexo", new String[]{"M", "F"}, 90));
+               panel.add(createLabel("Número: ", 100));
+               panel.add(createSpinnerEditable("numero"));
+               panel.add(createLabel("Ativo: ",  80));
+               panel.add(createCheckBox("ativo", "", true));
+               panel.add(createLabel("", 10));
                panel.add(createButtonAtualizar());
         return panel;
     }
@@ -103,10 +108,26 @@ public final class PanelFiltroMovimentacao extends PanelFiltro {
     }
     
     /**
-     * Metodo responsavel por retornar o Text Field Descricao.
-     * @return Text Field Descricao.
+     * Metodo responsavel por retornar o Combo Box Sexo.
+     * @return Combo Box Sexo.
      */
-    public JTextField getTextFieldDescricao() {
-        return getTextField("descricao");
+    public JComboBox getComboBoxSexo() {
+        return getComboBox("sexo");
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Spinner Numero.
+     * @return Spinner Numero.
+     */
+    public JSpinner getSpinnerNumero() {
+        return getSpinner("numero");
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Check Box Ativo.
+     * @return Check Box Ativo.
+     */
+    public JCheckBox getCheckBoxAtivo() {
+        return getCheckBox("ativo");
     }
 }

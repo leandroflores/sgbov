@@ -37,11 +37,8 @@ public final class ViewConsultaFuncionario extends ViewConsulta {
     }
     
     @Override
-    public void addHeader() {
-        getContentPane().add(getSpace(20, 1000));
-        addPanel("panel_filtro", new PanelFiltroFuncionario(this));
-        getContentPane().add(getPanelFiltro());
-        getContentPane().add(getSpace(20, 1000));
+    protected PanelFiltroFuncionario createFiltro() {
+        return new PanelFiltroFuncionario(this);
     }
     
     @Override
@@ -67,11 +64,8 @@ public final class ViewConsultaFuncionario extends ViewConsulta {
         getContentPane().add(getSpace(10, 1000));
     }
 
-    /**
-     * Metodo responsavel por retornar o Panel Filtro Funcionario.
-     * @return Panel Filtro Funcionario.
-     */
-    public PanelFiltroFuncionario getPanelFiltro() {
-        return (PanelFiltroFuncionario) getPanel("panel_filtro");
+    @Override
+    public PanelFiltroFuncionario getFiltro() {
+        return (PanelFiltroFuncionario) super.getFiltro();
     }
 }

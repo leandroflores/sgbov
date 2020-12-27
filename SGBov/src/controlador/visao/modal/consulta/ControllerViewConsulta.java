@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import modelo.controlador.ControllerEntidade;
 import visao.modal.consulta.ViewConsulta;
+import visao.painel.consulta.filtro.PanelFiltro;
 
 /**
  * <p>Classe de Controle <b>ControllerViewConsulta</b>.</p>
@@ -26,7 +27,9 @@ public abstract class ControllerViewConsulta extends ControllerViewModal {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        if (getView().getButtonNovo().equals(event.getSource()))
+        if (getView().getButtonAtualizar().equals(event.getSource()))
+            update();
+        else if (getView().getButtonNovo().equals(event.getSource()))
             novo();
         else if (getView().getButtonEditar().equals(event.getSource()))
             editar();
@@ -91,6 +94,14 @@ public abstract class ControllerViewConsulta extends ControllerViewModal {
      * @return Controller da Entidade.
      */
     public abstract ControllerEntidade getController();
+    
+    /**
+     * Metodo responsavel por retornar o Panel Filtro da View Consulta.
+     * @return Panel Filtro da View Consulta.
+     */
+    public PanelFiltro getFiltro() {
+        return getView().getFiltro();
+    }
     
     @Override
     public ViewConsulta getView() {

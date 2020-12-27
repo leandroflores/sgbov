@@ -40,7 +40,7 @@ public final class PanelFiltroFuncionario extends PanelFiltro {
         add(createTextField("cpf", "", 15));
         add(createLabel("Nome: ", 100));
         add(createTextField("nome", "", 20));
-        add(createButton("atualizar", "", "atualizar"));
+        add(createButtonAtualizar());
     }
     
     /**
@@ -57,13 +57,5 @@ public final class PanelFiltroFuncionario extends PanelFiltro {
      */
     public JTextField getTextFieldNome() {
         return getTextField("nome");
-    }
-    
-    /**
-     * Metodo responsavel por retornar o Button Atualizar.
-     * @return Button Atualizar.
-     */
-    public JButton getButtonAtualizar() {
-        return getButton("atualizar");
     }
 }

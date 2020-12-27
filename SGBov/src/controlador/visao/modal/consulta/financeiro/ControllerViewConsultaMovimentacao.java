@@ -1,7 +1,6 @@
 package controlador.visao.modal.consulta.financeiro;
 
 import controlador.visao.modal.consulta.ControllerViewConsulta;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +9,7 @@ import modelo.dao.financeiro.DaoMovimentacao;
 import modelo.entidade.financeiro.Movimentacao;
 import visao.modal.consulta.financeiro.ViewConsultaMovimentacao;
 import visao.modal.mensagem.ViewErro;
+import visao.painel.consulta.filtro.financeiro.PanelFiltroMovimentacao;
 
 /**
  * <p>Classe de Controle <b>ControllerViewConsultaMovimentacao</b>.</p>
@@ -36,27 +36,20 @@ public class ControllerViewConsultaMovimentacao extends ControllerViewConsulta {
     }
     
     @Override
-    public void actionPerformed(ActionEvent event) {
-        super.actionPerformed(event);
-        if (getView().getPanelFiltro().getButtonAtualizar().equals(event.getSource()))
-            update();
-    }
-    
-    @Override
     public void update() {
         pesquisar();
         getView().addRows("consulta", getController().getMatriz(list));
         getView().setCount(list.size());
-        getView().setTotal(0.0f);
+        getView().setTotal(getController().getTotal(list));
     }
     
     @Override
     public void pesquisar() {
-        String tipo      = getValor(getView().getPanelFiltro().getComboBoxTipo());
-        Date   inicio    = getData(getView().getPanelFiltro().getTextFieldInicio());
-        Date   final_    = getData(getView().getPanelFiltro().getTextFieldFinal());
-        //String descricao = getString(getView().getPanelFiltro().getTextFieldDescricao()).toUpperCase();
-               list      = dao.filter(tipo, "", inicio, final_);
+        String tipo      = getValor(getFiltro().getComboBoxTipo());
+        Date   inicio    = getData(getFiltro().getTextFieldInicio());
+        Date   final_    = getData(getFiltro().getTextFieldFinal());
+        String descricao = getString(getFiltro().getTextFieldDescricao()).toUpperCase();
+               list      = dao.filter(tipo, descricao, inicio, final_);
     }
     
     @Override
@@ -89,6 +82,11 @@ public class ControllerViewConsultaMovimentacao extends ControllerViewConsulta {
     @Override
     public ControllerMovimentacao getController() {
         return new ControllerMovimentacao();
+    }
+    
+    @Override
+    public PanelFiltroMovimentacao getFiltro() {
+        return (PanelFiltroMovimentacao) super.getFiltro();
     }
     
     @Override

@@ -37,11 +37,8 @@ public final class ViewConsultaPesagem extends ViewConsulta {
     }
     
     @Override
-    public void addHeader() {
-        getContentPane().add(getSpace(20, 1000));
-        addPanel("panel_filtro", new PanelFiltroPesagem(this));
-        getContentPane().add(getPanelFiltro());
-        getContentPane().add(getSpace(20, 1000));
+    protected PanelFiltroPesagem createFiltro() {
+        return new PanelFiltroPesagem(this);
     }
     
     @Override
@@ -68,11 +65,8 @@ public final class ViewConsultaPesagem extends ViewConsulta {
         getContentPane().add(getSpace(10, 1000));
     }
 
-    /**
-     * Metodo responsavel por retornar o Panel Filtro Pesagem.
-     * @return Panel Filtro Pesagem.
-     */
-    public PanelFiltroPesagem getPanelFiltro() {
-        return (PanelFiltroPesagem) getPanel("panel_filtro");
+    @Override
+    public PanelFiltroPesagem getFiltro() {
+        return (PanelFiltroPesagem) super.getFiltro();
     }
 }

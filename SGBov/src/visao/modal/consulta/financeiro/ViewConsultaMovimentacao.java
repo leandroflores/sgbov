@@ -33,15 +33,12 @@ public final class ViewConsultaMovimentacao extends ViewConsulta {
     @Override
     public void setProperties() {
         super.setProperties();
-        setSize(new Dimension(1000, 530));
+        setSize(new Dimension(1000, 570));
     }
     
     @Override
-    public void addHeader() {
-        getContentPane().add(getSpace(20, 1000));
-        addPanel("panel_filtro", new PanelFiltroMovimentacao(this));
-        getContentPane().add(getPanelFiltro());
-        getContentPane().add(getSpace(20, 1000));
+    protected PanelFiltroMovimentacao createFiltro() {
+        return new PanelFiltroMovimentacao(this);
     }
     
     @Override
@@ -68,11 +65,8 @@ public final class ViewConsultaMovimentacao extends ViewConsulta {
         getContentPane().add(getSpace(10, 1000));
     }
 
-    /**
-     * Metodo responsavel por retornar o Panel Filtro Movimentacao.
-     * @return Panel Filtro Movimentacao.
-     */
-    public PanelFiltroMovimentacao getPanelFiltro() {
-        return (PanelFiltroMovimentacao) getPanel("panel_filtro");
+    @Override
+    public PanelFiltroMovimentacao getFiltro() {
+        return (PanelFiltroMovimentacao) super.getFiltro();
     }
 }

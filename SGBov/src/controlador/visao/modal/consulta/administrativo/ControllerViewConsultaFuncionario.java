@@ -1,7 +1,6 @@
 package controlador.visao.modal.consulta.administrativo;
 
 import controlador.visao.modal.consulta.ControllerViewConsulta;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.controlador.administrativo.ControllerFuncionario;
@@ -12,6 +11,7 @@ import visao.modal.editar.administrativo.ViewEditarFuncionario;
 import visao.modal.excluir.administrativo.ViewExcluirFuncionario;
 import visao.modal.mensagem.ViewErro;
 import visao.modal.novo.administrativo.ViewNovoFuncionario;
+import visao.painel.consulta.filtro.administrativo.PanelFiltroFuncionario;
 
 /**
  * <p>Classe de Controle <b>ControllerViewConsultaFuncionario</b>.</p>
@@ -38,13 +38,6 @@ public class ControllerViewConsultaFuncionario extends ControllerViewConsulta {
     }
     
     @Override
-    public void actionPerformed(ActionEvent event) {
-        super.actionPerformed(event);
-        if (getView().getPanelFiltro().getButtonAtualizar().equals(event.getSource()))
-            update();
-    }
-    
-    @Override
     public void update() {
         pesquisar();
         getView().addRows("consulta", getController().getMatriz(list));
@@ -53,8 +46,8 @@ public class ControllerViewConsultaFuncionario extends ControllerViewConsulta {
     
     @Override
     public void pesquisar() {
-        String cpf  = getStringSimples(getView().getPanelFiltro().getTextFieldCPF());
-        String nome = getString(getView().getPanelFiltro().getTextFieldNome()).toUpperCase();
+        String cpf  = getStringSimples(getFiltro().getTextFieldCPF());
+        String nome = getString(getFiltro().getTextFieldNome()).toUpperCase();
                list = dao.filter(cpf, nome);
     }
     
@@ -86,6 +79,11 @@ public class ControllerViewConsultaFuncionario extends ControllerViewConsulta {
     @Override
     public ControllerFuncionario getController() {
         return new ControllerFuncionario();
+    }
+    
+    @Override
+    public PanelFiltroFuncionario getFiltro() {
+        return (PanelFiltroFuncionario) super.getFiltro();
     }
     
     @Override

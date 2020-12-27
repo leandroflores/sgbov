@@ -46,7 +46,7 @@ public final class PanelFiltroPesagem extends PanelFiltro {
         add(createCheckBox("bovino", "", false));
         add(createLabel("Número: ", 70));
         add(createSpinnerEditable("numero"));
-        add(createButton("atualizar", "", "atualizar"));
+        add(createButtonAtualizar());
     }
     
     /**
@@ -79,13 +79,5 @@ public final class PanelFiltroPesagem extends PanelFiltro {
      */
     public JSpinner getSpinnerNumero() {
         return getSpinner("numero");
-    }
-    
-    /**
-     * Metodo responsavel por retornar o Button Pesquisar.
-     * @return Button Pesquisar.
-     */
-    public JButton getButtonPesquisar() {
-        return getButton("atualizar");
     }
 }

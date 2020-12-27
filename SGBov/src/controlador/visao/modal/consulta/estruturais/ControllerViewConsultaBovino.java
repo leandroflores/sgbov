@@ -1,7 +1,6 @@
 package controlador.visao.modal.consulta.estruturais;
 
 import controlador.visao.modal.consulta.ControllerViewConsulta;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +13,7 @@ import visao.modal.editar.estruturais.ViewEditarBovino;
 import visao.modal.excluir.estruturais.ViewExcluirBovino;
 import visao.modal.mensagem.ViewErro;
 import visao.modal.novo.estruturais.ViewNovoBovino;
+import visao.painel.consulta.filtro.estruturais.PanelFiltroBovino;
 
 /**
  * <p>Classe de Controle <b>ControllerViewConsultaBovino</b>.</p>
@@ -39,13 +39,6 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
         dao  = new DaoBovino();
         list = new ArrayList<>();
     }
-    
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        super.actionPerformed(event);
-        if (getView().getButtonPesquisa().equals(event.getSource()))
-            update();
-    }
 
     @Override
     public void update() {
@@ -56,12 +49,12 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
     
     @Override
     public void pesquisar() {
-        String  tipo   = getString(getView().getComboBoxTipo()).replaceAll("Selecione", "");
-        Date    inicio = getData(getView().getTextFieldDataInicio());
-        Date    fim    = getData(getView().getTextFieldDataFinal());
+        String  tipo   = getString(getFiltro().getComboBoxTipo()).replaceAll("Selecione", "");
+        Date    inicio = getData(getFiltro().getTextFieldInicio());
+        Date    fim    = getData(getFiltro().getTextFieldFinal());
         char    sexo   = getSexo();
-        Integer numero = getInteger(getView().getSpinnerNumero());
-        boolean ativo  = getView().getCheckBoxAtivo().isSelected();
+        Integer numero = getInteger(getFiltro().getSpinnerNumero());
+        boolean ativo  = getFiltro().getCheckBoxAtivo().isSelected();
                 list   = dao.filter(tipo, sexo, ativo);
     }
     
@@ -77,7 +70,7 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
      * @return Char do Sexo do Bovino.
      */
     private char getSexo() {
-        return getView().getComboBoxSexo().getSelectedIndex() == 0 ? 'M' : 'F';
+        return getFiltro().getComboBoxSexo().getSelectedIndex() == 0 ? 'M' : 'F';
     }
     
     @Override
@@ -108,6 +101,11 @@ public class ControllerViewConsultaBovino extends ControllerViewConsulta {
     @Override
     public ControllerBovino getController() {
         return new ControllerBovino();
+    }
+    
+    @Override
+    public PanelFiltroBovino getFiltro() {
+        return (PanelFiltroBovino) super.getFiltro();
     }
     
     @Override

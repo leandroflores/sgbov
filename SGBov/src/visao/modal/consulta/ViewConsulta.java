@@ -8,10 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import visao.View;
 import visao.modal.ViewModal;
+import visao.painel.consulta.filtro.PanelFiltro;
 
 /**
  * <p>Classe de Visao <b>ViewConsulta</b>.</p>
@@ -49,6 +49,20 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
     public void update() {
         getController().update();
     }
+    
+    @Override
+    public void addHeader() {
+        getContentPane().add(getSpace(20, 1000));
+        addPanel("filtro", createFiltro());
+        getContentPane().add(getFiltro());
+        getContentPane().add(getSpace(20, 1000));
+    }
+    
+    /**
+     * Metodo responsavel por criar o Filtro da View Consulta.
+     * @return Filtro da View Consulta.
+     */
+    protected abstract PanelFiltro createFiltro(); 
     
     @Override
     public void addBody() {
@@ -142,21 +156,21 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
                footer.add(createButton("voltar",  " Voltar  ", "voltar"));
         getContentPane().add(footer);
     }
-
+    
     /**
-     * Metodo responsavel por retornar o Text Field Pesquisa.
-     * @return Text Field Pesquisa.
+     * Metodo responsavel por retornar o Filtro da View Consulta.
+     * @return Filtro da View Consulta.
      */
-    public JTextField getTextFieldPesquisa() {
-        return getTextField("pesquisa");
+    public PanelFiltro getFiltro() {
+        return (PanelFiltro) getPanel("filtro");
     }
-
+    
     /**
-     * Metodo responsavel por retornar o Button Pesquisa.
-     * @return Button Pesquisa.
+     * Metodo responsavel por retornar o Button Atualizar.
+     * @return Button Atualizar.
      */
-    public JButton getButtonPesquisa() {
-        return getButton("pesquisa");
+    public JButton getButtonAtualizar() {
+        return getFiltro().getButtonAtualizar();
     }
 
     /**

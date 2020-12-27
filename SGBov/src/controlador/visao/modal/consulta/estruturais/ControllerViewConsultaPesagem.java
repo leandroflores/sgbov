@@ -1,7 +1,6 @@
 package controlador.visao.modal.consulta.estruturais;
 
 import controlador.visao.modal.consulta.ControllerViewConsulta;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +13,7 @@ import visao.modal.editar.estruturais.ViewEditarPesagem;
 import visao.modal.excluir.estruturais.ViewExcluirPesagem;
 import visao.modal.mensagem.ViewErro;
 import visao.modal.novo.estruturais.ViewNovoPesagem;
+import visao.painel.consulta.filtro.estruturais.PanelFiltroPesagem;
 
 /**
  * <p>Classe de Controle <b>ControllerViewConsultaPesagem</b>.</p>
@@ -40,13 +40,6 @@ public class ControllerViewConsultaPesagem extends ControllerViewConsulta {
     }
     
     @Override
-    public void actionPerformed(ActionEvent event) {
-        super.actionPerformed(event);
-        if (getView().getPanelFiltro().getButtonPesquisar().equals(event.getSource()))
-            update();
-    }
-    
-    @Override
     public void update() {
         pesquisar();
         getView().addRows("consulta", getController().getMatriz(list));
@@ -55,11 +48,13 @@ public class ControllerViewConsultaPesagem extends ControllerViewConsulta {
     
     @Override
     public void pesquisar() {
-        Date    inicio = getData(getView().getPanelFiltro().getTextFieldInicio());
-        Date    final_ = getData(getView().getPanelFiltro().getTextFieldFinal());
-        boolean bovino = getView().getPanelFiltro().getCheckBoxBovino().isSelected();
-        Integer numero = getInteger(getView().getPanelFiltro().getSpinnerNumero());
-                list   = bovino ? dao.filter(numero, inicio, final_) : dao.filter(inicio, final_);
+        Date    inicio = getData(getFiltro().getTextFieldInicio());
+        Date    final_ = getData(getFiltro().getTextFieldFinal());
+        boolean bovino = getFiltro().getCheckBoxBovino().isSelected();
+        Integer numero = getInteger(getFiltro().getSpinnerNumero());
+                list   = bovino ? 
+                         dao.filter(numero, inicio, final_) : 
+                         dao.filter(inicio, final_);
     }
     
     @Override
@@ -97,6 +92,11 @@ public class ControllerViewConsultaPesagem extends ControllerViewConsulta {
     @Override
     public ControllerPesagem getController() {
         return new ControllerPesagem();
+    }
+    
+    @Override
+    public PanelFiltroPesagem getFiltro() {
+        return (PanelFiltroPesagem) super.getFiltro();
     }
     
     @Override
