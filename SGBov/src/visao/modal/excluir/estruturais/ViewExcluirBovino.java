@@ -11,7 +11,7 @@ import visao.modal.excluir.ViewExcluir;
  * <p>Classe responsavel por definir uma <b>Interface de Exclusao do Bovino</b> do SGBov.</p>
  * @author Leandro
  * @since  20/12/2020
- * @see    controlador.visao.modal.excluir.ControllerViewExcluir
+ * @see    controlador.visao.modal.excluir.estruturais.ControllerViewExcluirBovino
  * @see    modelo.entidade.estruturais.Bovino
  * @see    visao.modal.excluir.ViewExcluir
  */

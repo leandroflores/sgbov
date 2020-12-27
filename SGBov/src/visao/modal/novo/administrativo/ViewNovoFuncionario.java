@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import visao.modal.ViewModal;
 import visao.modal.novo.ViewNovo;
 import visao.painel.novo.administrativo.PanelNovoFuncionario;
-import visao.painel.novo.estruturais.PanelNovoBovino;
 
 /**
  * <p>Classe de Visao <b>ViewNovoFuncionario</b>.</p>
