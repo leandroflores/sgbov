@@ -8,6 +8,7 @@ import modelo.controlador.administrativo.ControllerFuncionario;
 import modelo.dao.administrativo.DaoFuncionario;
 import modelo.entidade.administrativo.Funcionario;
 import visao.modal.consulta.administrativo.ViewConsultaFuncionario;
+import visao.modal.editar.administrativo.ViewEditarFuncionario;
 import visao.modal.excluir.administrativo.ViewExcluirFuncionario;
 import visao.modal.mensagem.ViewErro;
 import visao.modal.novo.administrativo.ViewNovoFuncionario;
@@ -67,8 +68,7 @@ public class ControllerViewConsultaFuncionario extends ControllerViewConsulta {
         int indice  = getView().getTable().getSelectedRow();
         int tamanho = list.size();
         if (indice >= 0 && indice < tamanho)
-            System.out.println("Edit");
-            //new ViewEditarPesagem(getView(), list.get(indice)).setVisible(true);
+            new ViewEditarFuncionario(getView(), list.get(indice)).setVisible(true);
         else
             new ViewErro(getView(), "Selecione um Funcionário!").setVisible(true);
     }

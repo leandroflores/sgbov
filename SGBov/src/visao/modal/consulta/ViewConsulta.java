@@ -97,7 +97,7 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
     protected JPanel getTableCount() {
         JPanel count = new JPanel();
                count.setLayout(new FlowLayout(FlowLayout.CENTER));
-               count.add(createLabel("Qtde.: "));
+               count.add(createLabel("Quantidade.: "));
                count.add(createRightTextFieldNoEditable("count", "0", 5));
         return count;
     }

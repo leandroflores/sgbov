@@ -13,7 +13,7 @@ import visao.painel.editar.estruturais.PanelEditarBovino;
  * @author Leandro
  * @since  21/12/2020
  * @see    controlador.visao.modal.editar.estruturais.ControllerViewEditarBovino
- * @see    modelo.entidades.estruturais.Bovino
+ * @see    modelo.entidade.estruturais.Bovino
  * @see    visao.editar.ViewEditar
  */
 public final class ViewEditarBovino extends ViewEditar {

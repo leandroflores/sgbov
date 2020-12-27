@@ -6,7 +6,7 @@ import visao.painel.editar.estruturais.PanelEditarBovino;
 
 /**
  * <p>Classe de Controle <b>ControllerPanelEditarBovino</b>.</p>
- * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> do PanelEditar.</p>
+ * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> do PanelEditarBovino.</p>
  * @author Leandro
  * @since  21/12/2020
  * @see    controlador.visao.painel.editar.ControllerPanelEditar
