@@ -3,6 +3,7 @@
   <persistence-unit name="UP" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>modelo.entidade.Entidade</class>
+    <class>modelo.entidade.administrativo.Funcionario</class>
     <class>modelo.entidade.estruturais.Bovino</class>
     <class>modelo.entidade.estruturais.Pesagem</class>
     <properties>

@@ -6,7 +6,7 @@ import visao.painel.novo.estruturais.PanelNovoBovino;
 
 /**
  * <p>Classe de Controle <b>ControllerPanelNovoBovino</b>.</p>
- * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> do PanelNovo.</p>
+ * <p>Classe responsavel por ser o <b>Controlador de Eventos</b> do PanelNovoBovino.</p>
  * @author Leandro
  * @since  19/12/2020
  * @see    controlador.visao.painel.novo.ControllerPanelNovo

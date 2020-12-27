@@ -33,7 +33,7 @@ public class ControllerViewNovoPesagem extends ControllerViewNovo {
     @Override
     public void actionPerformed(ActionEvent event) {
         super.actionPerformed(event);
-        if (getPanel().getButtonPesquisa().equals(event.getSource()))
+        if (getPanelNovo().getButtonPesquisa().equals(event.getSource()))
             new ViewPesquisaBovino(getView()).setVisible(true);
     }
     
@@ -54,7 +54,7 @@ public class ControllerViewNovoPesagem extends ControllerViewNovo {
      * @return Data da Pesagem e valida.
      */
     public boolean checkData() {
-        return checkData(getPanel().getTextFieldData(), "Data Inválida!");
+        return checkData(getPanelNovo().getTextFieldData(), "Data Inválida!");
     }
     
     /**
@@ -62,7 +62,7 @@ public class ControllerViewNovoPesagem extends ControllerViewNovo {
      * @return Peso e valido.
      */
     public boolean checkPeso() {
-        return checkValor(getPanel().getTextFieldPeso(), "Peso Inválido!");
+        return checkValor(getPanelNovo().getTextFieldPeso(), "Peso Inválido!");
     }
     
     @Override
@@ -77,15 +77,16 @@ public class ControllerViewNovoPesagem extends ControllerViewNovo {
         Bovino  bovino  = getView().getBovino();
         Pesagem pesagem = new Pesagem();
                 pesagem.setBovino(bovino);
-                pesagem.setDataPesagem(getData(getPanel().getTextFieldData()));
-                pesagem.setValor(getFloat(getPanel().getTextFieldPeso()));
+                pesagem.setDataPesagem(getData(getPanelNovo().getTextFieldData()));
+                pesagem.setValor(getFloat(getPanelNovo().getTextFieldPeso()));
         new DaoPesagem().insert(pesagem);
         new ViewMensagem(getView(), "Pesagem cadastrada com Sucesso!").setVisible(true);
         getView().getView().update();
         getView().dispose();
     }
     
-    public PanelNovoPesagem getPanel() {
+    @Override
+    public PanelNovoPesagem getPanelNovo() {
         return getView().getPanelNovo();
     }
     

@@ -54,6 +54,7 @@ public final class ViewMenu extends View {
     private void addMenu() {
         menu = new JMenuBar();
             createMenuRebanho();
+            createMenuAdministrativo();
             createMenuFinanceiro();
             createMenuSistema();
         setJMenuBar(menu);
@@ -73,6 +74,18 @@ public final class ViewMenu extends View {
         getMenu("rebanho").add(getMenuItem("rebanho_pesagem"));
         getMenu("rebanho").add(getMenuItem("rebanho_vacina"));
         menu.add(getMenu("rebanho"));
+    }
+    
+    /**
+     * Metodo responsavel por criar o Menu Administrativo da View Menu.
+     */
+    private void createMenuAdministrativo() {
+        createMenu("administrativo", "Administrativo");
+        
+        createMenuItem("admin_funcionario", "Consultar Funcionários", "administrativo/funcionario");
+        
+        getMenu("administrativo").add(getMenuItem("admin_funcionario"));
+        menu.add(getMenu("administrativo"));
     }
     
     /**
@@ -136,6 +149,14 @@ public final class ViewMenu extends View {
      */
     public JMenuItem getMenuItemPesagem() {
         return getMenuItem("rebanho_pesagem");
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Menu Item Funcionario.
+     * @return Menu Item Funcionario.
+     */
+    public JMenuItem getMenuItemFuncionario() {
+        return getMenuItem("admin_funcionario");
     }
     
     /**

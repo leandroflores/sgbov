@@ -4,6 +4,7 @@ import controlador.visao.modal.ControllerViewModal;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import visao.modal.novo.ViewNovo;
+import visao.painel.novo.PanelNovo;
 
 /**
  * <p>Classe de Controle <b>ControllerViewNovo</b>.</p>
@@ -62,6 +63,12 @@ public abstract class ControllerViewNovo extends ControllerViewModal {
                 break;
         }
     }
+    
+    /**
+     * Metodo responsavel por retornar o Panel Novo.
+     * @return Panel Novo.
+     */
+    public abstract PanelNovo getPanelNovo();
     
     @Override
     public ViewNovo getView() {

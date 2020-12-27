@@ -49,7 +49,7 @@ public final class ViewNovoPesagem extends ViewNovo implements Searchable {
     @Override
     public void addBody() {
         getContentPane().add(getVerticalSpace(20));
-        addPanel("panel_pesagem", new PanelNovoPesagem(this));
+        addPanel("panel_novo", new PanelNovoPesagem(this));
         getContentPane().add(getPanelNovo());
         getContentPane().add(getVerticalSpace(20));
     }
@@ -66,12 +66,9 @@ public final class ViewNovoPesagem extends ViewNovo implements Searchable {
         getPanelNovo().setValue(value);
     }
     
-    /**
-     * Metodo responsavel por retornar o Panel Novo Pesagem.
-     * @return Panel Novo Pesagem.
-     */
+    @Override
     public PanelNovoPesagem getPanelNovo() {
-        return (PanelNovoPesagem) getPanel("panel_pesagem");
+        return (PanelNovoPesagem) getPanel("panel_novo");
     }
     
     /**

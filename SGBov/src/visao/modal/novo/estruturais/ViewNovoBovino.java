@@ -45,7 +45,7 @@ public final class ViewNovoBovino extends ViewNovo {
     @Override
     public void addBody() {
         getContentPane().add(getVerticalSpace(20));
-        addPanel("panel_bovino", new PanelNovoBovino(this));
+        addPanel("panel_novo", new PanelNovoBovino(this));
         getContentPane().add(getPanelNovo());
         getContentPane().add(getVerticalSpace(20));
     }
@@ -55,11 +55,8 @@ public final class ViewNovoBovino extends ViewNovo {
         getPanelNovo().clear();
     }
     
-    /**
-     * Metodo responsavel por retornar o Panel Novo Bovino.
-     * @return Panel Novo Bovino.
-     */
+    @Override
     public PanelNovoBovino getPanelNovo() {
-        return (PanelNovoBovino) getPanel("panel_bovino");
+        return (PanelNovoBovino) getPanel("panel_novo");
     }
 }

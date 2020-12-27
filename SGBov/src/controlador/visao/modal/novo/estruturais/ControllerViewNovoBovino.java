@@ -30,12 +30,12 @@ public class ControllerViewNovoBovino extends ControllerViewNovo {
     @Override
     public void actionPerformed(ActionEvent event) {
         super.actionPerformed(event);
-        if (getPanel().getRadioButtonMacho().equals(event.getSource())) {
-            getPanel().getRadioButtonMacho().setSelected(true);
-            getPanel().getRadioButtonFemea().setSelected(false);
-        }else if (getPanel().getRadioButtonFemea().equals(event.getSource())) {
-            getPanel().getRadioButtonMacho().setSelected(false);
-            getPanel().getRadioButtonFemea().setSelected(true);
+        if (getPanelNovo().getRadioButtonMacho().equals(event.getSource())) {
+            getPanelNovo().getRadioButtonMacho().setSelected(true);
+            getPanelNovo().getRadioButtonFemea().setSelected(false);
+        }else if (getPanelNovo().getRadioButtonFemea().equals(event.getSource())) {
+            getPanelNovo().getRadioButtonMacho().setSelected(false);
+            getPanelNovo().getRadioButtonFemea().setSelected(true);
         }
     }
     
@@ -44,7 +44,7 @@ public class ControllerViewNovoBovino extends ControllerViewNovo {
      * @return Tipo do Bovino e valido.
      */
     public boolean checkTipo() {
-        return check(getPanel().getComboBoxTipo(), "Selecione um Tipo!");
+        return check(getPanelNovo().getComboBoxTipo(), "Selecione um Tipo!");
     }
     
     /**
@@ -52,7 +52,7 @@ public class ControllerViewNovoBovino extends ControllerViewNovo {
      * @return Peso do Bovino e valido.
      */
     public boolean checkPeso() {
-        return checkValor(getPanel().getTextFieldPeso(), "Peso Inválido!");
+        return checkValor(getPanelNovo().getTextFieldPeso(), "Peso Inválido!");
     }
     
     /**
@@ -60,7 +60,7 @@ public class ControllerViewNovoBovino extends ControllerViewNovo {
      * @return Data de Nascimento do Bovino e valida.
      */
     public boolean checkDataNascimento() {
-        return checkData(getPanel().getTextFieldDataNascimento(), "Data Inválida!");
+        return checkData(getPanelNovo().getTextFieldDataNascimento(), "Data Inválida!");
     }
     
     @Override
@@ -75,24 +75,25 @@ public class ControllerViewNovoBovino extends ControllerViewNovo {
      * @return Sexo do Bovino.
      */
     private char getSexo() {
-        return getPanel().getRadioButtonMacho().isSelected() ? 'M' : 'F';
+        return getPanelNovo().getRadioButtonMacho().isSelected() ? 'M' : 'F';
     }
     
     @Override
     public void inserir() {
         Bovino bovino = new Bovino();
-               bovino.setTipo(getValor(getPanel().getComboBoxTipo()));
-               bovino.setNumero(getInteger(getPanel().getSpinnerNumero()));
+               bovino.setTipo(getValor(getPanelNovo().getComboBoxTipo()));
+               bovino.setNumero(getInteger(getPanelNovo().getSpinnerNumero()));
                bovino.setSexo(getSexo());
-               bovino.setPeso(getFloat(getPanel().getTextFieldPeso()));
-               bovino.setNascimento(getData(getPanel().getTextFieldDataNascimento()));
+               bovino.setPeso(getFloat(getPanelNovo().getTextFieldPeso()));
+               bovino.setNascimento(getData(getPanelNovo().getTextFieldDataNascimento()));
         new DaoBovino().insert(bovino);
         new ViewMensagem(getView(), "Bovino cadastrado com Sucesso!").setVisible(true);
         getView().getView().update();
         getView().dispose();
     }
     
-    public PanelNovoBovino getPanel() {
+    @Override
+    public PanelNovoBovino getPanelNovo() {
         return getView().getPanelNovo();
     }
     

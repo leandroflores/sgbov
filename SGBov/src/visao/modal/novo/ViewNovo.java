@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import visao.modal.ViewModal;
+import visao.painel.novo.PanelNovo;
 
 /**
  * <p>Classe de Visao <b>ViewNovo</b>.</p>
@@ -60,6 +61,12 @@ public abstract class ViewNovo extends ViewModal {
                footer.add(createButton("voltar",  " Voltar  ", "voltar"));
         getContentPane().add(footer);
     }
+    
+    /**
+     * Metodo responsavel por retornar o Panel Novo.
+     * @return Panel Novo.
+     */
+    public abstract PanelNovo getPanelNovo();
     
     /**
      * Metodo responsavel por retornar o Button Inserir.

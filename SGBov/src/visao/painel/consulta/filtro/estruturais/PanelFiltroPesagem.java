@@ -16,6 +16,7 @@ import visao.painel.consulta.filtro.PanelFiltro;
  * @author Leandro
  * @since  21/12/2020
  * @see    controlador.visao.painel.consulta.filtro.ControllerPanelFiltro
+ * @see    modelo.entidade.estruturais.Pesagem
  * @see    visao.painel.consulta.filtro.PanelFiltro
  */
 public final class PanelFiltroPesagem extends PanelFiltro {
