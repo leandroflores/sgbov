@@ -160,6 +160,14 @@ public final class ViewMenu extends View {
     }
     
     /**
+     * Metodo responsavel por retornar o Menu Item Movimentacoes.
+     * @return Menu Item Movimentacoes.
+     */
+    public JMenuItem getMenuItemMovimentacoes() {
+        return getMenuItem("financeiro_movimentacoes");
+    }
+    
+    /**
      * Metodo responsavel por retornar o Menu Item Sobre.
      * @return Menu Item Sobre.
      */

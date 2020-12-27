@@ -7,6 +7,7 @@ import visao.estruturais.menu.ViewMenu;
 import visao.modal.consulta.administrativo.ViewConsultaFuncionario;
 import visao.modal.consulta.estruturais.ViewConsultaBovino;
 import visao.modal.consulta.estruturais.ViewConsultaPesagem;
+import visao.modal.consulta.financeiro.ViewConsultaMovimentacao;
 import visao.modal.sistema.ViewSistemaSair;
 import visao.modal.sistema.ViewSistemaSobre;
 
@@ -36,6 +37,8 @@ public class ControllerViewMenu extends ControllerView {
             new ViewConsultaPesagem(getView()).setVisible(true);
         else if (getView().getMenuItemFuncionario().equals(event.getSource()))
             new ViewConsultaFuncionario(getView()).setVisible(true);
+        else if (getView().getMenuItemMovimentacoes().equals(event.getSource()))
+            new ViewConsultaMovimentacao(getView()).setVisible(true);
         else if (getView().getMenuItemSobre().equals(event.getSource()))
             new ViewSistemaSobre(getView()).setVisible(true);
         else if (getView().getMenuItemSair().equals(event.getSource()))

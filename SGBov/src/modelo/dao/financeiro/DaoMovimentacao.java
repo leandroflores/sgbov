@@ -45,7 +45,7 @@ public class DaoMovimentacao extends Dao<Movimentacao> {
      * @return Lista de Movimentacoes filtradas.
      */
     public List<Movimentacao> filter(String tipo, String descricao, Date inicio, Date fim) {
-        String script = "SELECT e FROM " + name + " e WHERE e.tipo LIKE :tipo AND e.descricao LIKE :descricao AND e.dataPagamento BETWEEN :inicio AND :fim AND e.ativo=true ORDER BY e.tipo, e.dataPagamento";
+        String script = "SELECT e FROM " + name + " e WHERE e.tipo LIKE :tipo AND e.descricao LIKE :descricao AND e.pagamento BETWEEN :inicio AND :fim AND e.ativo=true ORDER BY e.tipo, e.pagamento";
         Query  query  = MANAGER.createQuery(script);
                query.setParameter("tipo",      "%" + tipo      + "%");
                query.setParameter("descricao", "%" + descricao + "%");

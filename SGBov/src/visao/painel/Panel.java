@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -799,6 +800,16 @@ public abstract class Panel extends JPanel {
      */
     protected JTextField getTextField(String id) {
         return (JTextField) textFields.get(id);
+    }
+    
+    /**
+     * Metodo responsavel por retornar um Componente de Espaco.
+     * @param  vertical Espaco Vertical.
+     * @param  horizontal Espaco Horizontal.
+     * @return Componente de Espaco.
+     */
+    protected Component getSpace(Integer vertical, Integer horizontal) {
+        return Box.createRigidArea(new Dimension(horizontal, vertical));
     }
     
     /**
