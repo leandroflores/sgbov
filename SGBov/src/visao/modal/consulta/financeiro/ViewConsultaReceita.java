@@ -1,30 +1,30 @@
 package visao.modal.consulta.financeiro;
 
-import controlador.visao.modal.consulta.financeiro.ControllerViewConsultaDespesa;
+import controlador.visao.modal.consulta.financeiro.ControllerViewConsultaReceita;
 import java.awt.Dimension;
 import visao.estruturais.menu.ViewMenu;
 import visao.modal.consulta.ViewConsulta;
 import visao.painel.consulta.filtro.financeiro.PanelFiltroSimples;
 
 /**
- * <p>Classe de Visao <b>ViewConsultaDespesa</b>.</p>
- * <p>Classe responsavel por definir a <b>Interface de Consulta de Despesa</b> do SGBov.</p>
+ * <p>Classe de Visao <b>ViewConsultaReceita</b>.</p>
+ * <p>Classe responsavel por definir a <b>Interface de Consulta de Receita</b> do SGBov.</p>
  * @author Leandro
  * @since  28/12/2020
- * @see    controlador.visao.modal.consulta.financeiro.ControllerViewConsultaDespesa
+ * @see    controlador.visao.modal.consulta.financeiro.ControllerViewConsultaReceita
  * @see    modelo.entidade.financeiro.Movimentacao
  * @see    visao.modal.consulta.ViewConsulta
  */
-public final class ViewConsultaDespesa extends ViewConsulta {
+public final class ViewConsultaReceita extends ViewConsulta {
 
     /**
      * Metodo construtor padrao da Classe.
      * @param view View Menu.
      */
-    public ViewConsultaDespesa(ViewMenu view) {
+    public ViewConsultaReceita(ViewMenu view) {
         super(view);
-        title      = "Consulta de Despesas";
-        controller = new ControllerViewConsultaDespesa(this);
+        title      = "Consulta de Receitas";
+        controller = new ControllerViewConsultaReceita(this);
         setProperties();
         addComponents();
         update();

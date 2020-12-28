@@ -176,6 +176,14 @@ public final class ViewMenu extends View {
     }
     
     /**
+     * Metodo responsavel por retornar o Menu Item Receitas.
+     * @return Menu Item Receitas.
+     */
+    public JMenuItem getMenuItemReceitas() {
+        return getMenuItem("financeiro_receitas");
+    }
+    
+    /**
      * Metodo responsavel por retornar o Menu Item Sobre.
      * @return Menu Item Sobre.
      */
