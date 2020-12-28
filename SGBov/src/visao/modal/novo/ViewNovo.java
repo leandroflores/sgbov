@@ -44,13 +44,30 @@ public abstract class ViewNovo extends ViewModal {
     
     @Override
     public void addHeader() {
+        getContentPane().add(getVerticalSpace(20));
         getContentPane().add(createLabel("Os campos com (*) sao obrigatorios!"));
     }
+    
+    @Override
+    public void addBody() {
+        getContentPane().add(getVerticalSpace(20));
+        addPanel("novo", createPanelNovo());
+        getContentPane().add(getPanelNovo());
+        getContentPane().add(getVerticalSpace(20));
+    }
+    
+    /**
+     * Metodo responsavel por criar o Panel Novo da View Consulta.
+     * @return Panel Novo da View Consulta.
+     */
+    protected abstract PanelNovo createPanelNovo(); 
     
     /**
      * Metodo responsavel por Limpar os Componentes da View Novo.
      */
-    public abstract void clear();
+    public void clear() {
+        getPanelNovo().clear();
+    }
     
     @Override
     public void addFooter() {
@@ -66,7 +83,9 @@ public abstract class ViewNovo extends ViewModal {
      * Metodo responsavel por retornar o Panel Novo.
      * @return Panel Novo.
      */
-    public abstract PanelNovo getPanelNovo();
+    public PanelNovo getPanelNovo() {
+        return (PanelNovo) getPanel("novo");
+    }
     
     /**
      * Metodo responsavel por retornar o Button Inserir.

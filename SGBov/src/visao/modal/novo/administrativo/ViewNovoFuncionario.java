@@ -37,26 +37,12 @@ public final class ViewNovoFuncionario extends ViewNovo {
     }
     
     @Override
-    public void addHeader() {
-        getContentPane().add(getVerticalSpace(20));
-        super.addHeader();
-    }
-
-    @Override
-    public void addBody() {
-        getContentPane().add(getVerticalSpace(20));
-        addPanel("panel_novo", new PanelNovoFuncionario(this));
-        getContentPane().add(getPanelNovo());
-        getContentPane().add(getVerticalSpace(20));
-    }
-
-    @Override
-    public void clear() {
-        getPanelNovo().clear();
+    protected PanelNovoFuncionario createPanelNovo() {
+        return new PanelNovoFuncionario(this);
     }
     
     @Override
     public PanelNovoFuncionario getPanelNovo() {
-        return (PanelNovoFuncionario) getPanel("panel_novo");
+        return (PanelNovoFuncionario) super.getPanelNovo();
     }
 }

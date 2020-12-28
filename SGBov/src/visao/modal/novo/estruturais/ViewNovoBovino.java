@@ -37,26 +37,12 @@ public final class ViewNovoBovino extends ViewNovo {
     }
     
     @Override
-    public void addHeader() {
-        getContentPane().add(getVerticalSpace(20));
-        super.addHeader();
-    }
-
-    @Override
-    public void addBody() {
-        getContentPane().add(getVerticalSpace(20));
-        addPanel("panel_novo", new PanelNovoBovino(this));
-        getContentPane().add(getPanelNovo());
-        getContentPane().add(getVerticalSpace(20));
-    }
-
-    @Override
-    public void clear() {
-        getPanelNovo().clear();
+    protected PanelNovoBovino createPanelNovo() {
+        return new PanelNovoBovino(this);
     }
     
     @Override
     public PanelNovoBovino getPanelNovo() {
-        return (PanelNovoBovino) getPanel("panel_novo");
+        return (PanelNovoBovino) super.getPanelNovo();
     }
 }

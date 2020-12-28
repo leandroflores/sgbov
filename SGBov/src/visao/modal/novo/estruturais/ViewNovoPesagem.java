@@ -41,23 +41,14 @@ public final class ViewNovoPesagem extends ViewNovo implements Searchable {
     }
     
     @Override
-    public void addHeader() {
-        getContentPane().add(getVerticalSpace(20));
-        super.addHeader();
-    }
-
-    @Override
-    public void addBody() {
-        getContentPane().add(getVerticalSpace(20));
-        addPanel("panel_novo", new PanelNovoPesagem(this));
-        getContentPane().add(getPanelNovo());
-        getContentPane().add(getVerticalSpace(20));
+    protected PanelNovoPesagem createPanelNovo() {
+        return new PanelNovoPesagem(this);
     }
 
     @Override
     public void clear() {
         bovino = null;
-        getPanelNovo().clear();
+        super.clear();
     }
     
     @Override
@@ -68,7 +59,7 @@ public final class ViewNovoPesagem extends ViewNovo implements Searchable {
     
     @Override
     public PanelNovoPesagem getPanelNovo() {
-        return (PanelNovoPesagem) getPanel("panel_novo");
+        return (PanelNovoPesagem) super.getPanelNovo();
     }
     
     /**

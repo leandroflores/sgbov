@@ -9,6 +9,7 @@ import modelo.dao.financeiro.DaoMovimentacao;
 import modelo.entidade.financeiro.Movimentacao;
 import visao.modal.consulta.financeiro.ViewConsultaMovimentacao;
 import visao.modal.mensagem.ViewErro;
+import visao.modal.novo.financeiro.ViewNovoMovimentacao;
 import visao.painel.consulta.filtro.financeiro.PanelFiltroMovimentacao;
 
 /**
@@ -54,8 +55,7 @@ public class ControllerViewConsultaMovimentacao extends ControllerViewConsulta {
     
     @Override
     public void novo() {
-        System.out.println("New");
-        //new ViewNovoFuncionario(getView()).setVisible(true);
+        new ViewNovoMovimentacao(getView()).setVisible(true);
     }
 
     @Override

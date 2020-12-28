@@ -12,6 +12,7 @@ import visao.painel.consulta.filtro.estruturais.PanelFiltroBovino;
  * @author Leandro
  * @since  17/12/2020
  * @see    controlador.visao.modal.consulta.estruturais.ControllerViewConsultaBovino
+ * @see    modelo.entidade.estruturais.Bovino
  * @see    visao.modal.consulta.ViewConsulta
  */
 public final class ViewConsultaBovino extends ViewConsulta {
