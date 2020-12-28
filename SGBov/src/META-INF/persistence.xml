@@ -4,9 +4,9 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>modelo.entidade.Entidade</class>
     <class>modelo.entidade.administrativo.Funcionario</class>
-    <class>modelo.entidade.estruturais.Bovino</class>
-    <class>modelo.entidade.estruturais.Pesagem</class>
     <class>modelo.entidade.financeiro.Movimentacao</class>
+    <class>modelo.entidade.rebanho.Bovino</class>
+    <class>modelo.entidade.rebanho.Pesagem</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgbov?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
