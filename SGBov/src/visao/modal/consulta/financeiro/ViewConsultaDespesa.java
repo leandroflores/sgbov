@@ -45,6 +45,8 @@ public final class ViewConsultaDespesa extends ViewConsulta {
     protected void setTableHeader() {
         super.setTableHeader();
         getScrollPane().setPreferredSize(new Dimension(900, 275));
+        getTable().getColumnModel().getColumn(3).setCellRenderer(createRightRenderer());
+        getTable().getColumnModel().getColumn(4).setCellRenderer(createRightRenderer());
     }
     
     @Override

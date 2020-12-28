@@ -355,7 +355,7 @@ public abstract class ViewModal extends JDialog implements Viewable {
             new DefaultTableModel() {
                 @Override
                 public boolean isCellEditable(int row, int col) {   
-                    return true;
+                    return false;
                 }};
     }
     

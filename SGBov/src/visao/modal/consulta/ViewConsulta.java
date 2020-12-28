@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import visao.View;
 import visao.modal.ViewModal;
@@ -189,6 +191,16 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
         return (DefaultTableModel) getTableModel("consulta");
     }
 
+    /**
+     * Metodo responsavel por criar um Novo Right Renderer.
+     * @return Novo Right Renderer.
+     */
+    public DefaultTableCellRenderer createRightRenderer() {
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+                                 renderer.setHorizontalAlignment(SwingConstants.RIGHT);
+        return renderer;
+    }
+    
     /**
      * Metodo responsavel por retornar o Scroll Pane da Tabela de Consulta.
      * @return Scroll Pane da Tabela de Consulta.

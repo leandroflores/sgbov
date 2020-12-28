@@ -45,6 +45,9 @@ public final class ViewConsultaBovino extends ViewConsulta {
     protected void setTableHeader() {
         super.setTableHeader();
         getScrollPane().setPreferredSize(new Dimension(900, 275));
+        getTable().getColumnModel().getColumn(2).setCellRenderer(createRightRenderer());
+        getTable().getColumnModel().getColumn(4).setCellRenderer(createRightRenderer());
+        getTable().getColumnModel().getColumn(5).setCellRenderer(createRightRenderer());
     }
     
     @Override
