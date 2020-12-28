@@ -3,7 +3,7 @@ package visao.modal.excluir.financeiro;
 import controlador.visao.modal.excluir.financeiro.ControllerViewExcluirMovimentacao;
 import java.awt.Dimension;
 import modelo.entidade.financeiro.Movimentacao;
-import visao.modal.consulta.financeiro.ViewConsultaMovimentacao;
+import visao.modal.consulta.ViewConsulta;
 import visao.modal.excluir.ViewExcluir;
 
 /**
@@ -23,7 +23,7 @@ public final class ViewExcluirMovimentacao extends ViewExcluir {
      * @param view View Consulta Movimentacao.
      * @param movimentacao_ Movimentacao.
      */
-    public ViewExcluirMovimentacao(ViewConsultaMovimentacao view, Movimentacao movimentacao_) {
+    public ViewExcluirMovimentacao(ViewConsulta view, Movimentacao movimentacao_) {
         super(view);
         movimentacao = movimentacao_;
         title       = "Excluir Movimentação Financeira";

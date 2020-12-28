@@ -168,6 +168,14 @@ public final class ViewMenu extends View {
     }
     
     /**
+     * Metodo responsavel por retornar o Menu Item Despesas.
+     * @return Menu Item Despesas.
+     */
+    public JMenuItem getMenuItemDespesas() {
+        return getMenuItem("financeiro_despesas");
+    }
+    
+    /**
      * Metodo responsavel por retornar o Menu Item Sobre.
      * @return Menu Item Sobre.
      */
