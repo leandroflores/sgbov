@@ -40,20 +40,8 @@ public final class ViewEditarPesagem extends ViewEditar {
     }
     
     @Override
-    public void addHeader() {
-        getContentPane().add(getVerticalSpace(20));
-    }
-    
-    @Override
-    public void addBody() {
-        addPanel("panel_editar", new PanelEditarPesagem(this, pesagem));
-        getContentPane().add(getPanelEditar());
-        getContentPane().add(getVerticalSpace(20));
-    }
-    
-    @Override
-    public void setValues() {
-        getPanelEditar().setValues();
+    protected PanelEditarPesagem createPanel() {
+        return new PanelEditarPesagem(this, pesagem);
     }
     
     /**

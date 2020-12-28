@@ -40,20 +40,8 @@ public final class ViewEditarMovimentacao extends ViewEditar {
     }
     
     @Override
-    public void addHeader() {
-        getContentPane().add(getVerticalSpace(20));
-    }
-    
-    @Override
-    public void addBody() {
-        addPanel("panel_editar", new PanelEditarMovimentacao(this, movimentacao));
-        getContentPane().add(getPanelEditar());
-        getContentPane().add(getVerticalSpace(20));
-    }
-    
-    @Override
-    public void setValues() {
-        getPanelEditar().setValues();
+    protected PanelEditarMovimentacao createPanel() {
+        return new PanelEditarMovimentacao(this, movimentacao);
     }
     
     /**

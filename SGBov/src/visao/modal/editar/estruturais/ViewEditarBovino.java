@@ -40,20 +40,8 @@ public final class ViewEditarBovino extends ViewEditar {
     }
     
     @Override
-    public void addHeader() {
-        getContentPane().add(getVerticalSpace(20));
-    }
-    
-    @Override
-    public void addBody() {
-        addPanel("panel_editar", new PanelEditarBovino(this, bovino));
-        getContentPane().add(getPanelEditar());
-        getContentPane().add(getVerticalSpace(20));
-    }
-    
-    @Override
-    public void setValues() {
-        getPanelEditar().setValues();
+    protected PanelEditarBovino createPanel() {
+        return new PanelEditarBovino(this, bovino);
     }
     
     /**

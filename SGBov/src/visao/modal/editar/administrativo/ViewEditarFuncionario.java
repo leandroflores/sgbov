@@ -40,20 +40,8 @@ public final class ViewEditarFuncionario extends ViewEditar {
     }
     
     @Override
-    public void addHeader() {
-        getContentPane().add(getVerticalSpace(20));
-    }
-    
-    @Override
-    public void addBody() {
-        addPanel("panel_editar", new PanelEditarFuncionario(this, funcionario));
-        getContentPane().add(getPanelEditar());
-        getContentPane().add(getVerticalSpace(20));
-    }
-    
-    @Override
-    public void setValues() {
-        getPanelEditar().setValues();
+    protected PanelEditarFuncionario createPanel() {
+        return new PanelEditarFuncionario(this, funcionario);
     }
     
     /**

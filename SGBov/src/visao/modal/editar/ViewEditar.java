@@ -42,10 +42,23 @@ public abstract class ViewEditar extends ViewModal {
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     }
     
+    @Override
+    public void addHeader() {
+        getContentPane().add(getVerticalSpace(20));
+    }
+    
+    @Override
+    public void addBody() {
+        addPanel("editar", createPanel());
+        getContentPane().add(getPanelEditar());
+        getContentPane().add(getVerticalSpace(20));
+    }
+    
     /**
-     * Metodo responsavel por apresentar os Valores da View Editar.
+     * Metodo responsavel por criar o Panel da View Editar.
+     * @return Panel da View Editar.
      */
-    public abstract void setValues();
+    protected abstract PanelEditar createPanel(); 
     
     @Override
     public void addFooter() {
@@ -54,6 +67,21 @@ public abstract class ViewEditar extends ViewModal {
                footer.add(createButton("salvar",   "  Salvar  ", "salvar"));
                footer.add(createButton("cancelar", " Cancelar ", "cancelar"));
         getContentPane().add(footer);
+    }
+    
+    /**
+     * Metodo responsavel por apresentar os Valores da View Editar.
+     */
+    public void setValues() {
+        getPanelEditar().setValues();
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Panel Editar.
+     * @return Panel Editar.
+     */
+    public PanelEditar getPanelEditar() {
+        return (PanelEditar) getPanel("editar");
     }
     
     /**
@@ -78,14 +106,6 @@ public abstract class ViewEditar extends ViewModal {
      */
     public ControllerViewEditar getController() {
         return (ControllerViewEditar) controller;
-    }
-    
-    /**
-     * Metodo responsavel por retornar o Panel Editar.
-     * @return Panel Editar.
-     */
-    public PanelEditar getPanelEditar() {
-        return (PanelEditar) getPanel("panel_editar");
     }
     
     /**
