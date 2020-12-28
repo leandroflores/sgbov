@@ -8,6 +8,7 @@ import modelo.controlador.financeiro.ControllerMovimentacao;
 import modelo.dao.financeiro.DaoMovimentacao;
 import modelo.entidade.financeiro.Movimentacao;
 import visao.modal.consulta.financeiro.ViewConsultaMovimentacao;
+import visao.modal.editar.financeiro.ViewEditarMovimentacao;
 import visao.modal.excluir.financeiro.ViewExcluirMovimentacao;
 import visao.modal.mensagem.ViewErro;
 import visao.modal.novo.financeiro.ViewNovoMovimentacao;
@@ -64,7 +65,7 @@ public class ControllerViewConsultaMovimentacao extends ControllerViewConsulta {
         int indice  = getView().getTable().getSelectedRow();
         int tamanho = list.size();
         if (indice >= 0 && indice < tamanho)
-            System.out.println("Edit");
+            new ViewEditarMovimentacao(getView(), list.get(indice)).setVisible(true);
         else
             new ViewErro(getView(), "Selecione uma Movimentação!").setVisible(true);
     }
