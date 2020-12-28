@@ -84,7 +84,7 @@ public class Movimentacao extends Entidade {
      * @return Valor Formatado da Movimentacao.
      */
     public String getValorFormatado() {
-        return new DecimalFormat("R$ #,##0.00").format(this.valor);
+        return new DecimalFormat("R$ #,##0.00").format(valor);
     }
     
     /**
@@ -142,6 +142,6 @@ public class Movimentacao extends Entidade {
     
     @Override
     public String toString() {
-        return this.id + " - " + this.descricao + " = " + this.getValorFormatado();
+        return id + " - " + descricao + " = " + getValorFormatado();
     }
 }

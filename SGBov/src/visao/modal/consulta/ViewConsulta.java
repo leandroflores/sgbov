@@ -133,7 +133,7 @@ public abstract class ViewConsulta extends ViewModal implements Updatable {
         JPanel total = new JPanel();
                total.setLayout(new FlowLayout(FlowLayout.CENTER));
                total.add(createLabel("Total: "));
-               total.add(createRightTextFieldNoEditable("total", "0.00", 5));
+               total.add(createRightTextFieldNoEditable("total", "0.00", 8));
         return total;
     }
     

@@ -8,6 +8,7 @@ import modelo.controlador.financeiro.ControllerMovimentacao;
 import modelo.dao.financeiro.DaoMovimentacao;
 import modelo.entidade.financeiro.Movimentacao;
 import visao.modal.consulta.financeiro.ViewConsultaMovimentacao;
+import visao.modal.excluir.financeiro.ViewExcluirMovimentacao;
 import visao.modal.mensagem.ViewErro;
 import visao.modal.novo.financeiro.ViewNovoMovimentacao;
 import visao.painel.consulta.filtro.financeiro.PanelFiltroMovimentacao;
@@ -46,7 +47,7 @@ public class ControllerViewConsultaMovimentacao extends ControllerViewConsulta {
     
     @Override
     public void pesquisar() {
-        String tipo      = getValor(getFiltro().getComboBoxTipo());
+        String tipo      = getValor(getFiltro().getComboBoxTipo()).replaceAll("Selecione", "");
         Date   inicio    = getData(getFiltro().getTextFieldInicio());
         Date   final_    = getData(getFiltro().getTextFieldFinal());
         String descricao = getString(getFiltro().getTextFieldDescricao()).toUpperCase();
@@ -73,8 +74,7 @@ public class ControllerViewConsultaMovimentacao extends ControllerViewConsulta {
         int indice  = getView().getTable().getSelectedRow();
         int tamanho = list.size();
         if (indice >= 0 && indice < tamanho)
-            System.out.println("Delete");
-            //new ViewExcluirFuncionario(getView(), list.get(indice)).setVisible(true);
+            new ViewExcluirMovimentacao(getView(), list.get(indice)).setVisible(true);
         else
             new ViewErro(getView(), "Selecione uma Movimentação!").setVisible(true);
     }
