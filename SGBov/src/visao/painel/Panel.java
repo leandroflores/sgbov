@@ -877,4 +877,12 @@ public abstract class Panel extends JPanel {
                constraint.gridwidth  = GridBagConstraints.RELATIVE;
         return constraint;       
     }
+    
+    /**
+     * Metodo responsavel por retornar o Controller do Panel.
+     * @return Controller do Panel.
+     */
+    public Controller getController() {
+        return controller;
+    }
 }

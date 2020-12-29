@@ -66,12 +66,15 @@ public final class ViewMenu extends View {
     private void createMenuRebanho() {
         createMenu("rebanho", "Rebanho");
         
-        createMenuItem("rebanho_consulta", "Consultar Rebanho", "rebanho/bovino");
-        createMenuItem("rebanho_pesagem",  "Pesagem", "rebanho/pesagem");
-        createMenuItem("rebanho_vacina",   "Vacina",  "rebanho/vacina");
+        createMenuItem("rebanho_consulta",    "Consultar Rebanho", "rebanho/bovino");
+        createMenuItem("rebanho_pesagem",     "Pesagem",           "rebanho/pesagem");
+        createMenuItem("rebanho_inseminacao", "Inseminação",       "rebanho/inseminacao");
+        createMenuItem("rebanho_vacina",      "Vacina",            "rebanho/vacina");
         
         getMenu("rebanho").add(getMenuItem("rebanho_consulta"));
+        getMenu("rebanho").addSeparator();
         getMenu("rebanho").add(getMenuItem("rebanho_pesagem"));
+        getMenu("rebanho").add(getMenuItem("rebanho_inseminacao"));
         getMenu("rebanho").add(getMenuItem("rebanho_vacina"));
         menu.add(getMenu("rebanho"));
     }
@@ -149,6 +152,14 @@ public final class ViewMenu extends View {
      */
     public JMenuItem getMenuItemPesagem() {
         return getMenuItem("rebanho_pesagem");
+    }
+    
+    /**
+     * Metodo responsavel por retornar o Menu Item Inseminacao.
+     * @return Menu Item Inseminacao.
+     */
+    public JMenuItem getMenuItemInseminacao() {
+        return getMenuItem("rebanho_inseminacao");
     }
     
     /**
