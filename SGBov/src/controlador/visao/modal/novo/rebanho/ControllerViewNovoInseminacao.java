@@ -6,6 +6,7 @@ import modelo.dao.rebanho.DaoInseminacao;
 import modelo.entidade.rebanho.Inseminacao;
 import visao.modal.mensagem.ViewMensagem;
 import visao.modal.novo.rebanho.ViewNovoInseminacao;
+import visao.modal.novo.rebanho.inseminacao.ViewNovoMatriz;
 import visao.painel.base.rebanho.PanelBaseInseminacao;
 import visao.painel.base.rebanho.inseminacao.PanelBaseMatrizes;
 import visao.painel.novo.rebanho.PanelNovoInseminacao;
@@ -34,11 +35,18 @@ public class ControllerViewNovoInseminacao extends ControllerViewNovo {
     public void actionPerformed(ActionEvent event) {
         super.actionPerformed(event);
         if (getMatrizes().getButtonAdicionar().equals(event.getSource()))
-            System.out.println("Add");
+            addMatriz();
         else if (getMatrizes().getButtonEditar().equals(event.getSource()))
             System.out.println("Edit");
         else if (getMatrizes().getButtonExcluir().equals(event.getSource()))
             System.out.println("Del");
+    }
+    
+    /**
+     * Metodo responsavel por adicionar uma Nova Matriz para Inseminacao.
+     */
+    private void addMatriz() {
+        new ViewNovoMatriz(view).setVisible(true);
     }
     
     /**

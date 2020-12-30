@@ -1,5 +1,6 @@
 package visao.painel.base.rebanho.inseminacao;
 
+import controlador.visao.painel.base.rebanho.inseminacao.ControllerPanelBaseMatriz;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -15,7 +16,7 @@ import visao.painel.base.PanelBase;
  * <p>Classe responsavel por definir o Painel Grafico da <b>ViewBaseMatriz</b> do SGBov.</p>
  * @author Leandro
  * @since  29/12/2020
- * @see    controlador.visao.painel.base.rebanho.inseminacao.
+ * @see    controlador.visao.painel.base.rebanho.inseminacao.ControllerPanelBaseMatriz
  * @see    modelo.entidade.rebanho.inseminacao.Matriz
  * @see    visao.interfaces.Searchable
  * @see    visao.painel.base.PanelBase
@@ -31,7 +32,7 @@ public final class PanelBaseMatriz extends PanelBase implements Searchable {
     public PanelBaseMatriz(Panel panel, Matriz matriz_) {
         super(panel);
         matriz     = matriz_;
-        //controller = new ControllerPanelBaseMatriz(this);
+        controller = new ControllerPanelBaseMatriz(this);
         setProperties();
         addComponents();
         setValues();
@@ -39,29 +40,31 @@ public final class PanelBaseMatriz extends PanelBase implements Searchable {
     
     @Override
     protected void setProperties() {
-        setMinimumSize(new Dimension(400, 525));
-        setMaximumSize(new Dimension(400, 525));
+        setMinimumSize(new Dimension(200, 100));
+        setMaximumSize(new Dimension(200, 100));
         setLayout(new GridBagLayout());
     }
     
     @Override
     protected void addComponents() {
-        add(createLabel("Bovino*: ", 120), createConstraints(1, 1, 0, 0));
-        add(createTextFieldNoEditable("bovino", "", 20), createConstraints(3, 1, 1, 0));
-        getTextField("bovino").setMinimumSize(new Dimension(150, 30));
-        add(createButton("pesquisa", "", "pesquisa"), createConstraints(1, 1, 4, 0));
+        add(createLabel("Bovino*: ", 75), createConstraints(1, 1, 0, 0));
+        add(createTextFieldNoEditable("bovino", "", 20), createConstraints(4, 1, 1, 0));
+        getTextField("bovino").setMinimumSize(new Dimension(125, 30));
+        add(createButton("pesquisa", "", "pesquisa"), createConstraints(1, 1, 5, 0));
         
-        add(createRightLabel("Implante: "), createConstraints(1, 1, 0, 2));
-        add(createCheckBox("implante", "", false), createConstraints(1, 1, 1, 2));
-        add(createRightLabel("Hormônio: "), createConstraints(1, 1, 2, 2));
-        add(createCheckBox("hormonio", "", false), createConstraints(1, 1, 3, 2));
-        add(createLabel(""), createConstraints(1, 1, 4, 2));
+        add(createLabel(""), createConstraints(1, 1, 0, 2));
+        add(createRightLabel("Implante: "), createConstraints(1, 1, 1, 2));
+        add(createCheckBox("implante", "", false), createConstraints(1, 1, 2, 2));
+        add(createRightLabel("Hormônio: "), createConstraints(1, 1, 3, 2));
+        add(createCheckBox("hormonio", "", false), createConstraints(1, 1, 4, 2));
+        add(createLabel(""), createConstraints(1, 1, 5, 2));
         
-        add(createRightLabel("Inseminação: "), createConstraints(1, 1, 0, 3));
-        add(createCheckBox("inseminacao", "", false), createConstraints(1, 1, 1, 3));
-        add(createRightLabel("Prenha: "), createConstraints(1, 1, 2, 3));
-        add(createCheckBox("prenha", "", false), createConstraints(1, 1, 3, 3));
-        add(createLabel(""), createConstraints(1, 1, 4, 3));
+        add(createLabel(""), createConstraints(1, 1, 0, 3));
+        add(createRightLabel("Inseminação: "), createConstraints(1, 1, 1, 3));
+        add(createCheckBox("inseminacao", "", false), createConstraints(1, 1, 2, 3));
+        add(createRightLabel("Prenha: "), createConstraints(1, 1, 3, 3));
+        add(createCheckBox("prenha", "", false), createConstraints(1, 1, 4, 3));
+        add(createLabel(""), createConstraints(1, 1, 5, 3));
     }
     
     @Override

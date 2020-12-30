@@ -84,7 +84,7 @@ public class Matriz extends Entidade {
      * Metodo responsavel por retornar a Flag Implante da Matriz.
      * @return Flag Implante da Matriz.
      */
-    public Boolean getImplante() {
+    public Boolean isImplante() {
         return implante;
     }
 
@@ -100,7 +100,7 @@ public class Matriz extends Entidade {
      * Metodo responsavel por retornar a Flag Hormonio da Matriz.
      * @return Flag Hormonio da Matriz.
      */
-    public Boolean getHormonio() {
+    public Boolean isHormonio() {
         return hormonio;
     }
 
@@ -116,7 +116,7 @@ public class Matriz extends Entidade {
      * Metodo responsavel por retornar a Flag Semen da Matriz.
      * @return Flag Semen da Matriz.
      */
-    public Boolean getSemen() {
+    public Boolean isSemen() {
         return semen;
     }
 
@@ -132,7 +132,7 @@ public class Matriz extends Entidade {
      * Metodo responsavel por retornar a Flag Prenha da Matriz.
      * @return Flag Prenha da Matriz.
      */
-    public Boolean getPrenha() {
+    public Boolean isPrenha() {
         return prenha;
     }
 
@@ -176,7 +176,6 @@ public class Matriz extends Entidade {
 
     @Override
     public String toString() {
-        return id + " - " + inseminacao.getDataInseminacaoFormatada() 
-                  + " - " + bovino.getNumero();
+        return bovino.toString();
     }
 }

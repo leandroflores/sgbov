@@ -5,8 +5,11 @@ import funct.FunctDate;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JTextField;
+import modelo.controlador.rebanho.inseminacao.ControllerMatriz;
 import modelo.entidade.rebanho.Inseminacao;
+import modelo.entidade.rebanho.inseminacao.Matriz;
 import visao.painel.Panel;
 import visao.painel.base.PanelBase;
 
@@ -72,6 +75,15 @@ public final class PanelBaseInseminacao extends PanelBase {
         getTextFieldInseminacao().setText(new FunctDate().getFormattedDate(inseminacao.getDataInseminacao()));
         getTextFieldMatrizes().setText(Integer.toString(inseminacao.getTotal()));
         getTextFieldPrenhas().setText(Integer.toString(inseminacao.getPrenhas()));
+    }
+    
+    /**
+     * Metodo responsavel por atualizar o Painel de Matrizes.
+     * @param matrizes Lista de Matrizes.
+     */
+    public void updateMatrizes(List<Matriz> matrizes) {
+        getTextFieldMatrizes().setText(Integer.toString(matrizes.size()));
+        getTextFieldPrenhas().setText(Integer.toString(new ControllerMatriz().filterPrenhas(matrizes).size()));
     }
     
     /**

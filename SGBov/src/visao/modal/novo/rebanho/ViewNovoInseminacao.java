@@ -1,5 +1,6 @@
 package visao.modal.novo.rebanho;
 
+import controlador.visao.interfaces.Updatable;
 import controlador.visao.modal.novo.rebanho.ControllerViewNovoInseminacao;
 import java.awt.Dimension;
 import visao.modal.ViewModal;
@@ -13,9 +14,10 @@ import visao.painel.novo.rebanho.PanelNovoInseminacao;
  * @since  29/12/2020
  * @see    controlador.visao.modal.novo.rebanho.ControllerViewNovoInseminacao
  * @see    modelo.entidade.rebanho.Inseminacao
+ * @see    visao.interfaces.Viewable
  * @see    visao.modal.novo.ViewNovo
  */
-public final class ViewNovoInseminacao extends ViewNovo {
+public final class ViewNovoInseminacao extends ViewNovo implements Updatable {
     
     /**
      * Metodo construtor padrao da Classe.
@@ -39,6 +41,11 @@ public final class ViewNovoInseminacao extends ViewNovo {
     @Override
     protected PanelNovoInseminacao createPanelNovo() {
         return new PanelNovoInseminacao(this);
+    }
+    
+    @Override
+    public void update() {
+        getPanelNovo().update();
     }
     
     @Override

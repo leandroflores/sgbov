@@ -537,7 +537,7 @@ public abstract class Panel extends JPanel {
      * @param id Identificador da Table. 
      * @param values Valores da Table.
      */
-    protected void addRows(String id, Object[][] values) {
+    public void addRows(String id, Object[][] values) {
         clearTable(id);
         for (Object[] value : values) {
             getTableModel(id).addRow(value);
