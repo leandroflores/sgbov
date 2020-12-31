@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import modelo.entidade.rebanho.inseminacao.Matriz;
-import visao.interfaces.Searchable;
 import visao.painel.Panel;
 import visao.painel.base.PanelBase;
 
@@ -18,10 +17,9 @@ import visao.painel.base.PanelBase;
  * @since  29/12/2020
  * @see    controlador.visao.painel.base.rebanho.inseminacao.ControllerPanelBaseMatriz
  * @see    modelo.entidade.rebanho.inseminacao.Matriz
- * @see    visao.interfaces.Searchable
  * @see    visao.painel.base.PanelBase
  */
-public final class PanelBaseMatriz extends PanelBase implements Searchable {
+public final class PanelBaseMatriz extends PanelBase {
     private final Matriz matriz;
     
     /**
@@ -68,11 +66,12 @@ public final class PanelBaseMatriz extends PanelBase implements Searchable {
     }
     
     @Override
-    public void setValues() {}
-    
-    @Override
-    public void setValue(Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setValues() {
+        getTextFieldBovino().setText(matriz.getNumeroBovino());
+        getCheckBoxImplante().setSelected(matriz.isImplante());
+        getCheckBoxHormonio().setSelected(matriz.isHormonio());
+        getCheckBoxInseminacao().setSelected(matriz.isSemen());
+        getCheckBoxPrenha().setSelected(matriz.isPrenha());
     }
     
     /**

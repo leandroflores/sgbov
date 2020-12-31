@@ -73,6 +73,14 @@ public class Matriz extends Entidade {
     }
 
     /**
+     * Metodo responsavel por retornar o Numero do Bovino da Matriz.
+     * @return Numero do Bovino da Matriz.
+     */
+    public String getNumeroBovino() {
+        return bovino == null ? "" : bovino.toString();
+    }
+    
+    /**
      * Metodo responsavel por definir o Bovino da Matriz.
      * @param bovino Bovino da Matriz.
      */

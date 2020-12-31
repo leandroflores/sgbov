@@ -49,6 +49,10 @@ public class ControllerViewNovoInseminacao extends ControllerViewNovo {
         new ViewNovoMatriz(view).setVisible(true);
     }
     
+    private void editMatriz() {
+        getPan
+    }
+    
     /**
      * Metodo responsavel por validar o Ano da Inseminacao.
      * @return Ano da Inseminacao e valida.
